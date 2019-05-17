@@ -15,3 +15,4 @@ tasks:
         > ~/.config/nixpkgs/config.nix
   - build: |
       nix-build '<nixpkgs>' -A danieldk.citar | cachix push danieldk
+      nix-build '<nixpkgs>' -A danieldk.fsa6 | cachix push danieldk
