@@ -1,0 +1,17 @@
+image: nixos/19.03
+repositories:
+  nixpkgs: https://nixos.org/channels/nixos-19.03
+sources:
+  - https://git.sr.ht/~danieldk/nix-packages
+secrets:
+  - 773a7364-48a0-4e82-ba5c-fc4228307117
+tasks:
+  - cachix: |
+      nix-env -iA cachix -f https://cachix.org/api/v1/install
+      cachix use danieldk
+  - packageset: |
+      mkdir -p ~/.config/nixpkgs
+      echo "{ packageOverrides = pkgs: { danieldk = import $PWD/nix-packages/default.nix { inherit pkgs; }; }; }" \
+        > ~/.config/nixpkgs/config.nix
+  - build: |
+      nix-build '<nixpkgs>' -A danieldk.citar | cachix push danieldk
