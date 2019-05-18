@@ -16,4 +16,5 @@ tasks:
   - build: |
       nix-build '<nixpkgs>' -A danieldk.alpinocorpus | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.citar | cachix push danieldk
+      nix-build '<nixpkgs>' -A danieldk.dact | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.fsa6 | cachix push danieldk
