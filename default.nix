@@ -2,6 +2,7 @@
 
 {
   # Homegrown software
+  alpinocorpus = pkgs.callPackage ./alpinocorpus {};
   citar = pkgs.callPackage ./citar {};
 
   # NLP utilities
