@@ -4,6 +4,7 @@ rec {
   # Homegrown software
   alpinocorpus = pkgs.callPackage ./alpinocorpus {};
   citar = pkgs.callPackage ./citar {};
+  conllx-utils = pkgs.callPackage ./conllx-utils {};
   dact = pkgs.callPackage ./dact { alpinocorpus = alpinocorpus; };
   sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_13_1; };
 
