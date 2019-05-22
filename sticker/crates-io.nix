@@ -82,6 +82,32 @@ rec {
 
 
 # end
+# ansi_term-0.11.0
+
+  crates.ansi_term."0.11.0" = deps: { features?(features_.ansi_term."0.11.0" deps {}) }: buildRustCrate {
+    crateName = "ansi_term";
+    version = "0.11.0";
+    description = "Library for ANSI terminal colours and styles (bold, underline)";
+    authors = [ "ogham@bsago.me" "Ryan Scheel (Havvy) <ryan.havvy@gmail.com>" "Josh Triplett <josh@joshtriplett.org>" ];
+    sha256 = "08fk0p2xvkqpmz3zlrwnf6l8sj2vngw464rvzspzp31sbgxbwm4v";
+    dependencies = (if kernel == "windows" then mapFeatures features ([
+      (crates."winapi"."${deps."ansi_term"."0.11.0"."winapi"}" deps)
+    ]) else []);
+  };
+  features_.ansi_term."0.11.0" = deps: f: updateFeatures f (rec {
+    ansi_term."0.11.0".default = (f.ansi_term."0.11.0".default or true);
+    winapi = fold recursiveUpdate {} [
+      { "${deps.ansi_term."0.11.0".winapi}"."consoleapi" = true; }
+      { "${deps.ansi_term."0.11.0".winapi}"."errhandlingapi" = true; }
+      { "${deps.ansi_term."0.11.0".winapi}"."processenv" = true; }
+      { "${deps.ansi_term."0.11.0".winapi}".default = true; }
+    ];
+  }) [
+    (features_.winapi."${deps."ansi_term"."0.11.0"."winapi"}" deps)
+  ];
+
+
+# end
 # approx-0.3.2
 
   crates.approx."0.3.2" = deps: { features?(features_.approx."0.3.2" deps {}) }: buildRustCrate {
@@ -436,6 +462,96 @@ rec {
   features_.cfg_if."0.1.7" = deps: f: updateFeatures f (rec {
     cfg_if."0.1.7".default = (f.cfg_if."0.1.7".default or true);
   }) [];
+
+
+# end
+# clap-2.33.0
+
+  crates.clap."2.33.0" = deps: { features?(features_.clap."2.33.0" deps {}) }: buildRustCrate {
+    crateName = "clap";
+    version = "2.33.0";
+    description = "A simple to use, efficient, and full-featured Command Line Argument Parser\n";
+    authors = [ "Kevin K. <kbknapp@gmail.com>" ];
+    sha256 = "054n9ngh6pkknpmd4acgdsp40iw6f5jzq8a4h2b76gnbvk6p5xjh";
+    dependencies = mapFeatures features ([
+      (crates."bitflags"."${deps."clap"."2.33.0"."bitflags"}" deps)
+      (crates."textwrap"."${deps."clap"."2.33.0"."textwrap"}" deps)
+      (crates."unicode_width"."${deps."clap"."2.33.0"."unicode_width"}" deps)
+    ]
+      ++ (if features.clap."2.33.0".atty or false then [ (crates.atty."${deps."clap"."2.33.0".atty}" deps) ] else [])
+      ++ (if features.clap."2.33.0".strsim or false then [ (crates.strsim."${deps."clap"."2.33.0".strsim}" deps) ] else [])
+      ++ (if features.clap."2.33.0".vec_map or false then [ (crates.vec_map."${deps."clap"."2.33.0".vec_map}" deps) ] else []))
+      ++ (if !(kernel == "windows") then mapFeatures features ([
+    ]
+      ++ (if features.clap."2.33.0".ansi_term or false then [ (crates.ansi_term."${deps."clap"."2.33.0".ansi_term}" deps) ] else [])) else []);
+    features = mkFeatures (features."clap"."2.33.0" or {});
+  };
+  features_.clap."2.33.0" = deps: f: updateFeatures f (rec {
+    ansi_term."${deps.clap."2.33.0".ansi_term}".default = true;
+    atty."${deps.clap."2.33.0".atty}".default = true;
+    bitflags."${deps.clap."2.33.0".bitflags}".default = true;
+    clap = fold recursiveUpdate {} [
+      { "2.33.0"."ansi_term" =
+        (f.clap."2.33.0"."ansi_term" or false) ||
+        (f.clap."2.33.0".color or false) ||
+        (clap."2.33.0"."color" or false); }
+      { "2.33.0"."atty" =
+        (f.clap."2.33.0"."atty" or false) ||
+        (f.clap."2.33.0".color or false) ||
+        (clap."2.33.0"."color" or false); }
+      { "2.33.0"."clippy" =
+        (f.clap."2.33.0"."clippy" or false) ||
+        (f.clap."2.33.0".lints or false) ||
+        (clap."2.33.0"."lints" or false); }
+      { "2.33.0"."color" =
+        (f.clap."2.33.0"."color" or false) ||
+        (f.clap."2.33.0".default or false) ||
+        (clap."2.33.0"."default" or false); }
+      { "2.33.0"."strsim" =
+        (f.clap."2.33.0"."strsim" or false) ||
+        (f.clap."2.33.0".suggestions or false) ||
+        (clap."2.33.0"."suggestions" or false); }
+      { "2.33.0"."suggestions" =
+        (f.clap."2.33.0"."suggestions" or false) ||
+        (f.clap."2.33.0".default or false) ||
+        (clap."2.33.0"."default" or false); }
+      { "2.33.0"."term_size" =
+        (f.clap."2.33.0"."term_size" or false) ||
+        (f.clap."2.33.0".wrap_help or false) ||
+        (clap."2.33.0"."wrap_help" or false); }
+      { "2.33.0"."vec_map" =
+        (f.clap."2.33.0"."vec_map" or false) ||
+        (f.clap."2.33.0".default or false) ||
+        (clap."2.33.0"."default" or false); }
+      { "2.33.0"."yaml" =
+        (f.clap."2.33.0"."yaml" or false) ||
+        (f.clap."2.33.0".doc or false) ||
+        (clap."2.33.0"."doc" or false); }
+      { "2.33.0"."yaml-rust" =
+        (f.clap."2.33.0"."yaml-rust" or false) ||
+        (f.clap."2.33.0".yaml or false) ||
+        (clap."2.33.0"."yaml" or false); }
+      { "2.33.0".default = (f.clap."2.33.0".default or true); }
+    ];
+    strsim."${deps.clap."2.33.0".strsim}".default = true;
+    textwrap = fold recursiveUpdate {} [
+      { "${deps.clap."2.33.0".textwrap}"."term_size" =
+        (f.textwrap."${deps.clap."2.33.0".textwrap}"."term_size" or false) ||
+        (clap."2.33.0"."wrap_help" or false) ||
+        (f."clap"."2.33.0"."wrap_help" or false); }
+      { "${deps.clap."2.33.0".textwrap}".default = true; }
+    ];
+    unicode_width."${deps.clap."2.33.0".unicode_width}".default = true;
+    vec_map."${deps.clap."2.33.0".vec_map}".default = true;
+  }) [
+    (features_.atty."${deps."clap"."2.33.0"."atty"}" deps)
+    (features_.bitflags."${deps."clap"."2.33.0"."bitflags"}" deps)
+    (features_.strsim."${deps."clap"."2.33.0"."strsim"}" deps)
+    (features_.textwrap."${deps."clap"."2.33.0"."textwrap"}" deps)
+    (features_.unicode_width."${deps."clap"."2.33.0"."unicode_width"}" deps)
+    (features_.vec_map."${deps."clap"."2.33.0"."vec_map"}" deps)
+    (features_.ansi_term."${deps."clap"."2.33.0"."ansi_term"}" deps)
+  ];
 
 
 # end
@@ -1247,27 +1363,6 @@ rec {
 
 
 # end
-# getopts-0.2.18
-
-  crates.getopts."0.2.18" = deps: { features?(features_.getopts."0.2.18" deps {}) }: buildRustCrate {
-    crateName = "getopts";
-    version = "0.2.18";
-    description = "getopts-like option parsing.\n";
-    authors = [ "The Rust Project Developers" ];
-    sha256 = "0c1m95wg8pkvdq4mwcd2v78r1lb6a5s3ljm7158dsl56mvzcwd5y";
-    dependencies = mapFeatures features ([
-      (crates."unicode_width"."${deps."getopts"."0.2.18"."unicode_width"}" deps)
-    ]);
-  };
-  features_.getopts."0.2.18" = deps: f: updateFeatures f (rec {
-    getopts."0.2.18".default = (f.getopts."0.2.18".default or true);
-    unicode_width."${deps.getopts."0.2.18".unicode_width}".default = true;
-  }) [
-    (features_.unicode_width."${deps."getopts"."0.2.18"."unicode_width"}" deps)
-  ];
-
-
-# end
 # half-1.3.0
 
   crates.half."1.3.0" = deps: { features?(features_.half."1.3.0" deps {}) }: buildRustCrate {
@@ -1844,6 +1939,31 @@ rec {
   }) [
     (features_.ndarray."${deps."ndarray_parallel"."0.9.0"."ndarray"}" deps)
     (features_.rayon."${deps."ndarray_parallel"."0.9.0"."rayon"}" deps)
+  ];
+
+
+# end
+# ndarray-tensorflow-0.2.0
+
+  crates.ndarray_tensorflow."0.2.0" = deps: { features?(features_.ndarray_tensorflow."0.2.0" deps {}) }: buildRustCrate {
+    crateName = "ndarray-tensorflow";
+    version = "0.2.0";
+    description = "Adapter for Tensorflow tensors to expose the ndarray API";
+    authors = [ "Daniël de Kok <me@danieldk.eu>" ];
+    edition = "2018";
+    sha256 = "1j0dzn6l0chcrmijmr9r6kfcdj9ylqn68zawraa2kjmnl6gcsb2s";
+    dependencies = mapFeatures features ([
+      (crates."ndarray"."${deps."ndarray_tensorflow"."0.2.0"."ndarray"}" deps)
+      (crates."tensorflow"."${deps."ndarray_tensorflow"."0.2.0"."tensorflow"}" deps)
+    ]);
+  };
+  features_.ndarray_tensorflow."0.2.0" = deps: f: updateFeatures f (rec {
+    ndarray."${deps.ndarray_tensorflow."0.2.0".ndarray}".default = true;
+    ndarray_tensorflow."0.2.0".default = (f.ndarray_tensorflow."0.2.0".default or true);
+    tensorflow."${deps.ndarray_tensorflow."0.2.0".tensorflow}".default = true;
+  }) [
+    (features_.ndarray."${deps."ndarray_tensorflow"."0.2.0"."ndarray"}" deps)
+    (features_.tensorflow."${deps."ndarray_tensorflow"."0.2.0"."tensorflow"}" deps)
   ];
 
 
@@ -3569,6 +3689,21 @@ rec {
 
 
 # end
+# strsim-0.8.0
+
+  crates.strsim."0.8.0" = deps: { features?(features_.strsim."0.8.0" deps {}) }: buildRustCrate {
+    crateName = "strsim";
+    version = "0.8.0";
+    description = "Implementations of string similarity metrics.\nIncludes Hamming, Levenshtein, OSA, Damerau-Levenshtein, Jaro, and Jaro-Winkler.\n";
+    authors = [ "Danny Guo <dannyguo91@gmail.com>" ];
+    sha256 = "0d3jsdz22wgjyxdakqnvdgmwjdvkximz50d9zfk4qlalw635qcvy";
+  };
+  features_.strsim."0.8.0" = deps: f: updateFeatures f (rec {
+    strsim."0.8.0".default = (f.strsim."0.8.0".default or true);
+  }) [];
+
+
+# end
 # syn-0.15.30
 
   crates.syn."0.15.30" = deps: { features?(features_.syn."0.15.30" deps {}) }: buildRustCrate {
@@ -3898,6 +4033,27 @@ rec {
 
 
 # end
+# textwrap-0.11.0
+
+  crates.textwrap."0.11.0" = deps: { features?(features_.textwrap."0.11.0" deps {}) }: buildRustCrate {
+    crateName = "textwrap";
+    version = "0.11.0";
+    description = "Textwrap is a small library for word wrapping, indenting, and\ndedenting strings.\n\nYou can use it to format strings (such as help and error messages) for\ndisplay in commandline applications. It is designed to be efficient\nand handle Unicode characters correctly.\n";
+    authors = [ "Martin Geisler <martin@geisler.net>" ];
+    sha256 = "0s25qh49n7kjayrdj4q3v0jk0jc6vy88rdw0bvgfxqlscpqpxi7d";
+    dependencies = mapFeatures features ([
+      (crates."unicode_width"."${deps."textwrap"."0.11.0"."unicode_width"}" deps)
+    ]);
+  };
+  features_.textwrap."0.11.0" = deps: f: updateFeatures f (rec {
+    textwrap."0.11.0".default = (f.textwrap."0.11.0".default or true);
+    unicode_width."${deps.textwrap."0.11.0".unicode_width}".default = true;
+  }) [
+    (features_.unicode_width."${deps."textwrap"."0.11.0"."unicode_width"}" deps)
+  ];
+
+
+# end
 # thread_local-0.3.6
 
   crates.thread_local."0.3.6" = deps: { features?(features_.thread_local."0.3.6" deps {}) }: buildRustCrate {
@@ -4062,6 +4218,30 @@ rec {
   };
   features_.vcpkg."0.2.6" = deps: f: updateFeatures f (rec {
     vcpkg."0.2.6".default = (f.vcpkg."0.2.6".default or true);
+  }) [];
+
+
+# end
+# vec_map-0.8.1
+
+  crates.vec_map."0.8.1" = deps: { features?(features_.vec_map."0.8.1" deps {}) }: buildRustCrate {
+    crateName = "vec_map";
+    version = "0.8.1";
+    description = "A simple map based on a vector for small integer keys";
+    authors = [ "Alex Crichton <alex@alexcrichton.com>" "Jorge Aparicio <japaricious@gmail.com>" "Alexis Beingessner <a.beingessner@gmail.com>" "Brian Anderson <>" "tbu- <>" "Manish Goregaokar <>" "Aaron Turon <aturon@mozilla.com>" "Adolfo Ochagavía <>" "Niko Matsakis <>" "Steven Fackler <>" "Chase Southwood <csouth3@illinois.edu>" "Eduard Burtescu <>" "Florian Wilkens <>" "Félix Raimundo <>" "Tibor Benke <>" "Markus Siemens <markus@m-siemens.de>" "Josh Branchaud <jbranchaud@gmail.com>" "Huon Wilson <dbau.pp@gmail.com>" "Corey Farwell <coref@rwell.org>" "Aaron Liblong <>" "Nick Cameron <nrc@ncameron.org>" "Patrick Walton <pcwalton@mimiga.net>" "Felix S Klock II <>" "Andrew Paseltiner <apaseltiner@gmail.com>" "Sean McArthur <sean.monstar@gmail.com>" "Vadim Petrochenkov <>" ];
+    sha256 = "1jj2nrg8h3l53d43rwkpkikq5a5x15ms4rf1rw92hp5lrqhi8mpi";
+    dependencies = mapFeatures features ([
+]);
+    features = mkFeatures (features."vec_map"."0.8.1" or {});
+  };
+  features_.vec_map."0.8.1" = deps: f: updateFeatures f (rec {
+    vec_map = fold recursiveUpdate {} [
+      { "0.8.1"."serde" =
+        (f.vec_map."0.8.1"."serde" or false) ||
+        (f.vec_map."0.8.1".eders or false) ||
+        (vec_map."0.8.1"."eders" or false); }
+      { "0.8.1".default = (f.vec_map."0.8.1".default or true); }
+    ];
   }) [];
 
 
