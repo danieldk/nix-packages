@@ -1,4 +1,4 @@
-{ pkgs, stdenv, callPackage, fetchFromGitHub }:
+{ stdenv, callPackage, fetchFromGitHub }:
 
 ((callPackage ./conllx-utils.nix {}).conllx_utils {}).overrideAttrs (attrs: {
   src = fetchFromGitHub {
