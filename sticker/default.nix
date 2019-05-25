@@ -9,10 +9,10 @@ let
   };
 in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
   crateOverrides = defaultCrateOverrides // {
-    sticker = attr: { src = src; };
+    sticker = attr: { inherit src; };
 
     sticker-utils = attrs: {
-      src = src;
+      inherit src;
 
       meta = with stdenv.lib; {
         description = "Neural sequence labeler";
@@ -21,7 +21,7 @@ in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
       };
     };
 
-    tf-proto = attrs: { src = src; };
+    tf-proto = attrs: { inherit src; };
 
     tensorflow-sys = attrs: {
       nativeBuildInputs = [ pkgconfig ];
