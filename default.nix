@@ -7,6 +7,7 @@ rec {
   conllx-utils = pkgs.callPackage ./conllx-utils {};
   dact = pkgs.callPackage ./dact { alpinocorpus = alpinocorpus; };
   finalfrontier = pkgs.callPackage ./finalfrontier {};
+  finalfusion-utils = pkgs.callPackage ./finalfusion-utils {};
   sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_13_1; };
 
   pythonPackages = python2Packages;
