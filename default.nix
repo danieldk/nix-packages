@@ -6,6 +6,7 @@ rec {
   citar = pkgs.callPackage ./citar {};
   conllx-utils = pkgs.callPackage ./conllx-utils {};
   dact = pkgs.callPackage ./dact { alpinocorpus = alpinocorpus; };
+  finalfrontier = pkgs.callPackage ./finalfrontier {};
   sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_13_1; };
 
   pythonPackages = python2Packages;

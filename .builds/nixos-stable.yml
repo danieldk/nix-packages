@@ -19,6 +19,7 @@ tasks:
       nix-build '<nixpkgs>' -A danieldk.conllx-utils | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.dact | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.fsa6 | cachix push danieldk
+      nix-build '<nixpkgs>' -A danieldk.finalfrontier | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.pythonPackages.finalfusion | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.python3Packages.finalfusion | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.sticker | cachix push danieldk
