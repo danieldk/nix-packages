@@ -1,4 +1,4 @@
-{ stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub }:
+{ stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub, darwin }:
 
 let
   src = fetchFromGitHub {
@@ -15,6 +15,8 @@ in ((callPackage ./finalfusion-utils.nix {}).finalfusion_utils {}).override {
 
     finalfusion-utils = attr: {
       inherit src;
+
+      buildInputs = stdenv.lib.optional stdenv.isDarwin darwin.Security;
 
       meta = with stdenv.lib; {
         description = "Utilities for finalfusion word embeddings";
