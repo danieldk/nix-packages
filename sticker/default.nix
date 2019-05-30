@@ -1,4 +1,5 @@
-{ stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub, darwin, pkgconfig, libtensorflow, openssl }:
+{ stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub, pkgconfig,
+  curl, darwin, libtensorflow }:
 
 let
   src = fetchFromGitHub {
@@ -14,6 +15,8 @@ in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
     sticker-utils = attrs: {
       inherit src;
 
+      buildInputs = stdenv.lib.optional stdenv.isDarwin darwin.Security;
+
       meta = with stdenv.lib; {
         description = "Neural sequence labeler";
         license = licenses.asl20;
@@ -26,7 +29,8 @@ in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
     tensorflow-sys = attrs: {
       nativeBuildInputs = [ pkgconfig ];
 
-      buildInputs = [ libtensorflow ];
+      buildInputs = [ libtensorflow ] ++
+        stdenv.lib.optional stdenv.isDarwin curl;
     };
   };
 }
