@@ -1,4 +1,5 @@
-{ stdenv, fetchFromGitHub, cmake, pkgconfig, boost, dbxml, libxml2, libxslt, xercesc, xqilla }:
+{ stdenv, fetchFromGitHub, cmake, pkgconfig, boost, dbxml, libiconv, libxml2,
+  libxslt, xercesc, xqilla }:
 
 stdenv.mkDerivation rec {
   pname = "alpinocorpus";
@@ -17,7 +18,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     boost dbxml libxml2 libxslt xercesc xqilla
-  ];
+  ] ++ stdenv.lib.optional stdenv.isDarwin libiconv;
 
   meta = with stdenv.lib; {
     description = "Library for Alpino treebanks";
