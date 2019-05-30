@@ -1,4 +1,5 @@
-{ stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub, gnumake, pandoc }:
+{ stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub, gnumake,
+  pandoc, darwin }:
 
 let
   src = fetchFromGitHub {
@@ -15,6 +16,8 @@ in ((callPackage ./finalfrontier.nix {}).finalfrontier_utils {}).override {
 
     finalfrontier-utils = attr: {
       inherit src;
+
+      buildInputs = stdenv.lib.optional stdenv.isDarwin darwin.Security;
 
       nativeBuildInputs = [ gnumake pandoc ];
 
