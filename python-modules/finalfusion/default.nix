@@ -1,4 +1,4 @@
-{ pkgs, stdenv, fetchFromGitHub, makeRustPlatform, pythonPackages }:
+{ pkgs, stdenv, fetchFromGitHub, makeRustPlatform, pythonPackages, darwin }:
 
 let
   nixpkgs_unstable = import (builtins.fetchTarball {
@@ -36,7 +36,8 @@ in
 
     nativeBuildInputs = [ nixpkgs_unstable.pyo3-pack ];
 
-    buildInputs = [ pythonPackages.python ];
+    buildInputs = [ pythonPackages.python ] ++
+      stdenv.lib.optional stdenv.isDarwin darwin.Security;
 
     propagatedBuildInputs = [ pythonPackages.numpy ];
 
