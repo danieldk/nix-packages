@@ -42,5 +42,9 @@ rec {
   fsa6 = pkgs.callPackage ./fsa6 {};
 
   # Pinned library versions
-  libtensorflow_1_13_1 = pkgs.callPackage ./libtensorflow {};
+  libtensorflow_1_13_1 = with pkgs; callPackage ./libtensorflow {
+    inherit (linuxPackages) nvidia_x11;
+    cudatoolkit = cudatoolkit_10_0;
+    cudnn = cudnn_cudatoolkit_10_0;
+  };
 }
