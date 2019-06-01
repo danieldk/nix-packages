@@ -1,7 +1,7 @@
 { stdenv, fetchFromGitHub, buildGoPackage }:
 
 buildGoPackage rec {
-  name = "citar-${version}";
+  pname = "citar";
   version = "1.0.0";
 
   goPackagePath = "github.com/danieldk/citar";

@@ -2,7 +2,7 @@
   xqilla, zlib }:
 
 stdenv.mkDerivation rec {
-  name = "dact-${version}";
+  pname = "dact";
   version = "2.6.6";
 
   src = fetchFromGitHub {

@@ -32,7 +32,7 @@ let
 in stdenv.mkDerivation rec {
   pname = "libtensorflow";
   version = "1.13.1";
-  name = "${pname}-${version}";
+
   src = fetchurl {
     url = "https://storage.googleapis.com/tensorflow/${pname}/${pname}-${tfType}-${system}-${version}.tar.gz";
     sha256 =

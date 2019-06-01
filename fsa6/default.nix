@@ -1,7 +1,7 @@
 { stdenv, fetchurl, autoPatchelfHook, makeWrapper, tcl-8_5, tk-8_5 }:
 
 stdenv.mkDerivation rec {
-  name = "fsa6-${version}";
+  pname = "fsa6";
   version = "280";
 
   src = fetchurl {
