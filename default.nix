@@ -9,6 +9,9 @@ rec {
   finalfrontier = pkgs.callPackage ./finalfrontier {};
   finalfusion-utils = pkgs.callPackage ./finalfusion-utils {};
   sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_13_1; };
+  sticker-models = pkgs.callPackage ./sticker/models.nix {
+    inherit sticker;
+  };
 
   pythonPackages = python2Packages;
   python2Packages = python27Packages;
