@@ -9,10 +9,11 @@ rec {
   finalfrontier = pkgs.callPackage ./finalfrontier {};
   finalfusion-utils = pkgs.callPackage ./finalfusion-utils {};
   sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_13_1; };
-  sticker-models = pkgs.callPackage ./sticker/models.nix {
+  stickerModels = pkgs.callPackage ./sticker/models.nix {
     inherit sticker;
   };
 
+  # Python packages
   pythonPackages = python2Packages;
   python2Packages = python27Packages;
   python3Packages = python37Packages;
@@ -43,6 +44,11 @@ rec {
 
   # NLP utilities
   fsa6 = pkgs.callPackage ./fsa6 {};
+
+  # Docker images
+  dockerImages = pkgs.callPackage ./docker-images {
+    inherit stickerModels;
+  };
 
   # Pinned library versions
   libtensorflow_1_13_1 = with pkgs; callPackage ./libtensorflow {
