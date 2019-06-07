@@ -1,12 +1,14 @@
-{ stdenvNoCC, fetchurl, makeWrapper, sticker, tagEmbeds ? null, wordEmbeds, pname, sha256, version }:
+{ stdenvNoCC, fetchurl, makeWrapper, sticker, tagEmbeds ? null, wordEmbeds, modelName, sha256, version }:
 
 stdenvNoCC.mkDerivation rec {
-  inherit pname version;
+  inherit version;
+
+  pname = "sticker-${modelName}";
 
   src = fetchurl {
     inherit sha256;
 
-    url = "http://www.sfs.uni-tuebingen.de/a3-public-data/sticker-models/${pname}-${version}.tar.gz";
+    url = "http://www.sfs.uni-tuebingen.de/a3-public-data/sticker-models/${modelName}-${version}.tar.gz";
   };
 
   nativeBuildInputs = [ makeWrapper ];

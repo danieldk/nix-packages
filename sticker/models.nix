@@ -14,7 +14,7 @@ in {
   de-deps = stickerModel {
     inherit stdenvNoCC fetchurl makeWrapper sticker tagEmbeds wordEmbeds;
 
-    pname = "de-deps";
+    modelName = "de-deps";
     version = "20190426";
     sha256 = "1y8p37pi2j3pqbg552gfjikm4j9lmy5nziw399ldpa7snbqgb359";
   };
@@ -22,7 +22,7 @@ in {
   de-pos = stickerModel {
     inherit stdenvNoCC fetchurl makeWrapper sticker wordEmbeds;
 
-    pname = "de-pos";
+    modelName = "de-pos";
     version = "20190426";
     sha256 = "0rdq2s1x6h5whlscvw2d1lkgldm6aflpvmm0qh4zwinxinnxva5h";
   };
@@ -30,7 +30,7 @@ in {
   de-topo = stickerModel {
     inherit stdenvNoCC fetchurl makeWrapper sticker tagEmbeds wordEmbeds;
 
-    pname = "de-topo";
+    modelName = "de-topo";
     version = "20190426";
     sha256 = "07prfzwb1n137dc27hsa4w55156rj65kz589lpnqjv7dcbig11zs";
   };
