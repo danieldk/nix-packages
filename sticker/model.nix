@@ -24,18 +24,18 @@ stdenvNoCC.mkDerivation rec {
   '';
 
   installPhase = ''
-    mkdir -p $out/share/sticker/models/${pname}
-    install -m 0644 *.conf *.graph *.labels *.shapes epoch-* $out/share/sticker/models/${pname}
+    mkdir -p $out/share/sticker/models/${modelName}
+    install -m 0644 *.conf *.graph *.labels *.shapes epoch-* $out/share/sticker/models/${modelName}
 
-    makeWrapper ${sticker}/bin/sticker-tag $out/bin/sticker-tag-${pname} \
-      --add-flags "$out/share/sticker/models/${pname}/sticker.conf"
-    makeWrapper ${sticker}/bin/sticker-server $out/bin/sticker-server-${pname} \
-      --add-flags "$out/share/sticker/models/${pname}/sticker.conf"
+    makeWrapper ${sticker}/bin/sticker-tag $out/bin/sticker-tag-${modelName} \
+      --add-flags "$out/share/sticker/models/${modelName}/sticker.conf"
+    makeWrapper ${sticker}/bin/sticker-server $out/bin/sticker-server-${modelName} \
+      --add-flags "$out/share/sticker/models/${modelName}/sticker.conf"
   '';
 
   meta = with stdenvNoCC.lib; {
     homepage = https://github.com/danieldk/sticker/;
-    description = "Sticker ${pname} model";
+    description = "Sticker ${modelName} model";
     license = licenses.unfreeRedistributable;
     platforms = platforms.unix;
      maintainers = with maintainers; [ danieldk ];
