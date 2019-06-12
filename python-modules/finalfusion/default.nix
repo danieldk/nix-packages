@@ -21,18 +21,16 @@ let
 in
   rustPlatform.buildRustPackage rec {
     pname = "finalfusion";
-    version = "0.2.0";
+    version = "0.3.0";
 
     src = fetchFromGitHub {
       owner = "finalfusion";
       repo = "finalfusion-python";
-      rev = "1501d5c2d0e3f561fc82d228dcca0df19ad36d3a";
-      # Use in future versions:
-      #rev = version;
-      sha256 = "080pc2x4gvvzl3f4i8k4grhr9s8xrkjlcjfh2f3ivszrlv6ii6jv";
+      rev = version;
+      sha256 = "05vmj3sglsx305qna36mipkjx374ry0x1aswzlbzkr9xr7p69ipx";
     };
 
-    cargoSha256 = "0xzhggxfap80i6daa7hdafszmdvizv93glr2cqhkzpx3y5qh4hwd";
+    cargoSha256 = "1ra3vszs46sf4yr6qwk05q34yccb4jqyp9xp80pkvbhpjd4lx4xf";
 
     nativeBuildInputs = [ nixpkgs_unstable.pyo3-pack ];
 
