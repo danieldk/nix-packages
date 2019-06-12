@@ -5,8 +5,8 @@ let
   src = fetchFromGitHub {
     owner = "danieldk";
     repo = "sticker";
-    rev = "0.3.0";
-    sha256 = "1ji6fcm8gd5j8p65daj7qh0vasgdaag2qra6gl9rd813czjws9mk";
+    rev = "0.4.0";
+    sha256 = "0x05bmnvpzfy3fzzs6rv44q7l08ga9lysf27q8waax5lcb1ksl5y";
   };
 in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
   crateOverrides = defaultCrateOverrides // {

@@ -7,126 +7,126 @@ let inherit (lib.lists) fold;
 in
 rec {
   crates = cratesIO // rec {
-# sticker-0.3.0
+# sticker-0.4.0
 
-    crates.sticker."0.3.0" = deps: { features?(features_.sticker."0.3.0" deps {}) }: buildRustCrate {
+    crates.sticker."0.4.0" = deps: { features?(features_.sticker."0.4.0" deps {}) }: buildRustCrate {
       crateName = "sticker";
-      version = "0.3.0";
+      version = "0.4.0";
       description = "Neural sequence labeler";
       authors = [ "Daniël de Kok <me@danieldk.eu>" ];
       edition = "2018";
       src = include [ "Cargo.toml" " sticker" ] ./.;
       workspace_member = "sticker";
       dependencies = mapFeatures features ([
-        (cratesIO.crates."conllx"."${deps."sticker"."0.3.0"."conllx"}" deps)
-        (cratesIO.crates."failure"."${deps."sticker"."0.3.0"."failure"}" deps)
-        (cratesIO.crates."finalfusion"."${deps."sticker"."0.3.0"."finalfusion"}" deps)
-        (cratesIO.crates."itertools"."${deps."sticker"."0.3.0"."itertools"}" deps)
-        (cratesIO.crates."ndarray"."${deps."sticker"."0.3.0"."ndarray"}" deps)
-        (cratesIO.crates."ndarray_tensorflow"."${deps."sticker"."0.3.0"."ndarray_tensorflow"}" deps)
-        (cratesIO.crates."ordered_float"."${deps."sticker"."0.3.0"."ordered_float"}" deps)
-        (cratesIO.crates."petgraph"."${deps."sticker"."0.3.0"."petgraph"}" deps)
-        (cratesIO.crates."protobuf"."${deps."sticker"."0.3.0"."protobuf"}" deps)
-        (cratesIO.crates."serde"."${deps."sticker"."0.3.0"."serde"}" deps)
-        (cratesIO.crates."serde_derive"."${deps."sticker"."0.3.0"."serde_derive"}" deps)
-        (cratesIO.crates."tensorflow"."${deps."sticker"."0.3.0"."tensorflow"}" deps)
-        (crates."tf_proto"."${deps."sticker"."0.3.0"."tf_proto"}" deps)
+        (cratesIO.crates."conllx"."${deps."sticker"."0.4.0"."conllx"}" deps)
+        (cratesIO.crates."failure"."${deps."sticker"."0.4.0"."failure"}" deps)
+        (cratesIO.crates."finalfusion"."${deps."sticker"."0.4.0"."finalfusion"}" deps)
+        (cratesIO.crates."itertools"."${deps."sticker"."0.4.0"."itertools"}" deps)
+        (cratesIO.crates."ndarray"."${deps."sticker"."0.4.0"."ndarray"}" deps)
+        (cratesIO.crates."ndarray_tensorflow"."${deps."sticker"."0.4.0"."ndarray_tensorflow"}" deps)
+        (cratesIO.crates."ordered_float"."${deps."sticker"."0.4.0"."ordered_float"}" deps)
+        (cratesIO.crates."petgraph"."${deps."sticker"."0.4.0"."petgraph"}" deps)
+        (cratesIO.crates."protobuf"."${deps."sticker"."0.4.0"."protobuf"}" deps)
+        (cratesIO.crates."serde"."${deps."sticker"."0.4.0"."serde"}" deps)
+        (cratesIO.crates."serde_derive"."${deps."sticker"."0.4.0"."serde_derive"}" deps)
+        (cratesIO.crates."tensorflow"."${deps."sticker"."0.4.0"."tensorflow"}" deps)
+        (crates."tf_proto"."${deps."sticker"."0.4.0"."tf_proto"}" deps)
       ]);
     };
-    features_.sticker."0.3.0" = deps: f: updateFeatures f (rec {
-      conllx."${deps.sticker."0.3.0".conllx}".default = true;
-      failure."${deps.sticker."0.3.0".failure}".default = true;
-      finalfusion."${deps.sticker."0.3.0".finalfusion}".default = true;
-      itertools."${deps.sticker."0.3.0".itertools}".default = true;
-      ndarray."${deps.sticker."0.3.0".ndarray}".default = true;
-      ndarray_tensorflow."${deps.sticker."0.3.0".ndarray_tensorflow}".default = true;
-      ordered_float."${deps.sticker."0.3.0".ordered_float}".default = true;
-      petgraph."${deps.sticker."0.3.0".petgraph}".default = true;
-      protobuf."${deps.sticker."0.3.0".protobuf}".default = true;
-      serde."${deps.sticker."0.3.0".serde}".default = true;
-      serde_derive."${deps.sticker."0.3.0".serde_derive}".default = true;
-      sticker."0.3.0".default = (f.sticker."0.3.0".default or true);
-      tensorflow."${deps.sticker."0.3.0".tensorflow}".default = true;
-      tf_proto."${deps.sticker."0.3.0".tf_proto}".default = true;
+    features_.sticker."0.4.0" = deps: f: updateFeatures f (rec {
+      conllx."${deps.sticker."0.4.0".conllx}".default = true;
+      failure."${deps.sticker."0.4.0".failure}".default = true;
+      finalfusion."${deps.sticker."0.4.0".finalfusion}".default = true;
+      itertools."${deps.sticker."0.4.0".itertools}".default = true;
+      ndarray."${deps.sticker."0.4.0".ndarray}".default = true;
+      ndarray_tensorflow."${deps.sticker."0.4.0".ndarray_tensorflow}".default = true;
+      ordered_float."${deps.sticker."0.4.0".ordered_float}".default = true;
+      petgraph."${deps.sticker."0.4.0".petgraph}".default = true;
+      protobuf."${deps.sticker."0.4.0".protobuf}".default = true;
+      serde."${deps.sticker."0.4.0".serde}".default = true;
+      serde_derive."${deps.sticker."0.4.0".serde_derive}".default = true;
+      sticker."0.4.0".default = (f.sticker."0.4.0".default or true);
+      tensorflow."${deps.sticker."0.4.0".tensorflow}".default = true;
+      tf_proto."${deps.sticker."0.4.0".tf_proto}".default = true;
     }) [
-      (cratesIO.features_.conllx."${deps."sticker"."0.3.0"."conllx"}" deps)
-      (cratesIO.features_.failure."${deps."sticker"."0.3.0"."failure"}" deps)
-      (cratesIO.features_.finalfusion."${deps."sticker"."0.3.0"."finalfusion"}" deps)
-      (cratesIO.features_.itertools."${deps."sticker"."0.3.0"."itertools"}" deps)
-      (cratesIO.features_.ndarray."${deps."sticker"."0.3.0"."ndarray"}" deps)
-      (cratesIO.features_.ndarray_tensorflow."${deps."sticker"."0.3.0"."ndarray_tensorflow"}" deps)
-      (cratesIO.features_.ordered_float."${deps."sticker"."0.3.0"."ordered_float"}" deps)
-      (cratesIO.features_.petgraph."${deps."sticker"."0.3.0"."petgraph"}" deps)
-      (cratesIO.features_.protobuf."${deps."sticker"."0.3.0"."protobuf"}" deps)
-      (cratesIO.features_.serde."${deps."sticker"."0.3.0"."serde"}" deps)
-      (cratesIO.features_.serde_derive."${deps."sticker"."0.3.0"."serde_derive"}" deps)
-      (cratesIO.features_.tensorflow."${deps."sticker"."0.3.0"."tensorflow"}" deps)
-      (features_.tf_proto."${deps."sticker"."0.3.0"."tf_proto"}" deps)
+      (cratesIO.features_.conllx."${deps."sticker"."0.4.0"."conllx"}" deps)
+      (cratesIO.features_.failure."${deps."sticker"."0.4.0"."failure"}" deps)
+      (cratesIO.features_.finalfusion."${deps."sticker"."0.4.0"."finalfusion"}" deps)
+      (cratesIO.features_.itertools."${deps."sticker"."0.4.0"."itertools"}" deps)
+      (cratesIO.features_.ndarray."${deps."sticker"."0.4.0"."ndarray"}" deps)
+      (cratesIO.features_.ndarray_tensorflow."${deps."sticker"."0.4.0"."ndarray_tensorflow"}" deps)
+      (cratesIO.features_.ordered_float."${deps."sticker"."0.4.0"."ordered_float"}" deps)
+      (cratesIO.features_.petgraph."${deps."sticker"."0.4.0"."petgraph"}" deps)
+      (cratesIO.features_.protobuf."${deps."sticker"."0.4.0"."protobuf"}" deps)
+      (cratesIO.features_.serde."${deps."sticker"."0.4.0"."serde"}" deps)
+      (cratesIO.features_.serde_derive."${deps."sticker"."0.4.0"."serde_derive"}" deps)
+      (cratesIO.features_.tensorflow."${deps."sticker"."0.4.0"."tensorflow"}" deps)
+      (features_.tf_proto."${deps."sticker"."0.4.0"."tf_proto"}" deps)
     ];
 
 
 # end
-# sticker-utils-0.3.0
+# sticker-utils-0.4.0
 
-    crates.sticker_utils."0.3.0" = deps: { features?(features_.sticker_utils."0.3.0" deps {}) }: buildRustCrate {
+    crates.sticker_utils."0.4.0" = deps: { features?(features_.sticker_utils."0.4.0" deps {}) }: buildRustCrate {
       crateName = "sticker-utils";
-      version = "0.3.0";
+      version = "0.4.0";
       description = "Neural sequence labeler (utilities)";
       authors = [ "Daniël de Kok <me@danieldk.eu>" ];
       edition = "2018";
       src = include [ "Cargo.toml" " sticker-utils" ] ./.;
       workspace_member = "sticker-utils";
       dependencies = mapFeatures features ([
-        (cratesIO.crates."clap"."${deps."sticker_utils"."0.3.0"."clap"}" deps)
-        (cratesIO.crates."conllx"."${deps."sticker_utils"."0.3.0"."conllx"}" deps)
-        (cratesIO.crates."failure"."${deps."sticker_utils"."0.3.0"."failure"}" deps)
-        (cratesIO.crates."finalfusion"."${deps."sticker_utils"."0.3.0"."finalfusion"}" deps)
-        (cratesIO.crates."indicatif"."${deps."sticker_utils"."0.3.0"."indicatif"}" deps)
-        (cratesIO.crates."ordered_float"."${deps."sticker_utils"."0.3.0"."ordered_float"}" deps)
-        (cratesIO.crates."serde"."${deps."sticker_utils"."0.3.0"."serde"}" deps)
-        (cratesIO.crates."serde_cbor"."${deps."sticker_utils"."0.3.0"."serde_cbor"}" deps)
-        (cratesIO.crates."serde_derive"."${deps."sticker_utils"."0.3.0"."serde_derive"}" deps)
-        (cratesIO.crates."stdinout"."${deps."sticker_utils"."0.3.0"."stdinout"}" deps)
-        (crates."sticker"."${deps."sticker_utils"."0.3.0"."sticker"}" deps)
-        (cratesIO.crates."tensorflow"."${deps."sticker_utils"."0.3.0"."tensorflow"}" deps)
-        (cratesIO.crates."threadpool"."${deps."sticker_utils"."0.3.0"."threadpool"}" deps)
-        (cratesIO.crates."toml"."${deps."sticker_utils"."0.3.0"."toml"}" deps)
+        (cratesIO.crates."clap"."${deps."sticker_utils"."0.4.0"."clap"}" deps)
+        (cratesIO.crates."conllx"."${deps."sticker_utils"."0.4.0"."conllx"}" deps)
+        (cratesIO.crates."failure"."${deps."sticker_utils"."0.4.0"."failure"}" deps)
+        (cratesIO.crates."finalfusion"."${deps."sticker_utils"."0.4.0"."finalfusion"}" deps)
+        (cratesIO.crates."indicatif"."${deps."sticker_utils"."0.4.0"."indicatif"}" deps)
+        (cratesIO.crates."ordered_float"."${deps."sticker_utils"."0.4.0"."ordered_float"}" deps)
+        (cratesIO.crates."serde"."${deps."sticker_utils"."0.4.0"."serde"}" deps)
+        (cratesIO.crates."serde_cbor"."${deps."sticker_utils"."0.4.0"."serde_cbor"}" deps)
+        (cratesIO.crates."serde_derive"."${deps."sticker_utils"."0.4.0"."serde_derive"}" deps)
+        (cratesIO.crates."stdinout"."${deps."sticker_utils"."0.4.0"."stdinout"}" deps)
+        (crates."sticker"."${deps."sticker_utils"."0.4.0"."sticker"}" deps)
+        (cratesIO.crates."tensorflow"."${deps."sticker_utils"."0.4.0"."tensorflow"}" deps)
+        (cratesIO.crates."threadpool"."${deps."sticker_utils"."0.4.0"."threadpool"}" deps)
+        (cratesIO.crates."toml"."${deps."sticker_utils"."0.4.0"."toml"}" deps)
       ]);
     };
-    features_.sticker_utils."0.3.0" = deps: f: updateFeatures f (rec {
-      clap."${deps.sticker_utils."0.3.0".clap}".default = true;
-      conllx."${deps.sticker_utils."0.3.0".conllx}".default = true;
-      failure."${deps.sticker_utils."0.3.0".failure}".default = true;
-      finalfusion."${deps.sticker_utils."0.3.0".finalfusion}".default = true;
-      indicatif."${deps.sticker_utils."0.3.0".indicatif}".default = true;
+    features_.sticker_utils."0.4.0" = deps: f: updateFeatures f (rec {
+      clap."${deps.sticker_utils."0.4.0".clap}".default = true;
+      conllx."${deps.sticker_utils."0.4.0".conllx}".default = true;
+      failure."${deps.sticker_utils."0.4.0".failure}".default = true;
+      finalfusion."${deps.sticker_utils."0.4.0".finalfusion}".default = true;
+      indicatif."${deps.sticker_utils."0.4.0".indicatif}".default = true;
       ordered_float = fold recursiveUpdate {} [
-        { "${deps.sticker_utils."0.3.0".ordered_float}"."serde" = true; }
-        { "${deps.sticker_utils."0.3.0".ordered_float}".default = true; }
+        { "${deps.sticker_utils."0.4.0".ordered_float}"."serde" = true; }
+        { "${deps.sticker_utils."0.4.0".ordered_float}".default = true; }
       ];
-      serde."${deps.sticker_utils."0.3.0".serde}".default = true;
-      serde_cbor."${deps.sticker_utils."0.3.0".serde_cbor}".default = true;
-      serde_derive."${deps.sticker_utils."0.3.0".serde_derive}".default = true;
-      stdinout."${deps.sticker_utils."0.3.0".stdinout}".default = true;
-      sticker."${deps.sticker_utils."0.3.0".sticker}".default = true;
-      sticker_utils."0.3.0".default = (f.sticker_utils."0.3.0".default or true);
-      tensorflow."${deps.sticker_utils."0.3.0".tensorflow}".default = true;
-      threadpool."${deps.sticker_utils."0.3.0".threadpool}".default = true;
-      toml."${deps.sticker_utils."0.3.0".toml}".default = true;
+      serde."${deps.sticker_utils."0.4.0".serde}".default = true;
+      serde_cbor."${deps.sticker_utils."0.4.0".serde_cbor}".default = true;
+      serde_derive."${deps.sticker_utils."0.4.0".serde_derive}".default = true;
+      stdinout."${deps.sticker_utils."0.4.0".stdinout}".default = true;
+      sticker."${deps.sticker_utils."0.4.0".sticker}".default = true;
+      sticker_utils."0.4.0".default = (f.sticker_utils."0.4.0".default or true);
+      tensorflow."${deps.sticker_utils."0.4.0".tensorflow}".default = true;
+      threadpool."${deps.sticker_utils."0.4.0".threadpool}".default = true;
+      toml."${deps.sticker_utils."0.4.0".toml}".default = true;
     }) [
-      (cratesIO.features_.clap."${deps."sticker_utils"."0.3.0"."clap"}" deps)
-      (cratesIO.features_.conllx."${deps."sticker_utils"."0.3.0"."conllx"}" deps)
-      (cratesIO.features_.failure."${deps."sticker_utils"."0.3.0"."failure"}" deps)
-      (cratesIO.features_.finalfusion."${deps."sticker_utils"."0.3.0"."finalfusion"}" deps)
-      (cratesIO.features_.indicatif."${deps."sticker_utils"."0.3.0"."indicatif"}" deps)
-      (cratesIO.features_.ordered_float."${deps."sticker_utils"."0.3.0"."ordered_float"}" deps)
-      (cratesIO.features_.serde."${deps."sticker_utils"."0.3.0"."serde"}" deps)
-      (cratesIO.features_.serde_cbor."${deps."sticker_utils"."0.3.0"."serde_cbor"}" deps)
-      (cratesIO.features_.serde_derive."${deps."sticker_utils"."0.3.0"."serde_derive"}" deps)
-      (cratesIO.features_.stdinout."${deps."sticker_utils"."0.3.0"."stdinout"}" deps)
-      (features_.sticker."${deps."sticker_utils"."0.3.0"."sticker"}" deps)
-      (cratesIO.features_.tensorflow."${deps."sticker_utils"."0.3.0"."tensorflow"}" deps)
-      (cratesIO.features_.threadpool."${deps."sticker_utils"."0.3.0"."threadpool"}" deps)
-      (cratesIO.features_.toml."${deps."sticker_utils"."0.3.0"."toml"}" deps)
+      (cratesIO.features_.clap."${deps."sticker_utils"."0.4.0"."clap"}" deps)
+      (cratesIO.features_.conllx."${deps."sticker_utils"."0.4.0"."conllx"}" deps)
+      (cratesIO.features_.failure."${deps."sticker_utils"."0.4.0"."failure"}" deps)
+      (cratesIO.features_.finalfusion."${deps."sticker_utils"."0.4.0"."finalfusion"}" deps)
+      (cratesIO.features_.indicatif."${deps."sticker_utils"."0.4.0"."indicatif"}" deps)
+      (cratesIO.features_.ordered_float."${deps."sticker_utils"."0.4.0"."ordered_float"}" deps)
+      (cratesIO.features_.serde."${deps."sticker_utils"."0.4.0"."serde"}" deps)
+      (cratesIO.features_.serde_cbor."${deps."sticker_utils"."0.4.0"."serde_cbor"}" deps)
+      (cratesIO.features_.serde_derive."${deps."sticker_utils"."0.4.0"."serde_derive"}" deps)
+      (cratesIO.features_.stdinout."${deps."sticker_utils"."0.4.0"."stdinout"}" deps)
+      (features_.sticker."${deps."sticker_utils"."0.4.0"."sticker"}" deps)
+      (cratesIO.features_.tensorflow."${deps."sticker_utils"."0.4.0"."tensorflow"}" deps)
+      (cratesIO.features_.threadpool."${deps."sticker_utils"."0.4.0"."threadpool"}" deps)
+      (cratesIO.features_.toml."${deps."sticker_utils"."0.4.0"."toml"}" deps)
     ];
 
 
@@ -169,8 +169,8 @@ rec {
 
   };
 
-  sticker = crates.crates.sticker."0.3.0" deps;
-  sticker_utils = crates.crates.sticker_utils."0.3.0" deps;
+  sticker = crates.crates.sticker."0.4.0" deps;
+  sticker_utils = crates.crates.sticker_utils."0.4.0" deps;
   tf_proto = crates.crates.tf_proto."0.1.0" deps;
   __all = [ (sticker {}) (sticker_utils {}) (tf_proto {}) ];
   deps.adler32."1.0.3" = {};
@@ -179,44 +179,43 @@ rec {
   };
   deps.aligned_alloc."0.1.3" = {
     kernel32_sys = "0.2.2";
-    libc = "0.2.51";
+    libc = "0.2.58";
     winapi = "0.2.8";
   };
   deps.ansi_term."0.11.0" = {
     winapi = "0.3.7";
   };
   deps.approx."0.3.2" = {
-    num_traits = "0.2.6";
+    num_traits = "0.2.8";
   };
   deps.arrayvec."0.4.10" = {
     nodrop = "0.1.13";
   };
   deps.atty."0.2.11" = {
-    termion = "1.5.1";
-    libc = "0.2.51";
+    termion = "1.5.2";
+    libc = "0.2.58";
     winapi = "0.3.7";
   };
-  deps.autocfg."0.1.2" = {};
-  deps.backtrace."0.3.15" = {
-    cfg_if = "0.1.7";
-    rustc_demangle = "0.1.14";
-    autocfg = "0.1.2";
+  deps.autocfg."0.1.4" = {};
+  deps.backtrace."0.3.30" = {
     backtrace_sys = "0.1.28";
-    libc = "0.2.51";
-    winapi = "0.3.7";
+    cfg_if = "0.1.9";
+    libc = "0.2.58";
+    rustc_demangle = "0.1.15";
+    autocfg = "0.1.4";
   };
   deps.backtrace_sys."0.1.28" = {
-    libc = "0.2.51";
-    cc = "1.0.35";
+    libc = "0.2.58";
+    cc = "1.0.37";
   };
-  deps.bitflags."1.0.4" = {};
+  deps.bitflags."1.1.0" = {};
   deps.build_const."0.2.1" = {};
-  deps.byteorder."1.3.1" = {};
-  deps.cc."1.0.35" = {};
-  deps.cfg_if."0.1.7" = {};
+  deps.byteorder."1.3.2" = {};
+  deps.cc."1.0.37" = {};
+  deps.cfg_if."0.1.9" = {};
   deps.clap."2.33.0" = {
     atty = "0.2.11";
-    bitflags = "1.0.4";
+    bitflags = "1.1.0";
     strsim = "0.8.0";
     textwrap = "0.11.0";
     unicode_width = "0.1.5";
@@ -225,14 +224,14 @@ rec {
   };
   deps.clicolors_control."1.0.0" = {
     lazy_static = "1.3.0";
-    libc = "0.2.51";
+    libc = "0.2.58";
     atty = "0.2.11";
     winapi = "0.3.7";
   };
   deps.cloudabi."0.0.3" = {
-    bitflags = "1.0.4";
+    bitflags = "1.1.0";
   };
-  deps.conllx."0.11.1" = {
+  deps.conllx."0.11.2" = {
     failure = "0.1.5";
     itertools = "0.7.11";
     lazy_init = "0.3.0";
@@ -242,9 +241,9 @@ rec {
     atty = "0.2.11";
     clicolors_control = "1.0.0";
     lazy_static = "1.3.0";
-    libc = "0.2.51";
-    parking_lot = "0.7.1";
-    regex = "1.1.5";
+    libc = "0.2.58";
+    parking_lot = "0.8.0";
+    regex = "1.1.7";
     unicode_width = "0.1.5";
     termios = "0.3.1";
     encode_unicode = "0.3.5";
@@ -254,7 +253,7 @@ rec {
     build_const = "0.2.1";
   };
   deps.crc32fast."1.2.0" = {
-    cfg_if = "0.1.7";
+    cfg_if = "0.1.9";
   };
   deps.crossbeam_deque."0.2.0" = {
     crossbeam_epoch = "0.3.1";
@@ -262,7 +261,7 @@ rec {
   };
   deps.crossbeam_epoch."0.3.1" = {
     arrayvec = "0.4.10";
-    cfg_if = "0.1.7";
+    cfg_if = "0.1.9";
     crossbeam_utils = "0.2.2";
     lazy_static = "1.3.0";
     memoffset = "0.2.1";
@@ -270,45 +269,46 @@ rec {
     scopeguard = "0.3.3";
   };
   deps.crossbeam_utils."0.2.2" = {
-    cfg_if = "0.1.7";
+    cfg_if = "0.1.9";
   };
-  deps.curl."0.4.20" = {
-    curl_sys = "0.4.17";
-    libc = "0.2.51";
-    socket2 = "0.3.8";
+  deps.curl."0.4.22" = {
+    curl_sys = "0.4.18";
+    libc = "0.2.58";
+    socket2 = "0.3.9";
     openssl_probe = "0.1.2";
-    openssl_sys = "0.9.43";
+    openssl_sys = "0.9.47";
     kernel32_sys = "0.2.2";
     schannel = "0.1.15";
     winapi = "0.2.8";
   };
-  deps.curl_sys."0.4.17" = {
-    libc = "0.2.51";
+  deps.curl_sys."0.4.18" = {
+    libc = "0.2.58";
     libz_sys = "1.0.25";
-    cc = "1.0.35";
+    cc = "1.0.37";
     pkg_config = "0.3.14";
-    openssl_sys = "0.9.43";
+    openssl_sys = "0.9.47";
     winapi = "0.3.7";
   };
   deps.either."1.5.2" = {};
   deps.encode_unicode."0.3.5" = {};
   deps.failure."0.1.5" = {
-    backtrace = "0.3.15";
+    backtrace = "0.3.30";
     failure_derive = "0.1.5";
   };
   deps.failure_derive."0.1.5" = {
-    proc_macro2 = "0.4.27";
+    proc_macro2 = "0.4.30";
     quote = "0.6.12";
-    syn = "0.15.30";
-    synstructure = "0.10.1";
+    syn = "0.15.35";
+    synstructure = "0.10.2";
   };
-  deps.filetime."0.2.4" = {
-    cfg_if = "0.1.7";
+  deps.filetime."0.2.6" = {
+    cfg_if = "0.1.9";
     redox_syscall = "0.1.54";
-    libc = "0.2.51";
+    libc = "0.2.58";
+    winapi = "0.3.7";
   };
   deps.finalfusion."0.5.1" = {
-    byteorder = "1.3.1";
+    byteorder = "1.3.2";
     failure = "0.1.5";
     fnv = "1.0.6";
     itertools = "0.8.0";
@@ -323,8 +323,8 @@ rec {
   deps.fixedbitset."0.1.9" = {};
   deps.flate2."1.0.7" = {
     crc32fast = "1.2.0";
-    libc = "0.2.51";
-    miniz_sys = "0.1.11";
+    libc = "0.2.58";
+    miniz_sys = "0.1.12";
     miniz_oxide_c_api = "0.2.1";
   };
   deps.fnv."1.0.6" = {};
@@ -334,8 +334,8 @@ rec {
     console = "0.7.5";
     lazy_static = "1.3.0";
     number_prefix = "0.2.8";
-    parking_lot = "0.7.1";
-    regex = "1.1.5";
+    parking_lot = "0.8.0";
+    regex = "1.1.7";
   };
   deps.itertools."0.7.11" = {
     either = "1.5.2";
@@ -349,46 +349,45 @@ rec {
   };
   deps.lazy_init."0.3.0" = {};
   deps.lazy_static."1.3.0" = {};
-  deps.libc."0.2.51" = {};
+  deps.libc."0.2.58" = {};
   deps.libz_sys."1.0.25" = {
-    libc = "0.2.51";
-    cc = "1.0.35";
+    libc = "0.2.58";
+    cc = "1.0.37";
     pkg_config = "0.3.14";
   };
-  deps.lock_api."0.1.5" = {
-    owning_ref = "0.4.0";
-    scopeguard = "0.3.3";
+  deps.lock_api."0.2.0" = {
+    scopeguard = "1.0.0";
   };
   deps.log."0.4.6" = {
-    cfg_if = "0.1.7";
+    cfg_if = "0.1.9";
   };
   deps.matrixmultiply."0.1.15" = {
     rawpointer = "0.1.0";
   };
   deps.memchr."2.2.0" = {};
   deps.memmap."0.7.0" = {
-    libc = "0.2.51";
+    libc = "0.2.58";
     winapi = "0.3.7";
   };
   deps.memoffset."0.2.1" = {};
-  deps.miniz_sys."0.1.11" = {
-    libc = "0.2.51";
-    cc = "1.0.35";
+  deps.miniz_sys."0.1.12" = {
+    libc = "0.2.58";
+    cc = "1.0.37";
   };
   deps.miniz_oxide."0.2.1" = {
     adler32 = "1.0.3";
   };
   deps.miniz_oxide_c_api."0.2.1" = {
     crc = "1.8.1";
-    libc = "0.2.51";
+    libc = "0.2.58";
     miniz_oxide = "0.2.1";
-    cc = "1.0.35";
+    cc = "1.0.37";
   };
   deps.ndarray."0.12.1" = {
     itertools = "0.7.11";
     matrixmultiply = "0.1.15";
-    num_complex = "0.2.1";
-    num_traits = "0.2.6";
+    num_complex = "0.2.2";
+    num_traits = "0.2.8";
   };
   deps.ndarray_parallel."0.9.0" = {
     ndarray = "0.12.1";
@@ -399,40 +398,45 @@ rec {
     tensorflow = "0.13.0";
   };
   deps.nodrop."0.1.13" = {};
-  deps.num_complex."0.2.1" = {
-    num_traits = "0.2.6";
+  deps.num_complex."0.2.2" = {
+    num_traits = "0.2.8";
+    autocfg = "0.1.4";
   };
-  deps.num_traits."0.2.6" = {};
-  deps.num_cpus."1.10.0" = {
-    libc = "0.2.51";
+  deps.num_traits."0.2.8" = {
+    autocfg = "0.1.4";
+  };
+  deps.num_cpus."1.10.1" = {
+    libc = "0.2.58";
   };
   deps.number_prefix."0.2.8" = {
-    num_traits = "0.2.6";
+    num_traits = "0.2.8";
   };
+  deps.numtoa."0.1.0" = {};
   deps.openssl_probe."0.1.2" = {};
-  deps.openssl_sys."0.9.43" = {
-    libc = "0.2.51";
-    cc = "1.0.35";
+  deps.openssl_sys."0.9.47" = {
+    libc = "0.2.58";
+    autocfg = "0.1.4";
+    cc = "1.0.37";
     pkg_config = "0.3.14";
-    rustc_version = "0.2.3";
   };
   deps.ordered_float."1.0.2" = {
-    num_traits = "0.2.6";
-    serde = "1.0.90";
+    num_traits = "0.2.8";
+    serde = "1.0.92";
   };
   deps.ordermap."0.3.5" = {};
-  deps.owning_ref."0.4.0" = {
-    stable_deref_trait = "1.1.1";
-  };
-  deps.parking_lot."0.7.1" = {
-    lock_api = "0.1.5";
-    parking_lot_core = "0.4.0";
-  };
-  deps.parking_lot_core."0.4.0" = {
-    rand = "0.6.5";
-    smallvec = "0.6.9";
+  deps.parking_lot."0.8.0" = {
+    lock_api = "0.2.0";
+    parking_lot_core = "0.5.0";
     rustc_version = "0.2.3";
-    libc = "0.2.51";
+  };
+  deps.parking_lot_core."0.5.0" = {
+    cfg_if = "0.1.9";
+    rand = "0.6.5";
+    smallvec = "0.6.10";
+    rustc_version = "0.2.3";
+    cloudabi = "0.0.3";
+    redox_syscall = "0.1.54";
+    libc = "0.2.58";
     winapi = "0.3.7";
   };
   deps.petgraph."0.4.13" = {
@@ -440,41 +444,41 @@ rec {
     ordermap = "0.3.5";
   };
   deps.pkg_config."0.3.14" = {};
-  deps.proc_macro2."0.4.27" = {
+  deps.proc_macro2."0.4.30" = {
     unicode_xid = "0.1.0";
   };
-  deps.protobuf."2.5.0" = {};
-  deps.protobuf_codegen."2.5.0" = {
-    protobuf = "2.5.0";
+  deps.protobuf."2.6.2" = {};
+  deps.protobuf_codegen."2.6.2" = {
+    protobuf = "2.6.2";
   };
-  deps.protoc."2.5.0" = {
+  deps.protoc."2.6.2" = {
     log = "0.4.6";
   };
-  deps.protoc_rust."2.5.0" = {
-    protobuf = "2.5.0";
-    protobuf_codegen = "2.5.0";
-    protoc = "2.5.0";
-    tempfile = "3.0.7";
+  deps.protoc_rust."2.6.2" = {
+    protobuf = "2.6.2";
+    protobuf_codegen = "2.6.2";
+    protoc = "2.6.2";
+    tempfile = "3.0.8";
   };
   deps.quote."0.6.12" = {
-    proc_macro2 = "0.4.27";
+    proc_macro2 = "0.4.30";
   };
   deps.rand."0.6.5" = {
     rand_chacha = "0.1.1";
     rand_core = "0.4.0";
     rand_hc = "0.1.0";
     rand_isaac = "0.1.1";
-    rand_jitter = "0.1.3";
+    rand_jitter = "0.1.4";
     rand_os = "0.1.3";
     rand_pcg = "0.1.2";
     rand_xorshift = "0.1.1";
-    autocfg = "0.1.2";
-    libc = "0.2.51";
+    autocfg = "0.1.4";
+    libc = "0.2.58";
     winapi = "0.3.7";
   };
   deps.rand_chacha."0.1.1" = {
     rand_core = "0.3.1";
-    autocfg = "0.1.2";
+    autocfg = "0.1.4";
   };
   deps.rand_core."0.3.1" = {
     rand_core = "0.4.0";
@@ -486,9 +490,9 @@ rec {
   deps.rand_isaac."0.1.1" = {
     rand_core = "0.3.1";
   };
-  deps.rand_jitter."0.1.3" = {
+  deps.rand_jitter."0.1.4" = {
     rand_core = "0.4.0";
-    libc = "0.2.51";
+    libc = "0.2.58";
     winapi = "0.3.7";
   };
   deps.rand_os."0.1.3" = {
@@ -496,12 +500,12 @@ rec {
     rdrand = "0.4.0";
     cloudabi = "0.0.3";
     fuchsia_cprng = "0.1.1";
-    libc = "0.2.51";
+    libc = "0.2.58";
     winapi = "0.3.7";
   };
   deps.rand_pcg."0.1.2" = {
     rand_core = "0.4.0";
-    autocfg = "0.1.2";
+    autocfg = "0.1.4";
   };
   deps.rand_xorshift."0.1.1" = {
     rand_core = "0.3.1";
@@ -515,8 +519,8 @@ rec {
   deps.rayon_core."1.4.1" = {
     crossbeam_deque = "0.2.0";
     lazy_static = "1.3.0";
-    libc = "0.2.51";
-    num_cpus = "1.10.0";
+    libc = "0.2.58";
+    num_cpus = "1.10.1";
   };
   deps.rdrand."0.4.0" = {
     rand_core = "0.3.1";
@@ -529,26 +533,26 @@ rec {
     log = "0.4.6";
     ndarray = "0.12.1";
     ndarray_parallel = "0.9.0";
-    num_traits = "0.2.6";
+    num_traits = "0.2.8";
     ordered_float = "1.0.2";
     rand = "0.6.5";
     rand_xorshift = "0.1.1";
     rayon = "1.0.3";
   };
-  deps.regex."1.1.5" = {
+  deps.regex."1.1.7" = {
     aho_corasick = "0.7.3";
     memchr = "2.2.0";
-    regex_syntax = "0.6.6";
+    regex_syntax = "0.6.7";
     thread_local = "0.3.6";
-    utf8_ranges = "1.0.2";
+    utf8_ranges = "1.0.3";
   };
-  deps.regex_syntax."0.6.6" = {
+  deps.regex_syntax."0.6.7" = {
     ucd_util = "0.1.3";
   };
   deps.remove_dir_all."0.5.1" = {
     winapi = "0.3.7";
   };
-  deps.rustc_demangle."0.1.14" = {};
+  deps.rustc_demangle."0.1.15" = {};
   deps.rustc_version."0.2.3" = {
     semver = "0.9.0";
   };
@@ -557,32 +561,32 @@ rec {
     winapi = "0.3.7";
   };
   deps.scopeguard."0.3.3" = {};
+  deps.scopeguard."1.0.0" = {};
   deps.semver."0.9.0" = {
     semver_parser = "0.7.0";
   };
   deps.semver_parser."0.7.0" = {};
-  deps.serde."1.0.90" = {};
+  deps.serde."1.0.92" = {};
   deps.serde_cbor."0.9.0" = {
-    byteorder = "1.3.1";
+    byteorder = "1.3.2";
     half = "1.3.0";
-    serde = "1.0.90";
+    serde = "1.0.92";
   };
-  deps.serde_derive."1.0.90" = {
-    proc_macro2 = "0.4.27";
+  deps.serde_derive."1.0.92" = {
+    proc_macro2 = "0.4.30";
     quote = "0.6.12";
-    syn = "0.15.30";
+    syn = "0.15.35";
   };
-  deps.smallvec."0.6.9" = {};
-  deps.socket2."0.3.8" = {
-    cfg_if = "0.1.7";
-    libc = "0.2.51";
+  deps.smallvec."0.6.10" = {};
+  deps.socket2."0.3.9" = {
+    cfg_if = "0.1.9";
+    libc = "0.2.58";
     redox_syscall = "0.1.54";
     winapi = "0.3.7";
   };
-  deps.stable_deref_trait."1.1.1" = {};
   deps.stdinout."0.4.0" = {};
-  deps.sticker."0.3.0" = {
-    conllx = "0.11.1";
+  deps.sticker."0.4.0" = {
+    conllx = "0.11.2";
     failure = "0.1.5";
     finalfusion = "0.5.1";
     itertools = "0.8.0";
@@ -590,101 +594,102 @@ rec {
     ndarray_tensorflow = "0.2.0";
     ordered_float = "1.0.2";
     petgraph = "0.4.13";
-    protobuf = "2.5.0";
-    serde = "1.0.90";
-    serde_derive = "1.0.90";
+    protobuf = "2.6.2";
+    serde = "1.0.92";
+    serde_derive = "1.0.92";
     tensorflow = "0.13.0";
     tf_proto = "0.1.0";
   };
-  deps.sticker_utils."0.3.0" = {
+  deps.sticker_utils."0.4.0" = {
     clap = "2.33.0";
-    conllx = "0.11.1";
+    conllx = "0.11.2";
     failure = "0.1.5";
     finalfusion = "0.5.1";
     indicatif = "0.11.0";
     ordered_float = "1.0.2";
-    serde = "1.0.90";
+    serde = "1.0.92";
     serde_cbor = "0.9.0";
-    serde_derive = "1.0.90";
+    serde_derive = "1.0.92";
     stdinout = "0.4.0";
-    sticker = "0.3.0";
+    sticker = "0.4.0";
     tensorflow = "0.13.0";
     threadpool = "1.7.1";
-    toml = "0.5.0";
+    toml = "0.5.1";
   };
   deps.strsim."0.8.0" = {};
-  deps.syn."0.15.30" = {
-    proc_macro2 = "0.4.27";
+  deps.syn."0.15.35" = {
+    proc_macro2 = "0.4.30";
     quote = "0.6.12";
     unicode_xid = "0.1.0";
   };
-  deps.synstructure."0.10.1" = {
-    proc_macro2 = "0.4.27";
+  deps.synstructure."0.10.2" = {
+    proc_macro2 = "0.4.30";
     quote = "0.6.12";
-    syn = "0.15.30";
+    syn = "0.15.35";
     unicode_xid = "0.1.0";
   };
-  deps.tar."0.4.22" = {
-    filetime = "0.2.4";
+  deps.tar."0.4.26" = {
+    filetime = "0.2.6";
     redox_syscall = "0.1.54";
-    libc = "0.2.51";
+    libc = "0.2.58";
     xattr = "0.2.2";
   };
-  deps.tempfile."3.0.7" = {
-    cfg_if = "0.1.7";
+  deps.tempfile."3.0.8" = {
+    cfg_if = "0.1.9";
     rand = "0.6.5";
     remove_dir_all = "0.5.1";
     redox_syscall = "0.1.54";
-    libc = "0.2.51";
+    libc = "0.2.58";
     winapi = "0.3.7";
   };
   deps.tensorflow."0.13.0" = {
     aligned_alloc = "0.1.3";
-    byteorder = "1.3.1";
+    byteorder = "1.3.2";
     crc = "1.8.1";
-    libc = "0.2.51";
-    num_complex = "0.2.1";
+    libc = "0.2.58";
+    num_complex = "0.2.2";
     tensorflow_sys = "0.16.0";
   };
   deps.tensorflow_sys."0.16.0" = {
-    libc = "0.2.51";
-    curl = "0.4.20";
+    libc = "0.2.58";
+    curl = "0.4.22";
     flate2 = "1.0.7";
     pkg_config = "0.3.14";
     semver = "0.9.0";
-    tar = "0.4.22";
+    tar = "0.4.26";
   };
-  deps.termion."1.5.1" = {
-    libc = "0.2.51";
+  deps.termion."1.5.2" = {
+    numtoa = "0.1.0";
+    libc = "0.2.58";
     redox_syscall = "0.1.54";
     redox_termios = "0.1.1";
   };
   deps.termios."0.3.1" = {
-    libc = "0.2.51";
+    libc = "0.2.58";
   };
   deps.textwrap."0.11.0" = {
     unicode_width = "0.1.5";
   };
   deps.tf_proto."0.1.0" = {
-    protobuf = "2.5.0";
-    protoc_rust = "2.5.0";
+    protobuf = "2.6.2";
+    protoc_rust = "2.6.2";
   };
   deps.thread_local."0.3.6" = {
     lazy_static = "1.3.0";
   };
   deps.threadpool."1.7.1" = {
-    num_cpus = "1.10.0";
+    num_cpus = "1.10.1";
   };
   deps.toml."0.4.10" = {
-    serde = "1.0.90";
+    serde = "1.0.92";
   };
-  deps.toml."0.5.0" = {
-    serde = "1.0.90";
+  deps.toml."0.5.1" = {
+    serde = "1.0.92";
   };
   deps.ucd_util."0.1.3" = {};
   deps.unicode_width."0.1.5" = {};
   deps.unicode_xid."0.1.0" = {};
-  deps.utf8_ranges."1.0.2" = {};
+  deps.utf8_ranges."1.0.3" = {};
   deps.vcpkg."0.2.6" = {};
   deps.vec_map."0.8.1" = {};
   deps.winapi."0.2.8" = {};
@@ -696,6 +701,6 @@ rec {
   deps.winapi_i686_pc_windows_gnu."0.4.0" = {};
   deps.winapi_x86_64_pc_windows_gnu."0.4.0" = {};
   deps.xattr."0.2.2" = {
-    libc = "0.2.51";
+    libc = "0.2.58";
   };
 }
