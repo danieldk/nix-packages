@@ -17,6 +17,12 @@ in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
 
       buildInputs = stdenv.lib.optional stdenv.isDarwin darwin.Security;
 
+      postInstall = ''
+        # We do not care for sticker-utils as a library crate. Removing
+        # the library reduces the number of dependencies.
+        rm -rf $out/lib
+      '';
+
       meta = with stdenv.lib; {
         description = "Neural sequence labeler";
         license = licenses.asl20;
