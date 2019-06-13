@@ -756,116 +756,145 @@ rec {
 
 
 # end
-# crossbeam-deque-0.2.0
+# crossbeam-deque-0.6.3
 
-  crates.crossbeam_deque."0.2.0" = deps: { features?(features_.crossbeam_deque."0.2.0" deps {}) }: buildRustCrate {
+  crates.crossbeam_deque."0.6.3" = deps: { features?(features_.crossbeam_deque."0.6.3" deps {}) }: buildRustCrate {
     crateName = "crossbeam-deque";
-    version = "0.2.0";
+    version = "0.6.3";
     description = "Concurrent work-stealing deque";
     authors = [ "The Crossbeam Project Developers" ];
-    sha256 = "1h3n1p1qy45b6388j3svfy1m72xlcx9j9a5y0mww6jz8fmknipnb";
+    sha256 = "07dahkh6rc09nzg7054rnmxhni263pi9arcyjyy822kg59c0lfz8";
     dependencies = mapFeatures features ([
-      (crates."crossbeam_epoch"."${deps."crossbeam_deque"."0.2.0"."crossbeam_epoch"}" deps)
-      (crates."crossbeam_utils"."${deps."crossbeam_deque"."0.2.0"."crossbeam_utils"}" deps)
+      (crates."crossbeam_epoch"."${deps."crossbeam_deque"."0.6.3"."crossbeam_epoch"}" deps)
+      (crates."crossbeam_utils"."${deps."crossbeam_deque"."0.6.3"."crossbeam_utils"}" deps)
     ]);
   };
-  features_.crossbeam_deque."0.2.0" = deps: f: updateFeatures f (rec {
-    crossbeam_deque."0.2.0".default = (f.crossbeam_deque."0.2.0".default or true);
-    crossbeam_epoch."${deps.crossbeam_deque."0.2.0".crossbeam_epoch}".default = true;
-    crossbeam_utils."${deps.crossbeam_deque."0.2.0".crossbeam_utils}".default = true;
+  features_.crossbeam_deque."0.6.3" = deps: f: updateFeatures f (rec {
+    crossbeam_deque."0.6.3".default = (f.crossbeam_deque."0.6.3".default or true);
+    crossbeam_epoch."${deps.crossbeam_deque."0.6.3".crossbeam_epoch}".default = true;
+    crossbeam_utils."${deps.crossbeam_deque."0.6.3".crossbeam_utils}".default = true;
   }) [
-    (features_.crossbeam_epoch."${deps."crossbeam_deque"."0.2.0"."crossbeam_epoch"}" deps)
-    (features_.crossbeam_utils."${deps."crossbeam_deque"."0.2.0"."crossbeam_utils"}" deps)
+    (features_.crossbeam_epoch."${deps."crossbeam_deque"."0.6.3"."crossbeam_epoch"}" deps)
+    (features_.crossbeam_utils."${deps."crossbeam_deque"."0.6.3"."crossbeam_utils"}" deps)
   ];
 
 
 # end
-# crossbeam-epoch-0.3.1
+# crossbeam-epoch-0.7.1
 
-  crates.crossbeam_epoch."0.3.1" = deps: { features?(features_.crossbeam_epoch."0.3.1" deps {}) }: buildRustCrate {
+  crates.crossbeam_epoch."0.7.1" = deps: { features?(features_.crossbeam_epoch."0.7.1" deps {}) }: buildRustCrate {
     crateName = "crossbeam-epoch";
-    version = "0.3.1";
+    version = "0.7.1";
     description = "Epoch-based garbage collection";
     authors = [ "The Crossbeam Project Developers" ];
-    sha256 = "1ljrrpvalabi3r2nnpcz7rqkbl2ydmd0mrrr2fv335f7d46xgfxa";
+    sha256 = "1n2p8rqsg0g8dws6kvjgi5jsbnd42l45dklnzc8vihjcxa6712bg";
     dependencies = mapFeatures features ([
-      (crates."arrayvec"."${deps."crossbeam_epoch"."0.3.1"."arrayvec"}" deps)
-      (crates."cfg_if"."${deps."crossbeam_epoch"."0.3.1"."cfg_if"}" deps)
-      (crates."crossbeam_utils"."${deps."crossbeam_epoch"."0.3.1"."crossbeam_utils"}" deps)
-      (crates."memoffset"."${deps."crossbeam_epoch"."0.3.1"."memoffset"}" deps)
-      (crates."nodrop"."${deps."crossbeam_epoch"."0.3.1"."nodrop"}" deps)
-      (crates."scopeguard"."${deps."crossbeam_epoch"."0.3.1"."scopeguard"}" deps)
+      (crates."arrayvec"."${deps."crossbeam_epoch"."0.7.1"."arrayvec"}" deps)
+      (crates."cfg_if"."${deps."crossbeam_epoch"."0.7.1"."cfg_if"}" deps)
+      (crates."crossbeam_utils"."${deps."crossbeam_epoch"."0.7.1"."crossbeam_utils"}" deps)
+      (crates."memoffset"."${deps."crossbeam_epoch"."0.7.1"."memoffset"}" deps)
+      (crates."scopeguard"."${deps."crossbeam_epoch"."0.7.1"."scopeguard"}" deps)
     ]
-      ++ (if features.crossbeam_epoch."0.3.1".lazy_static or false then [ (crates.lazy_static."${deps."crossbeam_epoch"."0.3.1".lazy_static}" deps) ] else []));
-    features = mkFeatures (features."crossbeam_epoch"."0.3.1" or {});
+      ++ (if features.crossbeam_epoch."0.7.1".lazy_static or false then [ (crates.lazy_static."${deps."crossbeam_epoch"."0.7.1".lazy_static}" deps) ] else []));
+    features = mkFeatures (features."crossbeam_epoch"."0.7.1" or {});
   };
-  features_.crossbeam_epoch."0.3.1" = deps: f: updateFeatures f (rec {
+  features_.crossbeam_epoch."0.7.1" = deps: f: updateFeatures f (rec {
     arrayvec = fold recursiveUpdate {} [
-      { "${deps.crossbeam_epoch."0.3.1".arrayvec}"."use_union" =
-        (f.arrayvec."${deps.crossbeam_epoch."0.3.1".arrayvec}"."use_union" or false) ||
-        (crossbeam_epoch."0.3.1"."nightly" or false) ||
-        (f."crossbeam_epoch"."0.3.1"."nightly" or false); }
-      { "${deps.crossbeam_epoch."0.3.1".arrayvec}".default = (f.arrayvec."${deps.crossbeam_epoch."0.3.1".arrayvec}".default or false); }
+      { "${deps.crossbeam_epoch."0.7.1".arrayvec}"."use_union" =
+        (f.arrayvec."${deps.crossbeam_epoch."0.7.1".arrayvec}"."use_union" or false) ||
+        (crossbeam_epoch."0.7.1"."nightly" or false) ||
+        (f."crossbeam_epoch"."0.7.1"."nightly" or false); }
+      { "${deps.crossbeam_epoch."0.7.1".arrayvec}".default = (f.arrayvec."${deps.crossbeam_epoch."0.7.1".arrayvec}".default or false); }
     ];
-    cfg_if."${deps.crossbeam_epoch."0.3.1".cfg_if}".default = true;
+    cfg_if."${deps.crossbeam_epoch."0.7.1".cfg_if}".default = true;
     crossbeam_epoch = fold recursiveUpdate {} [
-      { "0.3.1"."lazy_static" =
-        (f.crossbeam_epoch."0.3.1"."lazy_static" or false) ||
-        (f.crossbeam_epoch."0.3.1".use_std or false) ||
-        (crossbeam_epoch."0.3.1"."use_std" or false); }
-      { "0.3.1"."use_std" =
-        (f.crossbeam_epoch."0.3.1"."use_std" or false) ||
-        (f.crossbeam_epoch."0.3.1".default or false) ||
-        (crossbeam_epoch."0.3.1"."default" or false); }
-      { "0.3.1".default = (f.crossbeam_epoch."0.3.1".default or true); }
+      { "0.7.1"."lazy_static" =
+        (f.crossbeam_epoch."0.7.1"."lazy_static" or false) ||
+        (f.crossbeam_epoch."0.7.1".std or false) ||
+        (crossbeam_epoch."0.7.1"."std" or false); }
+      { "0.7.1"."std" =
+        (f.crossbeam_epoch."0.7.1"."std" or false) ||
+        (f.crossbeam_epoch."0.7.1".default or false) ||
+        (crossbeam_epoch."0.7.1"."default" or false); }
+      { "0.7.1".default = (f.crossbeam_epoch."0.7.1".default or true); }
     ];
     crossbeam_utils = fold recursiveUpdate {} [
-      { "${deps.crossbeam_epoch."0.3.1".crossbeam_utils}"."use_std" =
-        (f.crossbeam_utils."${deps.crossbeam_epoch."0.3.1".crossbeam_utils}"."use_std" or false) ||
-        (crossbeam_epoch."0.3.1"."use_std" or false) ||
-        (f."crossbeam_epoch"."0.3.1"."use_std" or false); }
-      { "${deps.crossbeam_epoch."0.3.1".crossbeam_utils}".default = (f.crossbeam_utils."${deps.crossbeam_epoch."0.3.1".crossbeam_utils}".default or false); }
+      { "${deps.crossbeam_epoch."0.7.1".crossbeam_utils}"."nightly" =
+        (f.crossbeam_utils."${deps.crossbeam_epoch."0.7.1".crossbeam_utils}"."nightly" or false) ||
+        (crossbeam_epoch."0.7.1"."nightly" or false) ||
+        (f."crossbeam_epoch"."0.7.1"."nightly" or false); }
+      { "${deps.crossbeam_epoch."0.7.1".crossbeam_utils}"."std" =
+        (f.crossbeam_utils."${deps.crossbeam_epoch."0.7.1".crossbeam_utils}"."std" or false) ||
+        (crossbeam_epoch."0.7.1"."std" or false) ||
+        (f."crossbeam_epoch"."0.7.1"."std" or false); }
+      { "${deps.crossbeam_epoch."0.7.1".crossbeam_utils}".default = (f.crossbeam_utils."${deps.crossbeam_epoch."0.7.1".crossbeam_utils}".default or false); }
     ];
-    lazy_static."${deps.crossbeam_epoch."0.3.1".lazy_static}".default = true;
-    memoffset."${deps.crossbeam_epoch."0.3.1".memoffset}".default = true;
-    nodrop."${deps.crossbeam_epoch."0.3.1".nodrop}".default = (f.nodrop."${deps.crossbeam_epoch."0.3.1".nodrop}".default or false);
-    scopeguard."${deps.crossbeam_epoch."0.3.1".scopeguard}".default = (f.scopeguard."${deps.crossbeam_epoch."0.3.1".scopeguard}".default or false);
+    lazy_static."${deps.crossbeam_epoch."0.7.1".lazy_static}".default = true;
+    memoffset."${deps.crossbeam_epoch."0.7.1".memoffset}".default = true;
+    scopeguard."${deps.crossbeam_epoch."0.7.1".scopeguard}".default = (f.scopeguard."${deps.crossbeam_epoch."0.7.1".scopeguard}".default or false);
   }) [
-    (features_.arrayvec."${deps."crossbeam_epoch"."0.3.1"."arrayvec"}" deps)
-    (features_.cfg_if."${deps."crossbeam_epoch"."0.3.1"."cfg_if"}" deps)
-    (features_.crossbeam_utils."${deps."crossbeam_epoch"."0.3.1"."crossbeam_utils"}" deps)
-    (features_.lazy_static."${deps."crossbeam_epoch"."0.3.1"."lazy_static"}" deps)
-    (features_.memoffset."${deps."crossbeam_epoch"."0.3.1"."memoffset"}" deps)
-    (features_.nodrop."${deps."crossbeam_epoch"."0.3.1"."nodrop"}" deps)
-    (features_.scopeguard."${deps."crossbeam_epoch"."0.3.1"."scopeguard"}" deps)
+    (features_.arrayvec."${deps."crossbeam_epoch"."0.7.1"."arrayvec"}" deps)
+    (features_.cfg_if."${deps."crossbeam_epoch"."0.7.1"."cfg_if"}" deps)
+    (features_.crossbeam_utils."${deps."crossbeam_epoch"."0.7.1"."crossbeam_utils"}" deps)
+    (features_.lazy_static."${deps."crossbeam_epoch"."0.7.1"."lazy_static"}" deps)
+    (features_.memoffset."${deps."crossbeam_epoch"."0.7.1"."memoffset"}" deps)
+    (features_.scopeguard."${deps."crossbeam_epoch"."0.7.1"."scopeguard"}" deps)
   ];
 
 
 # end
-# crossbeam-utils-0.2.2
+# crossbeam-queue-0.1.2
 
-  crates.crossbeam_utils."0.2.2" = deps: { features?(features_.crossbeam_utils."0.2.2" deps {}) }: buildRustCrate {
+  crates.crossbeam_queue."0.1.2" = deps: { features?(features_.crossbeam_queue."0.1.2" deps {}) }: buildRustCrate {
+    crateName = "crossbeam-queue";
+    version = "0.1.2";
+    description = "Concurrent queues";
+    authors = [ "The Crossbeam Project Developers" ];
+    sha256 = "1hannzr5w6j5061kg5iba4fzi6f2xpqv7bkcspfq17y1i8g0mzjj";
+    dependencies = mapFeatures features ([
+      (crates."crossbeam_utils"."${deps."crossbeam_queue"."0.1.2"."crossbeam_utils"}" deps)
+    ]);
+  };
+  features_.crossbeam_queue."0.1.2" = deps: f: updateFeatures f (rec {
+    crossbeam_queue."0.1.2".default = (f.crossbeam_queue."0.1.2".default or true);
+    crossbeam_utils."${deps.crossbeam_queue."0.1.2".crossbeam_utils}".default = true;
+  }) [
+    (features_.crossbeam_utils."${deps."crossbeam_queue"."0.1.2"."crossbeam_utils"}" deps)
+  ];
+
+
+# end
+# crossbeam-utils-0.6.5
+
+  crates.crossbeam_utils."0.6.5" = deps: { features?(features_.crossbeam_utils."0.6.5" deps {}) }: buildRustCrate {
     crateName = "crossbeam-utils";
-    version = "0.2.2";
+    version = "0.6.5";
     description = "Utilities for concurrent programming";
     authors = [ "The Crossbeam Project Developers" ];
-    sha256 = "0jiwzxv0lysjq68yk4bzkygrf69zhdidyw55nxlmimxlm6xv0j4m";
+    sha256 = "1z7wgcl9d22r2x6769r5945rnwf3jqfrrmb16q7kzk292r1d4rdg";
     dependencies = mapFeatures features ([
-      (crates."cfg_if"."${deps."crossbeam_utils"."0.2.2"."cfg_if"}" deps)
-    ]);
-    features = mkFeatures (features."crossbeam_utils"."0.2.2" or {});
+      (crates."cfg_if"."${deps."crossbeam_utils"."0.6.5"."cfg_if"}" deps)
+    ]
+      ++ (if features.crossbeam_utils."0.6.5".lazy_static or false then [ (crates.lazy_static."${deps."crossbeam_utils"."0.6.5".lazy_static}" deps) ] else []));
+    features = mkFeatures (features."crossbeam_utils"."0.6.5" or {});
   };
-  features_.crossbeam_utils."0.2.2" = deps: f: updateFeatures f (rec {
-    cfg_if."${deps.crossbeam_utils."0.2.2".cfg_if}".default = true;
+  features_.crossbeam_utils."0.6.5" = deps: f: updateFeatures f (rec {
+    cfg_if."${deps.crossbeam_utils."0.6.5".cfg_if}".default = true;
     crossbeam_utils = fold recursiveUpdate {} [
-      { "0.2.2"."use_std" =
-        (f.crossbeam_utils."0.2.2"."use_std" or false) ||
-        (f.crossbeam_utils."0.2.2".default or false) ||
-        (crossbeam_utils."0.2.2"."default" or false); }
-      { "0.2.2".default = (f.crossbeam_utils."0.2.2".default or true); }
+      { "0.6.5"."lazy_static" =
+        (f.crossbeam_utils."0.6.5"."lazy_static" or false) ||
+        (f.crossbeam_utils."0.6.5".std or false) ||
+        (crossbeam_utils."0.6.5"."std" or false); }
+      { "0.6.5"."std" =
+        (f.crossbeam_utils."0.6.5"."std" or false) ||
+        (f.crossbeam_utils."0.6.5".default or false) ||
+        (crossbeam_utils."0.6.5"."default" or false); }
+      { "0.6.5".default = (f.crossbeam_utils."0.6.5".default or true); }
     ];
+    lazy_static."${deps.crossbeam_utils."0.6.5".lazy_static}".default = true;
   }) [
-    (features_.cfg_if."${deps."crossbeam_utils"."0.2.2"."cfg_if"}" deps)
+    (features_.cfg_if."${deps."crossbeam_utils"."0.6.5"."cfg_if"}" deps)
+    (features_.lazy_static."${deps."crossbeam_utils"."0.6.5"."lazy_static"}" deps)
   ];
 
 
@@ -1985,47 +2014,47 @@ rec {
 
 
 # end
-# num-complex-0.2.2
+# num-complex-0.2.3
 
-  crates.num_complex."0.2.2" = deps: { features?(features_.num_complex."0.2.2" deps {}) }: buildRustCrate {
+  crates.num_complex."0.2.3" = deps: { features?(features_.num_complex."0.2.3" deps {}) }: buildRustCrate {
     crateName = "num-complex";
-    version = "0.2.2";
+    version = "0.2.3";
     description = "Complex numbers implementation for Rust";
     authors = [ "The Rust Project Developers" ];
-    sha256 = "0fvr527dbx7i6x8k2as9bqvyp114c6r1cd5cxrw31gjgdhkq09vc";
+    sha256 = "1l8gwn4cqhx77wzhzslwxhryrr5h4vsv19ys8wr5xb1g332805m9";
     build = "build.rs";
     dependencies = mapFeatures features ([
-      (crates."num_traits"."${deps."num_complex"."0.2.2"."num_traits"}" deps)
+      (crates."num_traits"."${deps."num_complex"."0.2.3"."num_traits"}" deps)
     ]);
 
     buildDependencies = mapFeatures features ([
-      (crates."autocfg"."${deps."num_complex"."0.2.2"."autocfg"}" deps)
+      (crates."autocfg"."${deps."num_complex"."0.2.3"."autocfg"}" deps)
     ]);
-    features = mkFeatures (features."num_complex"."0.2.2" or {});
+    features = mkFeatures (features."num_complex"."0.2.3" or {});
   };
-  features_.num_complex."0.2.2" = deps: f: updateFeatures f (rec {
-    autocfg."${deps.num_complex."0.2.2".autocfg}".default = true;
+  features_.num_complex."0.2.3" = deps: f: updateFeatures f (rec {
+    autocfg."${deps.num_complex."0.2.3".autocfg}".default = true;
     num_complex = fold recursiveUpdate {} [
-      { "0.2.2"."std" =
-        (f.num_complex."0.2.2"."std" or false) ||
-        (f.num_complex."0.2.2".default or false) ||
-        (num_complex."0.2.2"."default" or false); }
-      { "0.2.2".default = (f.num_complex."0.2.2".default or true); }
+      { "0.2.3"."std" =
+        (f.num_complex."0.2.3"."std" or false) ||
+        (f.num_complex."0.2.3".default or false) ||
+        (num_complex."0.2.3"."default" or false); }
+      { "0.2.3".default = (f.num_complex."0.2.3".default or true); }
     ];
     num_traits = fold recursiveUpdate {} [
-      { "${deps.num_complex."0.2.2".num_traits}"."i128" =
-        (f.num_traits."${deps.num_complex."0.2.2".num_traits}"."i128" or false) ||
-        (num_complex."0.2.2"."i128" or false) ||
-        (f."num_complex"."0.2.2"."i128" or false); }
-      { "${deps.num_complex."0.2.2".num_traits}"."std" =
-        (f.num_traits."${deps.num_complex."0.2.2".num_traits}"."std" or false) ||
-        (num_complex."0.2.2"."std" or false) ||
-        (f."num_complex"."0.2.2"."std" or false); }
-      { "${deps.num_complex."0.2.2".num_traits}".default = (f.num_traits."${deps.num_complex."0.2.2".num_traits}".default or false); }
+      { "${deps.num_complex."0.2.3".num_traits}"."i128" =
+        (f.num_traits."${deps.num_complex."0.2.3".num_traits}"."i128" or false) ||
+        (num_complex."0.2.3"."i128" or false) ||
+        (f."num_complex"."0.2.3"."i128" or false); }
+      { "${deps.num_complex."0.2.3".num_traits}"."std" =
+        (f.num_traits."${deps.num_complex."0.2.3".num_traits}"."std" or false) ||
+        (num_complex."0.2.3"."std" or false) ||
+        (f."num_complex"."0.2.3"."std" or false); }
+      { "${deps.num_complex."0.2.3".num_traits}".default = (f.num_traits."${deps.num_complex."0.2.3".num_traits}".default or false); }
     ];
   }) [
-    (features_.num_traits."${deps."num_complex"."0.2.2"."num_traits"}" deps)
-    (features_.autocfg."${deps."num_complex"."0.2.2"."autocfg"}" deps)
+    (features_.num_traits."${deps."num_complex"."0.2.3"."num_traits"}" deps)
+    (features_.autocfg."${deps."num_complex"."0.2.3"."autocfg"}" deps)
   ];
 
 
@@ -3091,61 +3120,65 @@ rec {
 
 
 # end
-# rayon-1.0.3
+# rayon-1.1.0
 
-  crates.rayon."1.0.3" = deps: { features?(features_.rayon."1.0.3" deps {}) }: buildRustCrate {
+  crates.rayon."1.1.0" = deps: { features?(features_.rayon."1.1.0" deps {}) }: buildRustCrate {
     crateName = "rayon";
-    version = "1.0.3";
+    version = "1.1.0";
     description = "Simple work-stealing parallelism for Rust";
     authors = [ "Niko Matsakis <niko@alum.mit.edu>" "Josh Stone <cuviper@gmail.com>" ];
-    sha256 = "0bmwk0l5nbx20a5x16dhrgrmkh3m40v6i0qs2gi2iqimlszyhq93";
-    build = "build.rs";
+    sha256 = "07984mgfdkv8zfg8b9wvjssfhm8wz1x9ls2lc9dfmbjv7kmfag4l";
     dependencies = mapFeatures features ([
-      (crates."crossbeam_deque"."${deps."rayon"."1.0.3"."crossbeam_deque"}" deps)
-      (crates."either"."${deps."rayon"."1.0.3"."either"}" deps)
-      (crates."rayon_core"."${deps."rayon"."1.0.3"."rayon_core"}" deps)
+      (crates."crossbeam_deque"."${deps."rayon"."1.1.0"."crossbeam_deque"}" deps)
+      (crates."either"."${deps."rayon"."1.1.0"."either"}" deps)
+      (crates."rayon_core"."${deps."rayon"."1.1.0"."rayon_core"}" deps)
     ]);
   };
-  features_.rayon."1.0.3" = deps: f: updateFeatures f (rec {
-    crossbeam_deque."${deps.rayon."1.0.3".crossbeam_deque}".default = true;
-    either."${deps.rayon."1.0.3".either}".default = (f.either."${deps.rayon."1.0.3".either}".default or false);
-    rayon."1.0.3".default = (f.rayon."1.0.3".default or true);
-    rayon_core."${deps.rayon."1.0.3".rayon_core}".default = true;
+  features_.rayon."1.1.0" = deps: f: updateFeatures f (rec {
+    crossbeam_deque."${deps.rayon."1.1.0".crossbeam_deque}".default = true;
+    either."${deps.rayon."1.1.0".either}".default = (f.either."${deps.rayon."1.1.0".either}".default or false);
+    rayon."1.1.0".default = (f.rayon."1.1.0".default or true);
+    rayon_core."${deps.rayon."1.1.0".rayon_core}".default = true;
   }) [
-    (features_.crossbeam_deque."${deps."rayon"."1.0.3"."crossbeam_deque"}" deps)
-    (features_.either."${deps."rayon"."1.0.3"."either"}" deps)
-    (features_.rayon_core."${deps."rayon"."1.0.3"."rayon_core"}" deps)
+    (features_.crossbeam_deque."${deps."rayon"."1.1.0"."crossbeam_deque"}" deps)
+    (features_.either."${deps."rayon"."1.1.0"."either"}" deps)
+    (features_.rayon_core."${deps."rayon"."1.1.0"."rayon_core"}" deps)
   ];
 
 
 # end
-# rayon-core-1.4.1
+# rayon-core-1.5.0
 
-  crates.rayon_core."1.4.1" = deps: { features?(features_.rayon_core."1.4.1" deps {}) }: buildRustCrate {
+  crates.rayon_core."1.5.0" = deps: { features?(features_.rayon_core."1.5.0" deps {}) }: buildRustCrate {
     crateName = "rayon-core";
-    version = "1.4.1";
+    version = "1.5.0";
     description = "Core APIs for Rayon";
     authors = [ "Niko Matsakis <niko@alum.mit.edu>" "Josh Stone <cuviper@gmail.com>" ];
-    sha256 = "01xf3mwmmji7yaarrpzpqjhz928ajxkwmjczbwmnpy39y95m4fbn";
+    sha256 = "1aarjhj57dppxz3b2rvwdxvq47464sm84423vpwjm9yll8pc2ac7";
     build = "build.rs";
     dependencies = mapFeatures features ([
-      (crates."crossbeam_deque"."${deps."rayon_core"."1.4.1"."crossbeam_deque"}" deps)
-      (crates."lazy_static"."${deps."rayon_core"."1.4.1"."lazy_static"}" deps)
-      (crates."libc"."${deps."rayon_core"."1.4.1"."libc"}" deps)
-      (crates."num_cpus"."${deps."rayon_core"."1.4.1"."num_cpus"}" deps)
-    ]);
+      (crates."crossbeam_deque"."${deps."rayon_core"."1.5.0"."crossbeam_deque"}" deps)
+      (crates."crossbeam_queue"."${deps."rayon_core"."1.5.0"."crossbeam_queue"}" deps)
+      (crates."crossbeam_utils"."${deps."rayon_core"."1.5.0"."crossbeam_utils"}" deps)
+      (crates."lazy_static"."${deps."rayon_core"."1.5.0"."lazy_static"}" deps)
+      (crates."num_cpus"."${deps."rayon_core"."1.5.0"."num_cpus"}" deps)
+    ])
+      ++ (if (kernel == "linux" || kernel == "darwin") then mapFeatures features ([
+]) else []);
   };
-  features_.rayon_core."1.4.1" = deps: f: updateFeatures f (rec {
-    crossbeam_deque."${deps.rayon_core."1.4.1".crossbeam_deque}".default = true;
-    lazy_static."${deps.rayon_core."1.4.1".lazy_static}".default = true;
-    libc."${deps.rayon_core."1.4.1".libc}".default = true;
-    num_cpus."${deps.rayon_core."1.4.1".num_cpus}".default = true;
-    rayon_core."1.4.1".default = (f.rayon_core."1.4.1".default or true);
+  features_.rayon_core."1.5.0" = deps: f: updateFeatures f (rec {
+    crossbeam_deque."${deps.rayon_core."1.5.0".crossbeam_deque}".default = true;
+    crossbeam_queue."${deps.rayon_core."1.5.0".crossbeam_queue}".default = true;
+    crossbeam_utils."${deps.rayon_core."1.5.0".crossbeam_utils}".default = true;
+    lazy_static."${deps.rayon_core."1.5.0".lazy_static}".default = true;
+    num_cpus."${deps.rayon_core."1.5.0".num_cpus}".default = true;
+    rayon_core."1.5.0".default = (f.rayon_core."1.5.0".default or true);
   }) [
-    (features_.crossbeam_deque."${deps."rayon_core"."1.4.1"."crossbeam_deque"}" deps)
-    (features_.lazy_static."${deps."rayon_core"."1.4.1"."lazy_static"}" deps)
-    (features_.libc."${deps."rayon_core"."1.4.1"."libc"}" deps)
-    (features_.num_cpus."${deps."rayon_core"."1.4.1"."num_cpus"}" deps)
+    (features_.crossbeam_deque."${deps."rayon_core"."1.5.0"."crossbeam_deque"}" deps)
+    (features_.crossbeam_queue."${deps."rayon_core"."1.5.0"."crossbeam_queue"}" deps)
+    (features_.crossbeam_utils."${deps."rayon_core"."1.5.0"."crossbeam_utils"}" deps)
+    (features_.lazy_static."${deps."rayon_core"."1.5.0"."lazy_static"}" deps)
+    (features_.num_cpus."${deps."rayon_core"."1.5.0"."num_cpus"}" deps)
   ];
 
 
@@ -3331,30 +3364,30 @@ rec {
 
 
 # end
-# remove_dir_all-0.5.1
+# remove_dir_all-0.5.2
 
-  crates.remove_dir_all."0.5.1" = deps: { features?(features_.remove_dir_all."0.5.1" deps {}) }: buildRustCrate {
+  crates.remove_dir_all."0.5.2" = deps: { features?(features_.remove_dir_all."0.5.2" deps {}) }: buildRustCrate {
     crateName = "remove_dir_all";
-    version = "0.5.1";
+    version = "0.5.2";
     description = "A safe, reliable implementation of remove_dir_all for Windows";
     authors = [ "Aaronepower <theaaronepower@gmail.com>" ];
-    sha256 = "1chx3yvfbj46xjz4bzsvps208l46hfbcy0sm98gpiya454n4rrl7";
+    sha256 = "04sxg2ppvxiljc2i13bwvpbi540rf9d2a89cq0wmqf9pjvr3a1wm";
     dependencies = (if kernel == "windows" then mapFeatures features ([
-      (crates."winapi"."${deps."remove_dir_all"."0.5.1"."winapi"}" deps)
+      (crates."winapi"."${deps."remove_dir_all"."0.5.2"."winapi"}" deps)
     ]) else []);
   };
-  features_.remove_dir_all."0.5.1" = deps: f: updateFeatures f (rec {
-    remove_dir_all."0.5.1".default = (f.remove_dir_all."0.5.1".default or true);
+  features_.remove_dir_all."0.5.2" = deps: f: updateFeatures f (rec {
+    remove_dir_all."0.5.2".default = (f.remove_dir_all."0.5.2".default or true);
     winapi = fold recursiveUpdate {} [
-      { "${deps.remove_dir_all."0.5.1".winapi}"."errhandlingapi" = true; }
-      { "${deps.remove_dir_all."0.5.1".winapi}"."fileapi" = true; }
-      { "${deps.remove_dir_all."0.5.1".winapi}"."std" = true; }
-      { "${deps.remove_dir_all."0.5.1".winapi}"."winbase" = true; }
-      { "${deps.remove_dir_all."0.5.1".winapi}"."winerror" = true; }
-      { "${deps.remove_dir_all."0.5.1".winapi}".default = true; }
+      { "${deps.remove_dir_all."0.5.2".winapi}"."errhandlingapi" = true; }
+      { "${deps.remove_dir_all."0.5.2".winapi}"."fileapi" = true; }
+      { "${deps.remove_dir_all."0.5.2".winapi}"."std" = true; }
+      { "${deps.remove_dir_all."0.5.2".winapi}"."winbase" = true; }
+      { "${deps.remove_dir_all."0.5.2".winapi}"."winerror" = true; }
+      { "${deps.remove_dir_all."0.5.2".winapi}".default = true; }
     ];
   }) [
-    (features_.winapi."${deps."remove_dir_all"."0.5.1"."winapi"}" deps)
+    (features_.winapi."${deps."remove_dir_all"."0.5.2"."winapi"}" deps)
   ];
 
 
@@ -4000,39 +4033,39 @@ rec {
 
 
 # end
-# termion-1.5.2
+# termion-1.5.3
 
-  crates.termion."1.5.2" = deps: { features?(features_.termion."1.5.2" deps {}) }: buildRustCrate {
+  crates.termion."1.5.3" = deps: { features?(features_.termion."1.5.3" deps {}) }: buildRustCrate {
     crateName = "termion";
-    version = "1.5.2";
+    version = "1.5.3";
     description = "A bindless library for manipulating terminals.";
     authors = [ "ticki <Ticki@users.noreply.github.com>" "gycos <alexandre.bury@gmail.com>" "IGI-111 <igi-111@protonmail.com>" ];
-    sha256 = "0a8znl9hdnr9d21xskb2q77r6pkvrabh71b43371vy9wq97m78d9";
+    sha256 = "0l47ppblj8d97ch100100w9fbv47c3fhnqxbvsajcz2pj7ci414k";
     dependencies = mapFeatures features ([
-      (crates."numtoa"."${deps."termion"."1.5.2"."numtoa"}" deps)
+      (crates."numtoa"."${deps."termion"."1.5.3"."numtoa"}" deps)
     ])
       ++ (if !(kernel == "redox") then mapFeatures features ([
-      (crates."libc"."${deps."termion"."1.5.2"."libc"}" deps)
+      (crates."libc"."${deps."termion"."1.5.3"."libc"}" deps)
     ]) else [])
       ++ (if kernel == "redox" then mapFeatures features ([
-      (crates."redox_syscall"."${deps."termion"."1.5.2"."redox_syscall"}" deps)
-      (crates."redox_termios"."${deps."termion"."1.5.2"."redox_termios"}" deps)
+      (crates."redox_syscall"."${deps."termion"."1.5.3"."redox_syscall"}" deps)
+      (crates."redox_termios"."${deps."termion"."1.5.3"."redox_termios"}" deps)
     ]) else []);
   };
-  features_.termion."1.5.2" = deps: f: updateFeatures f (rec {
-    libc."${deps.termion."1.5.2".libc}".default = true;
+  features_.termion."1.5.3" = deps: f: updateFeatures f (rec {
+    libc."${deps.termion."1.5.3".libc}".default = true;
     numtoa = fold recursiveUpdate {} [
-      { "${deps.termion."1.5.2".numtoa}"."std" = true; }
-      { "${deps.termion."1.5.2".numtoa}".default = true; }
+      { "${deps.termion."1.5.3".numtoa}"."std" = true; }
+      { "${deps.termion."1.5.3".numtoa}".default = true; }
     ];
-    redox_syscall."${deps.termion."1.5.2".redox_syscall}".default = true;
-    redox_termios."${deps.termion."1.5.2".redox_termios}".default = true;
-    termion."1.5.2".default = (f.termion."1.5.2".default or true);
+    redox_syscall."${deps.termion."1.5.3".redox_syscall}".default = true;
+    redox_termios."${deps.termion."1.5.3".redox_termios}".default = true;
+    termion."1.5.3".default = (f.termion."1.5.3".default or true);
   }) [
-    (features_.numtoa."${deps."termion"."1.5.2"."numtoa"}" deps)
-    (features_.libc."${deps."termion"."1.5.2"."libc"}" deps)
-    (features_.redox_syscall."${deps."termion"."1.5.2"."redox_syscall"}" deps)
-    (features_.redox_termios."${deps."termion"."1.5.2"."redox_termios"}" deps)
+    (features_.numtoa."${deps."termion"."1.5.3"."numtoa"}" deps)
+    (features_.libc."${deps."termion"."1.5.3"."libc"}" deps)
+    (features_.redox_syscall."${deps."termion"."1.5.3"."redox_syscall"}" deps)
+    (features_.redox_termios."${deps."termion"."1.5.3"."redox_termios"}" deps)
   ];
 
 
