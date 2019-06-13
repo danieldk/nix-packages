@@ -34,12 +34,16 @@ in stdenv.mkDerivation rec {
   version = "1.13.1";
 
   src = fetchurl {
-    url = "https://storage.googleapis.com/tensorflow/${pname}/${pname}-${tfType}-${system}-${version}.tar.gz";
+    url =
+      if system == "linux-x86_64" then
+        "https://blob.danieldk.eu/${pname}/${pname}-${tfType}-${system}-avx-fma-${version}.tar.gz"
+      else
+        "https://storage.googleapis.com/tensorflow/${pname}/${pname}-${tfType}-${system}-${version}.tar.gz";
     sha256 =
       if system == "linux-x86_64" then
         if cudaSupport
-        then "0g2j0g4hfps2vi9chv9k0ws8jim518ssns3pvrngg3xgxg6siwdp"
-        else "0cfnpqz1s6ilajg0nfirwbp18f3hls2q8bhn6z032jxn90llhk4k"
+        then "16i0wsh9zb5gjqx8n86d8y8ww71awxn1mdbac5nbhkrca0r533km"
+        else "1zdzd36mz1cjjanq9rxb1g6lfdxl3mvr603v56vsaz12x2b9szbn"
       else if system == "darwin-x86_64" then
         if cudaSupport
         then unavailable
