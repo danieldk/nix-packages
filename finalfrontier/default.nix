@@ -5,8 +5,8 @@ let
   src = fetchFromGitHub {
     owner = "finalfusion";
     repo = "finalfrontier";
-    rev = "0.5.0";
-    sha256 = "0z1wq1klpyi7xqarkbn7dj3indxii04a6nfdhih551xsnck79x3f";
+    rev = "0.6.0";
+    sha256 = "0r0w5wkppvdxisk130p21wvhlbgb9269qlvbfhkl3r50hlji8lpd";
   };
 in ((callPackage ./finalfrontier.nix {}).finalfrontier_utils {}).override {
   crateOverrides = defaultCrateOverrides // {
@@ -28,6 +28,11 @@ in ((callPackage ./finalfrontier.nix {}).finalfrontier_utils {}).override {
       preFixup = ''
         mkdir -p "$out/man/man1"
         cp ../man/*.1 "$out/man/man1/"
+      '';
+
+      postInstall = ''
+        # Remove finalfrontier_utils library.
+        rm -rf $out/lib
       '';
 
       meta = with stdenv.lib; {
