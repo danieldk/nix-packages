@@ -21,13 +21,13 @@ let
 in
   rustPlatform.buildRustPackage rec {
     pname = "finalfusion";
-    version = "0.3.0";
+    version = "0.3.1";
 
     src = fetchFromGitHub {
       owner = "finalfusion";
       repo = "finalfusion-python";
       rev = version;
-      sha256 = "05vmj3sglsx305qna36mipkjx374ry0x1aswzlbzkr9xr7p69ipx";
+      sha256 = "0vnyzvzy1bh4vlda4q6gp4lzhshxs6i1pnji32l5sij5q00jkyd4";
     };
 
     cargoSha256 = "1ra3vszs46sf4yr6qwk05q34yccb4jqyp9xp80pkvbhpjd4lx4xf";
