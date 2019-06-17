@@ -8,18 +8,18 @@ stdenvNoCC.mkDerivation rec {
   src = fetchurl {
     inherit sha256;
 
-    url = "http://www.sfs.uni-tuebingen.de/a3-public-data/sticker-models/${modelName}-${version}.tar.gz";
+    url = "https://blob.danieldk.eu/sticker-models/${modelName}-${version}.tar.gz";
   };
 
   nativeBuildInputs = [ makeWrapper ];
 
   preConfigure = ''
     substituteInPlace sticker.conf \
-      --replace "../embeddings/structured-skipgram-mincount-30-ctx-10-dims-300-zipf-0.75.fifu" \
+      --replace "de-structgram-20190426-opq.fifu" \
         "${wordEmbeds}"
   '' + stdenvNoCC.lib.optionalString (tagEmbeds != null) ''
     substituteInPlace sticker.conf \
-      --replace "../embeddings/taz-wiki-ep-r4-tags.fifu" \
+      --replace "de-structgram-tags-20190426.fifu" \
         "${tagEmbeds}"
   '';
 
