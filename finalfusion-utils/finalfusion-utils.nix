@@ -7,117 +7,61 @@ let inherit (lib.lists) fold;
 in
 rec {
   crates = cratesIO // rec {
-# finalfusion-0.5.1
+# finalfusion-utils-0.7.0
 
-    crates.finalfusion."0.5.1" = deps: { features?(features_."finalfusion"."0.5.1" deps {}) }: buildRustCrate {
-      crateName = "finalfusion";
-      version = "0.5.1";
-      description = "Reader and writer for common word embedding formats";
-      homepage = "https://github.com/finalfusion/finalfusion-rust";
-      authors = [ "Daniël de Kok <me@danieldk.eu>" ];
-      edition = "2018";
-      src = include [ "Cargo.toml" " finalfusion" ] ./finalfusion-utils;
-      workspace_member = "finalfusion";
-      dependencies = mapFeatures features ([
-        (cratesIO.crates."byteorder"."${deps."finalfusion"."0.5.1"."byteorder"}" deps)
-        (cratesIO.crates."failure"."${deps."finalfusion"."0.5.1"."failure"}" deps)
-        (cratesIO.crates."fnv"."${deps."finalfusion"."0.5.1"."fnv"}" deps)
-        (cratesIO.crates."itertools"."${deps."finalfusion"."0.5.1"."itertools"}" deps)
-        (cratesIO.crates."memmap"."${deps."finalfusion"."0.5.1"."memmap"}" deps)
-        (cratesIO.crates."ndarray"."${deps."finalfusion"."0.5.1"."ndarray"}" deps)
-        (cratesIO.crates."ordered_float"."${deps."finalfusion"."0.5.1"."ordered_float"}" deps)
-        (cratesIO.crates."rand"."${deps."finalfusion"."0.5.1"."rand"}" deps)
-        (cratesIO.crates."rand_xorshift"."${deps."finalfusion"."0.5.1"."rand_xorshift"}" deps)
-        (cratesIO.crates."reductive"."${deps."finalfusion"."0.5.1"."reductive"}" deps)
-        (cratesIO.crates."toml"."${deps."finalfusion"."0.5.1"."toml"}" deps)
-      ]);
-    };
-    features_."finalfusion"."0.5.1" = deps: f: updateFeatures f (rec {
-      byteorder."${deps.finalfusion."0.5.1".byteorder}".default = true;
-      failure."${deps.finalfusion."0.5.1".failure}".default = true;
-      finalfusion."0.5.1".default = (f.finalfusion."0.5.1".default or true);
-      fnv."${deps.finalfusion."0.5.1".fnv}".default = true;
-      itertools."${deps.finalfusion."0.5.1".itertools}".default = true;
-      memmap."${deps.finalfusion."0.5.1".memmap}".default = true;
-      ndarray."${deps.finalfusion."0.5.1".ndarray}".default = true;
-      ordered_float."${deps.finalfusion."0.5.1".ordered_float}".default = true;
-      rand."${deps.finalfusion."0.5.1".rand}".default = true;
-      rand_xorshift."${deps.finalfusion."0.5.1".rand_xorshift}".default = true;
-      reductive."${deps.finalfusion."0.5.1".reductive}".default = true;
-      toml."${deps.finalfusion."0.5.1".toml}".default = true;
-    }) [
-      (if deps."finalfusion"."0.5.1" ? "byteorder" then cratesIO.features_.byteorder."${deps."finalfusion"."0.5.1"."byteorder" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "failure" then cratesIO.features_.failure."${deps."finalfusion"."0.5.1"."failure" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "fnv" then cratesIO.features_.fnv."${deps."finalfusion"."0.5.1"."fnv" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "itertools" then cratesIO.features_.itertools."${deps."finalfusion"."0.5.1"."itertools" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "memmap" then cratesIO.features_.memmap."${deps."finalfusion"."0.5.1"."memmap" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "ndarray" then cratesIO.features_.ndarray."${deps."finalfusion"."0.5.1"."ndarray" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "ordered_float" then cratesIO.features_.ordered_float."${deps."finalfusion"."0.5.1"."ordered_float" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "rand" then cratesIO.features_.rand."${deps."finalfusion"."0.5.1"."rand" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "rand_xorshift" then cratesIO.features_.rand_xorshift."${deps."finalfusion"."0.5.1"."rand_xorshift" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "reductive" then cratesIO.features_.reductive."${deps."finalfusion"."0.5.1"."reductive" or ""}" deps else {})
-      (if deps."finalfusion"."0.5.1" ? "toml" then cratesIO.features_.toml."${deps."finalfusion"."0.5.1"."toml" or ""}" deps else {})
-    ];
-
-
-# end
-# finalfusion-utils-0.5.1
-
-    crates.finalfusion_utils."0.5.1" = deps: { features?(features_."finalfusion_utils"."0.5.1" deps {}) }: buildRustCrate {
+    crates.finalfusion_utils."0.7.0" = deps: { features?(features_.finalfusion_utils."0.7.0" deps {}) }: buildRustCrate {
       crateName = "finalfusion-utils";
-      version = "0.5.1";
+      version = "0.7.0";
       description = "finalfusion utilities";
-      homepage = "https://github.com/finalfusion/finalfusion-rust";
       authors = [ "Daniël de Kok <me@danieldk.eu>" ];
       edition = "2018";
-      src = include [ "Cargo.toml" " finalfusion-utils" ] ./finalfusion-utils;
-      workspace_member = "finalfusion-utils";
+      src = exclude [ ".git" "target" ] ./.;
       dependencies = mapFeatures features ([
-        (cratesIO.crates."clap"."${deps."finalfusion_utils"."0.5.1"."clap"}" deps)
-        (cratesIO.crates."env_logger"."${deps."finalfusion_utils"."0.5.1"."env_logger"}" deps)
-        (cratesIO.crates."failure"."${deps."finalfusion_utils"."0.5.1"."failure"}" deps)
-        (crates."finalfusion"."${deps."finalfusion_utils"."0.5.1"."finalfusion"}" deps)
-        (cratesIO.crates."getopts"."${deps."finalfusion_utils"."0.5.1"."getopts"}" deps)
-        (cratesIO.crates."ndarray"."${deps."finalfusion_utils"."0.5.1"."ndarray"}" deps)
-        (cratesIO.crates."num_cpus"."${deps."finalfusion_utils"."0.5.1"."num_cpus"}" deps)
-        (cratesIO.crates."rayon"."${deps."finalfusion_utils"."0.5.1"."rayon"}" deps)
-        (cratesIO.crates."reductive"."${deps."finalfusion_utils"."0.5.1"."reductive"}" deps)
-        (cratesIO.crates."stdinout"."${deps."finalfusion_utils"."0.5.1"."stdinout"}" deps)
-        (cratesIO.crates."toml"."${deps."finalfusion_utils"."0.5.1"."toml"}" deps)
+        (cratesIO.crates."clap"."${deps."finalfusion_utils"."0.7.0"."clap"}" deps)
+        (cratesIO.crates."env_logger"."${deps."finalfusion_utils"."0.7.0"."env_logger"}" deps)
+        (cratesIO.crates."failure"."${deps."finalfusion_utils"."0.7.0"."failure"}" deps)
+        (cratesIO.crates."finalfusion"."${deps."finalfusion_utils"."0.7.0"."finalfusion"}" deps)
+        (cratesIO.crates."getopts"."${deps."finalfusion_utils"."0.7.0"."getopts"}" deps)
+        (cratesIO.crates."ndarray"."${deps."finalfusion_utils"."0.7.0"."ndarray"}" deps)
+        (cratesIO.crates."num_cpus"."${deps."finalfusion_utils"."0.7.0"."num_cpus"}" deps)
+        (cratesIO.crates."rayon"."${deps."finalfusion_utils"."0.7.0"."rayon"}" deps)
+        (cratesIO.crates."reductive"."${deps."finalfusion_utils"."0.7.0"."reductive"}" deps)
+        (cratesIO.crates."stdinout"."${deps."finalfusion_utils"."0.7.0"."stdinout"}" deps)
+        (cratesIO.crates."toml"."${deps."finalfusion_utils"."0.7.0"."toml"}" deps)
       ]);
-      features = mkFeatures (features."finalfusion_utils"."0.5.1" or {});
+      features = mkFeatures (features."finalfusion_utils"."0.7.0" or {});
     };
-    features_."finalfusion_utils"."0.5.1" = deps: f: updateFeatures f (rec {
-      clap."${deps.finalfusion_utils."0.5.1".clap}".default = true;
-      env_logger."${deps.finalfusion_utils."0.5.1".env_logger}".default = true;
-      failure."${deps.finalfusion_utils."0.5.1".failure}".default = true;
-      finalfusion."${deps.finalfusion_utils."0.5.1".finalfusion}".default = true;
-      finalfusion_utils."0.5.1".default = (f.finalfusion_utils."0.5.1".default or true);
-      getopts."${deps.finalfusion_utils."0.5.1".getopts}".default = true;
-      ndarray."${deps.finalfusion_utils."0.5.1".ndarray}".default = true;
-      num_cpus."${deps.finalfusion_utils."0.5.1".num_cpus}".default = true;
-      rayon."${deps.finalfusion_utils."0.5.1".rayon}".default = true;
+    features_.finalfusion_utils."0.7.0" = deps: f: updateFeatures f (rec {
+      clap."${deps.finalfusion_utils."0.7.0".clap}".default = true;
+      env_logger."${deps.finalfusion_utils."0.7.0".env_logger}".default = true;
+      failure."${deps.finalfusion_utils."0.7.0".failure}".default = true;
+      finalfusion."${deps.finalfusion_utils."0.7.0".finalfusion}".default = true;
+      finalfusion_utils."0.7.0".default = (f.finalfusion_utils."0.7.0".default or true);
+      getopts."${deps.finalfusion_utils."0.7.0".getopts}".default = true;
+      ndarray."${deps.finalfusion_utils."0.7.0".ndarray}".default = true;
+      num_cpus."${deps.finalfusion_utils."0.7.0".num_cpus}".default = true;
+      rayon."${deps.finalfusion_utils."0.7.0".rayon}".default = true;
       reductive = fold recursiveUpdate {} [
-        { "${deps.finalfusion_utils."0.5.1".reductive}"."opq-train" =
-          (f.reductive."${deps.finalfusion_utils."0.5.1".reductive}"."opq-train" or false) ||
-          (finalfusion_utils."0.5.1"."opq" or false) ||
-          (f."finalfusion_utils"."0.5.1"."opq" or false); }
-        { "${deps.finalfusion_utils."0.5.1".reductive}".default = true; }
+        { "${deps.finalfusion_utils."0.7.0".reductive}"."opq-train" =
+          (f.reductive."${deps.finalfusion_utils."0.7.0".reductive}"."opq-train" or false) ||
+          (finalfusion_utils."0.7.0"."opq" or false) ||
+          (f."finalfusion_utils"."0.7.0"."opq" or false); }
+        { "${deps.finalfusion_utils."0.7.0".reductive}".default = true; }
       ];
-      stdinout."${deps.finalfusion_utils."0.5.1".stdinout}".default = true;
-      toml."${deps.finalfusion_utils."0.5.1".toml}".default = true;
+      stdinout."${deps.finalfusion_utils."0.7.0".stdinout}".default = true;
+      toml."${deps.finalfusion_utils."0.7.0".toml}".default = true;
     }) [
-      (if deps."finalfusion_utils"."0.5.1" ? "clap" then cratesIO.features_.clap."${deps."finalfusion_utils"."0.5.1"."clap" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "env_logger" then cratesIO.features_.env_logger."${deps."finalfusion_utils"."0.5.1"."env_logger" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "failure" then cratesIO.features_.failure."${deps."finalfusion_utils"."0.5.1"."failure" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "finalfusion" then features_.finalfusion."${deps."finalfusion_utils"."0.5.1"."finalfusion" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "getopts" then cratesIO.features_.getopts."${deps."finalfusion_utils"."0.5.1"."getopts" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "ndarray" then cratesIO.features_.ndarray."${deps."finalfusion_utils"."0.5.1"."ndarray" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "num_cpus" then cratesIO.features_.num_cpus."${deps."finalfusion_utils"."0.5.1"."num_cpus" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "rayon" then cratesIO.features_.rayon."${deps."finalfusion_utils"."0.5.1"."rayon" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "reductive" then cratesIO.features_.reductive."${deps."finalfusion_utils"."0.5.1"."reductive" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "stdinout" then cratesIO.features_.stdinout."${deps."finalfusion_utils"."0.5.1"."stdinout" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.5.1" ? "toml" then cratesIO.features_.toml."${deps."finalfusion_utils"."0.5.1"."toml" or ""}" deps else {})
+      (cratesIO.features_.clap."${deps."finalfusion_utils"."0.7.0"."clap"}" deps)
+      (cratesIO.features_.env_logger."${deps."finalfusion_utils"."0.7.0"."env_logger"}" deps)
+      (cratesIO.features_.failure."${deps."finalfusion_utils"."0.7.0"."failure"}" deps)
+      (cratesIO.features_.finalfusion."${deps."finalfusion_utils"."0.7.0"."finalfusion"}" deps)
+      (cratesIO.features_.getopts."${deps."finalfusion_utils"."0.7.0"."getopts"}" deps)
+      (cratesIO.features_.ndarray."${deps."finalfusion_utils"."0.7.0"."ndarray"}" deps)
+      (cratesIO.features_.num_cpus."${deps."finalfusion_utils"."0.7.0"."num_cpus"}" deps)
+      (cratesIO.features_.rayon."${deps."finalfusion_utils"."0.7.0"."rayon"}" deps)
+      (cratesIO.features_.reductive."${deps."finalfusion_utils"."0.7.0"."reductive"}" deps)
+      (cratesIO.features_.stdinout."${deps."finalfusion_utils"."0.7.0"."stdinout"}" deps)
+      (cratesIO.features_.toml."${deps."finalfusion_utils"."0.7.0"."toml"}" deps)
     ];
 
 
@@ -125,97 +69,98 @@ rec {
 
   };
 
-  finalfusion = crates.crates.finalfusion."0.5.1" deps;
-  finalfusion_utils = crates.crates.finalfusion_utils."0.5.1" deps;
-  __all = [ (finalfusion {}) (finalfusion_utils {}) ];
-  deps.aho_corasick."0.6.10" = {
+  finalfusion_utils = crates.crates.finalfusion_utils."0.7.0" deps;
+  __all = [ (finalfusion_utils {}) ];
+  deps.aho_corasick."0.7.3" = {
     memchr = "2.2.0";
   };
   deps.ansi_term."0.11.0" = {
-    winapi = "0.3.6";
+    winapi = "0.3.7";
   };
   deps.arrayvec."0.4.10" = {
     nodrop = "0.1.13";
   };
   deps.atty."0.2.11" = {
-    termion = "1.5.1";
-    libc = "0.2.50";
-    winapi = "0.3.6";
+    termion = "1.5.3";
+    libc = "0.2.58";
+    winapi = "0.3.7";
   };
-  deps.autocfg."0.1.2" = {};
-  deps.backtrace."0.3.14" = {
-    cfg_if = "0.1.7";
-    rustc_demangle = "0.1.13";
-    autocfg = "0.1.2";
+  deps.autocfg."0.1.4" = {};
+  deps.backtrace."0.3.30" = {
     backtrace_sys = "0.1.28";
-    libc = "0.2.50";
-    winapi = "0.3.6";
+    cfg_if = "0.1.9";
+    libc = "0.2.58";
+    rustc_demangle = "0.1.15";
+    autocfg = "0.1.4";
   };
   deps.backtrace_sys."0.1.28" = {
-    libc = "0.2.50";
-    cc = "1.0.31";
+    libc = "0.2.58";
+    cc = "1.0.37";
   };
-  deps.bitflags."1.0.4" = {};
+  deps.bitflags."1.1.0" = {};
   deps.blas_src."0.2.1" = {};
-  deps.byteorder."1.3.1" = {};
+  deps.byteorder."1.3.2" = {};
   deps.cblas_sys."0.1.4" = {
-    libc = "0.2.50";
+    libc = "0.2.58";
   };
-  deps.cc."1.0.31" = {};
-  deps.cfg_if."0.1.7" = {};
-  deps.clap."2.32.0" = {
+  deps.cc."1.0.37" = {};
+  deps.cfg_if."0.1.9" = {};
+  deps.clap."2.33.0" = {
     atty = "0.2.11";
-    bitflags = "1.0.4";
-    strsim = "0.7.0";
-    textwrap = "0.10.0";
+    bitflags = "1.1.0";
+    strsim = "0.8.0";
+    textwrap = "0.11.0";
     unicode_width = "0.1.5";
     vec_map = "0.8.1";
     ansi_term = "0.11.0";
   };
   deps.cloudabi."0.0.3" = {
-    bitflags = "1.0.4";
+    bitflags = "1.1.0";
   };
-  deps.crossbeam_deque."0.2.0" = {
-    crossbeam_epoch = "0.3.1";
-    crossbeam_utils = "0.2.2";
+  deps.crossbeam_deque."0.6.3" = {
+    crossbeam_epoch = "0.7.1";
+    crossbeam_utils = "0.6.5";
   };
-  deps.crossbeam_epoch."0.3.1" = {
+  deps.crossbeam_epoch."0.7.1" = {
     arrayvec = "0.4.10";
-    cfg_if = "0.1.7";
-    crossbeam_utils = "0.2.2";
+    cfg_if = "0.1.9";
+    crossbeam_utils = "0.6.5";
     lazy_static = "1.3.0";
     memoffset = "0.2.1";
-    nodrop = "0.1.13";
     scopeguard = "0.3.3";
   };
-  deps.crossbeam_utils."0.2.2" = {
-    cfg_if = "0.1.7";
+  deps.crossbeam_queue."0.1.2" = {
+    crossbeam_utils = "0.6.5";
+  };
+  deps.crossbeam_utils."0.6.5" = {
+    cfg_if = "0.1.9";
+    lazy_static = "1.3.0";
   };
   deps.derive_new."0.5.6" = {
-    proc_macro2 = "0.4.27";
-    quote = "0.6.11";
-    syn = "0.15.29";
+    proc_macro2 = "0.4.30";
+    quote = "0.6.12";
+    syn = "0.15.36";
   };
-  deps.either."1.5.1" = {};
+  deps.either."1.5.2" = {};
   deps.env_logger."0.6.1" = {
     atty = "0.2.11";
     humantime = "1.2.0";
     log = "0.4.6";
-    regex = "1.1.2";
-    termcolor = "1.0.4";
+    regex = "1.1.7";
+    termcolor = "1.0.5";
   };
   deps.failure."0.1.5" = {
-    backtrace = "0.3.14";
+    backtrace = "0.3.30";
     failure_derive = "0.1.5";
   };
   deps.failure_derive."0.1.5" = {
-    proc_macro2 = "0.4.27";
-    quote = "0.6.11";
-    syn = "0.15.29";
-    synstructure = "0.10.1";
+    proc_macro2 = "0.4.30";
+    quote = "0.6.12";
+    syn = "0.15.36";
+    synstructure = "0.10.2";
   };
-  deps.finalfusion."0.5.1" = {
-    byteorder = "1.3.1";
+  deps.finalfusion."0.7.1" = {
+    byteorder = "1.3.2";
     failure = "0.1.5";
     fnv = "1.0.6";
     itertools = "0.8.0";
@@ -225,56 +170,55 @@ rec {
     rand = "0.6.5";
     rand_xorshift = "0.1.1";
     reductive = "0.2.0";
-    toml = "0.4.10";
+    toml = "0.5.1";
   };
-  deps.finalfusion_utils."0.5.1" = {
-    clap = "2.32.0";
+  deps.finalfusion_utils."0.7.0" = {
+    clap = "2.33.0";
     env_logger = "0.6.1";
     failure = "0.1.5";
-    finalfusion = "0.5.1";
-    getopts = "0.2.18";
+    finalfusion = "0.7.1";
+    getopts = "0.2.19";
     ndarray = "0.12.1";
-    num_cpus = "1.10.0";
-    rayon = "1.0.3";
+    num_cpus = "1.10.1";
+    rayon = "1.1.0";
     reductive = "0.2.0";
     stdinout = "0.4.0";
-    toml = "0.4.10";
+    toml = "0.5.1";
   };
   deps.fnv."1.0.6" = {};
   deps.fuchsia_cprng."0.1.1" = {};
-  deps.getopts."0.2.18" = {
+  deps.getopts."0.2.19" = {
     unicode_width = "0.1.5";
   };
   deps.humantime."1.2.0" = {
     quick_error = "1.2.2";
   };
   deps.itertools."0.7.11" = {
-    either = "1.5.1";
+    either = "1.5.2";
   };
   deps.itertools."0.8.0" = {
-    either = "1.5.1";
+    either = "1.5.2";
   };
   deps.lapacke."0.2.0" = {
     lapacke_sys = "0.1.4";
-    libc = "0.2.50";
-    num_complex = "0.2.1";
+    libc = "0.2.58";
+    num_complex = "0.2.3";
   };
   deps.lapacke_sys."0.1.4" = {
-    libc = "0.2.50";
+    libc = "0.2.58";
   };
   deps.lazy_static."1.3.0" = {};
-  deps.libc."0.2.50" = {};
+  deps.libc."0.2.58" = {};
   deps.log."0.4.6" = {
-    cfg_if = "0.1.7";
+    cfg_if = "0.1.9";
   };
-  deps.maplit."1.0.1" = {};
   deps.matrixmultiply."0.1.15" = {
     rawpointer = "0.1.0";
   };
   deps.memchr."2.2.0" = {};
   deps.memmap."0.7.0" = {
-    libc = "0.2.50";
-    winapi = "0.3.6";
+    libc = "0.2.58";
+    winapi = "0.3.7";
   };
   deps.memoffset."0.2.1" = {};
   deps.ndarray."0.12.1" = {
@@ -282,67 +226,71 @@ rec {
     cblas_sys = "0.1.4";
     itertools = "0.7.11";
     matrixmultiply = "0.1.15";
-    num_complex = "0.2.1";
-    num_traits = "0.2.6";
+    num_complex = "0.2.3";
+    num_traits = "0.2.8";
   };
   deps.ndarray_linalg."0.10.0" = {
     derive_new = "0.5.6";
     lapacke = "0.2.0";
     ndarray = "0.12.1";
-    num_complex = "0.2.1";
-    num_traits = "0.2.6";
+    num_complex = "0.2.3";
+    num_traits = "0.2.8";
     procedurals = "0.3.1";
     rand = "0.5.6";
   };
   deps.ndarray_parallel."0.9.0" = {
     ndarray = "0.12.1";
-    rayon = "1.0.3";
+    rayon = "1.1.0";
   };
   deps.nodrop."0.1.13" = {};
-  deps.num_complex."0.2.1" = {
-    num_traits = "0.2.6";
+  deps.num_complex."0.2.3" = {
+    num_traits = "0.2.8";
+    autocfg = "0.1.4";
   };
-  deps.num_traits."0.2.6" = {};
-  deps.num_cpus."1.10.0" = {
-    libc = "0.2.50";
+  deps.num_traits."0.2.8" = {
+    autocfg = "0.1.4";
   };
+  deps.num_cpus."1.10.1" = {
+    libc = "0.2.58";
+  };
+  deps.numtoa."0.1.0" = {};
   deps.ordered_float."1.0.2" = {
-    num_traits = "0.2.6";
+    num_traits = "0.2.8";
   };
-  deps.proc_macro2."0.4.27" = {
+  deps.proc_macro2."0.4.30" = {
     unicode_xid = "0.1.0";
   };
   deps.procedurals."0.3.1" = {
-    quote = "0.6.11";
+    quote = "0.6.12";
     syn = "0.14.9";
   };
   deps.quick_error."1.2.2" = {};
-  deps.quote."0.6.11" = {
-    proc_macro2 = "0.4.27";
+  deps.quote."0.6.12" = {
+    proc_macro2 = "0.4.30";
   };
   deps.rand."0.5.6" = {
     rand_core = "0.3.1";
     cloudabi = "0.0.3";
     fuchsia_cprng = "0.1.1";
-    libc = "0.2.50";
-    winapi = "0.3.6";
+    libc = "0.2.58";
+    winapi = "0.3.7";
   };
   deps.rand."0.6.5" = {
     rand_chacha = "0.1.1";
     rand_core = "0.4.0";
     rand_hc = "0.1.0";
     rand_isaac = "0.1.1";
-    rand_jitter = "0.1.3";
+    rand_jitter = "0.1.4";
     rand_os = "0.1.3";
     rand_pcg = "0.1.2";
     rand_xorshift = "0.1.1";
-    autocfg = "0.1.2";
-    libc = "0.2.50";
-    winapi = "0.3.6";
+    autocfg = "0.1.4";
+    libc = "0.2.58";
+    winapi = "0.3.7";
   };
   deps.rand_chacha."0.1.1" = {
     rand_core = "0.3.1";
-    autocfg = "0.1.2";
+    autocfg = "0.1.4";
   };
   deps.rand_core."0.3.1" = {
     rand_core = "0.4.0";
@@ -354,120 +302,122 @@ rec {
   deps.rand_isaac."0.1.1" = {
     rand_core = "0.3.1";
   };
-  deps.rand_jitter."0.1.3" = {
+  deps.rand_jitter."0.1.4" = {
     rand_core = "0.4.0";
-    libc = "0.2.50";
-    winapi = "0.3.6";
+    libc = "0.2.58";
+    winapi = "0.3.7";
   };
   deps.rand_os."0.1.3" = {
     rand_core = "0.4.0";
     rdrand = "0.4.0";
     cloudabi = "0.0.3";
     fuchsia_cprng = "0.1.1";
-    libc = "0.2.50";
-    winapi = "0.3.6";
+    libc = "0.2.58";
+    winapi = "0.3.7";
   };
   deps.rand_pcg."0.1.2" = {
     rand_core = "0.4.0";
-    autocfg = "0.1.2";
+    autocfg = "0.1.4";
   };
   deps.rand_xorshift."0.1.1" = {
     rand_core = "0.3.1";
   };
   deps.rawpointer."0.1.0" = {};
-  deps.rayon."1.0.3" = {
-    crossbeam_deque = "0.2.0";
-    either = "1.5.1";
-    rayon_core = "1.4.1";
+  deps.rayon."1.1.0" = {
+    crossbeam_deque = "0.6.3";
+    either = "1.5.2";
+    rayon_core = "1.5.0";
   };
-  deps.rayon_core."1.4.1" = {
-    crossbeam_deque = "0.2.0";
+  deps.rayon_core."1.5.0" = {
+    crossbeam_deque = "0.6.3";
+    crossbeam_queue = "0.1.2";
+    crossbeam_utils = "0.6.5";
     lazy_static = "1.3.0";
-    libc = "0.2.50";
-    num_cpus = "1.10.0";
+    num_cpus = "1.10.1";
   };
   deps.rdrand."0.4.0" = {
     rand_core = "0.3.1";
   };
-  deps.redox_syscall."0.1.51" = {};
+  deps.redox_syscall."0.1.54" = {};
   deps.redox_termios."0.1.1" = {
-    redox_syscall = "0.1.51";
+    redox_syscall = "0.1.54";
   };
   deps.reductive."0.2.0" = {
     log = "0.4.6";
     ndarray = "0.12.1";
     ndarray_linalg = "0.10.0";
     ndarray_parallel = "0.9.0";
-    num_traits = "0.2.6";
+    num_traits = "0.2.8";
     ordered_float = "1.0.2";
     rand = "0.6.5";
     rand_xorshift = "0.1.1";
-    rayon = "1.0.3";
+    rayon = "1.1.0";
   };
-  deps.regex."1.1.2" = {
-    aho_corasick = "0.6.10";
+  deps.regex."1.1.7" = {
+    aho_corasick = "0.7.3";
     memchr = "2.2.0";
-    regex_syntax = "0.6.5";
+    regex_syntax = "0.6.7";
     thread_local = "0.3.6";
-    utf8_ranges = "1.0.2";
+    utf8_ranges = "1.0.3";
   };
-  deps.regex_syntax."0.6.5" = {
+  deps.regex_syntax."0.6.7" = {
     ucd_util = "0.1.3";
   };
-  deps.rustc_demangle."0.1.13" = {};
+  deps.rustc_demangle."0.1.15" = {};
   deps.scopeguard."0.3.3" = {};
-  deps.serde."1.0.89" = {};
+  deps.serde."1.0.92" = {};
   deps.stdinout."0.4.0" = {};
-  deps.strsim."0.7.0" = {};
+  deps.strsim."0.8.0" = {};
   deps.syn."0.14.9" = {
-    proc_macro2 = "0.4.27";
-    quote = "0.6.11";
+    proc_macro2 = "0.4.30";
+    quote = "0.6.12";
     unicode_xid = "0.1.0";
   };
-  deps.syn."0.15.29" = {
-    proc_macro2 = "0.4.27";
-    quote = "0.6.11";
+  deps.syn."0.15.36" = {
+    proc_macro2 = "0.4.30";
+    quote = "0.6.12";
     unicode_xid = "0.1.0";
   };
-  deps.synstructure."0.10.1" = {
-    proc_macro2 = "0.4.27";
-    quote = "0.6.11";
-    syn = "0.15.29";
+  deps.synstructure."0.10.2" = {
+    proc_macro2 = "0.4.30";
+    quote = "0.6.12";
+    syn = "0.15.36";
     unicode_xid = "0.1.0";
   };
-  deps.termcolor."1.0.4" = {
+  deps.termcolor."1.0.5" = {
     wincolor = "1.0.1";
   };
-  deps.termion."1.5.1" = {
-    libc = "0.2.50";
-    redox_syscall = "0.1.51";
+  deps.termion."1.5.3" = {
+    numtoa = "0.1.0";
+    libc = "0.2.58";
+    redox_syscall = "0.1.54";
     redox_termios = "0.1.1";
   };
-  deps.textwrap."0.10.0" = {
+  deps.textwrap."0.11.0" = {
     unicode_width = "0.1.5";
   };
   deps.thread_local."0.3.6" = {
     lazy_static = "1.3.0";
   };
-  deps.toml."0.4.10" = {
-    serde = "1.0.89";
+  deps.toml."0.5.1" = {
+    serde = "1.0.92";
   };
   deps.ucd_util."0.1.3" = {};
   deps.unicode_width."0.1.5" = {};
   deps.unicode_xid."0.1.0" = {};
-  deps.utf8_ranges."1.0.2" = {};
+  deps.utf8_ranges."1.0.3" = {};
   deps.vec_map."0.8.1" = {};
-  deps.winapi."0.3.6" = {
+  deps.winapi."0.3.7" = {
     winapi_i686_pc_windows_gnu = "0.4.0";
     winapi_x86_64_pc_windows_gnu = "0.4.0";
   };
   deps.winapi_i686_pc_windows_gnu."0.4.0" = {};
   deps.winapi_util."0.1.2" = {
-    winapi = "0.3.6";
+    winapi = "0.3.7";
   };
   deps.winapi_x86_64_pc_windows_gnu."0.4.0" = {};
   deps.wincolor."1.0.1" = {
-    winapi = "0.3.6";
+    winapi = "0.3.7";
     winapi_util = "0.1.2";
   };
 }
