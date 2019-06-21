@@ -5,8 +5,8 @@ let
   src = fetchFromGitHub {
     owner = "finalfusion";
     repo = "finalfrontier";
-    rev = "0.6.0";
-    sha256 = "0r0w5wkppvdxisk130p21wvhlbgb9269qlvbfhkl3r50hlji8lpd";
+    rev = "0.6.1";
+    sha256 = "1yswamvn58jqskg8vj72lwy22y0b30n83wxm5jb080147zvr0sf8";
   };
 in ((callPackage ./finalfrontier.nix {}).finalfrontier_utils {}).override {
   crateOverrides = defaultCrateOverrides // {

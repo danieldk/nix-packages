@@ -7,114 +7,114 @@ let inherit (lib.lists) fold;
 in
 rec {
   crates = cratesIO // rec {
-# finalfrontier-0.6.0
+# finalfrontier-0.6.1
 
-    crates.finalfrontier."0.6.0" = deps: { features?(features_.finalfrontier."0.6.0" deps {}) }: buildRustCrate {
+    crates.finalfrontier."0.6.1" = deps: { features?(features_.finalfrontier."0.6.1" deps {}) }: buildRustCrate {
       crateName = "finalfrontier";
-      version = "0.6.0";
+      version = "0.6.1";
       description = "Train/use word embeddings with subword units";
       authors = [ "Daniël de Kok <me@danieldk.eu>" "Sebastian Pütz <sebastian.puetz@student.uni-tuebingen.de>" ];
       edition = "2018";
       src = include [ "Cargo.toml" " finalfrontier" ] ./.;
       workspace_member = "finalfrontier";
       dependencies = mapFeatures features ([
-        (cratesIO.crates."cfg_if"."${deps."finalfrontier"."0.6.0"."cfg_if"}" deps)
-        (cratesIO.crates."conllx"."${deps."finalfrontier"."0.6.0"."conllx"}" deps)
-        (cratesIO.crates."failure"."${deps."finalfrontier"."0.6.0"."failure"}" deps)
-        (cratesIO.crates."finalfusion"."${deps."finalfrontier"."0.6.0"."finalfusion"}" deps)
-        (cratesIO.crates."fnv"."${deps."finalfrontier"."0.6.0"."fnv"}" deps)
-        (crates."hogwild"."${deps."finalfrontier"."0.6.0"."hogwild"}" deps)
-        (cratesIO.crates."ndarray"."${deps."finalfrontier"."0.6.0"."ndarray"}" deps)
-        (cratesIO.crates."ndarray_rand"."${deps."finalfrontier"."0.6.0"."ndarray_rand"}" deps)
-        (cratesIO.crates."rand"."${deps."finalfrontier"."0.6.0"."rand"}" deps)
-        (cratesIO.crates."rand_core"."${deps."finalfrontier"."0.6.0"."rand_core"}" deps)
-        (cratesIO.crates."serde"."${deps."finalfrontier"."0.6.0"."serde"}" deps)
-        (cratesIO.crates."toml"."${deps."finalfrontier"."0.6.0"."toml"}" deps)
-        (cratesIO.crates."zipf"."${deps."finalfrontier"."0.6.0"."zipf"}" deps)
+        (cratesIO.crates."cfg_if"."${deps."finalfrontier"."0.6.1"."cfg_if"}" deps)
+        (cratesIO.crates."conllx"."${deps."finalfrontier"."0.6.1"."conllx"}" deps)
+        (cratesIO.crates."failure"."${deps."finalfrontier"."0.6.1"."failure"}" deps)
+        (cratesIO.crates."finalfusion"."${deps."finalfrontier"."0.6.1"."finalfusion"}" deps)
+        (cratesIO.crates."fnv"."${deps."finalfrontier"."0.6.1"."fnv"}" deps)
+        (crates."hogwild"."${deps."finalfrontier"."0.6.1"."hogwild"}" deps)
+        (cratesIO.crates."ndarray"."${deps."finalfrontier"."0.6.1"."ndarray"}" deps)
+        (cratesIO.crates."ndarray_rand"."${deps."finalfrontier"."0.6.1"."ndarray_rand"}" deps)
+        (cratesIO.crates."rand"."${deps."finalfrontier"."0.6.1"."rand"}" deps)
+        (cratesIO.crates."rand_core"."${deps."finalfrontier"."0.6.1"."rand_core"}" deps)
+        (cratesIO.crates."serde"."${deps."finalfrontier"."0.6.1"."serde"}" deps)
+        (cratesIO.crates."toml"."${deps."finalfrontier"."0.6.1"."toml"}" deps)
+        (cratesIO.crates."zipf"."${deps."finalfrontier"."0.6.1"."zipf"}" deps)
       ]);
     };
-    features_.finalfrontier."0.6.0" = deps: f: updateFeatures f (rec {
-      cfg_if."${deps.finalfrontier."0.6.0".cfg_if}".default = true;
-      conllx."${deps.finalfrontier."0.6.0".conllx}".default = true;
-      failure."${deps.finalfrontier."0.6.0".failure}".default = true;
-      finalfrontier."0.6.0".default = (f.finalfrontier."0.6.0".default or true);
-      finalfusion."${deps.finalfrontier."0.6.0".finalfusion}".default = true;
-      fnv."${deps.finalfrontier."0.6.0".fnv}".default = true;
-      hogwild."${deps.finalfrontier."0.6.0".hogwild}".default = true;
-      ndarray."${deps.finalfrontier."0.6.0".ndarray}".default = true;
-      ndarray_rand."${deps.finalfrontier."0.6.0".ndarray_rand}".default = true;
-      rand."${deps.finalfrontier."0.6.0".rand}".default = true;
-      rand_core."${deps.finalfrontier."0.6.0".rand_core}".default = true;
+    features_.finalfrontier."0.6.1" = deps: f: updateFeatures f (rec {
+      cfg_if."${deps.finalfrontier."0.6.1".cfg_if}".default = true;
+      conllx."${deps.finalfrontier."0.6.1".conllx}".default = true;
+      failure."${deps.finalfrontier."0.6.1".failure}".default = true;
+      finalfrontier."0.6.1".default = (f.finalfrontier."0.6.1".default or true);
+      finalfusion."${deps.finalfrontier."0.6.1".finalfusion}".default = true;
+      fnv."${deps.finalfrontier."0.6.1".fnv}".default = true;
+      hogwild."${deps.finalfrontier."0.6.1".hogwild}".default = true;
+      ndarray."${deps.finalfrontier."0.6.1".ndarray}".default = true;
+      ndarray_rand."${deps.finalfrontier."0.6.1".ndarray_rand}".default = true;
+      rand."${deps.finalfrontier."0.6.1".rand}".default = true;
+      rand_core."${deps.finalfrontier."0.6.1".rand_core}".default = true;
       serde = fold recursiveUpdate {} [
-        { "${deps.finalfrontier."0.6.0".serde}"."derive" = true; }
-        { "${deps.finalfrontier."0.6.0".serde}".default = true; }
+        { "${deps.finalfrontier."0.6.1".serde}"."derive" = true; }
+        { "${deps.finalfrontier."0.6.1".serde}".default = true; }
       ];
-      toml."${deps.finalfrontier."0.6.0".toml}".default = true;
-      zipf."${deps.finalfrontier."0.6.0".zipf}".default = true;
+      toml."${deps.finalfrontier."0.6.1".toml}".default = true;
+      zipf."${deps.finalfrontier."0.6.1".zipf}".default = true;
     }) [
-      (cratesIO.features_.cfg_if."${deps."finalfrontier"."0.6.0"."cfg_if"}" deps)
-      (cratesIO.features_.conllx."${deps."finalfrontier"."0.6.0"."conllx"}" deps)
-      (cratesIO.features_.failure."${deps."finalfrontier"."0.6.0"."failure"}" deps)
-      (cratesIO.features_.finalfusion."${deps."finalfrontier"."0.6.0"."finalfusion"}" deps)
-      (cratesIO.features_.fnv."${deps."finalfrontier"."0.6.0"."fnv"}" deps)
-      (features_.hogwild."${deps."finalfrontier"."0.6.0"."hogwild"}" deps)
-      (cratesIO.features_.ndarray."${deps."finalfrontier"."0.6.0"."ndarray"}" deps)
-      (cratesIO.features_.ndarray_rand."${deps."finalfrontier"."0.6.0"."ndarray_rand"}" deps)
-      (cratesIO.features_.rand."${deps."finalfrontier"."0.6.0"."rand"}" deps)
-      (cratesIO.features_.rand_core."${deps."finalfrontier"."0.6.0"."rand_core"}" deps)
-      (cratesIO.features_.serde."${deps."finalfrontier"."0.6.0"."serde"}" deps)
-      (cratesIO.features_.toml."${deps."finalfrontier"."0.6.0"."toml"}" deps)
-      (cratesIO.features_.zipf."${deps."finalfrontier"."0.6.0"."zipf"}" deps)
+      (cratesIO.features_.cfg_if."${deps."finalfrontier"."0.6.1"."cfg_if"}" deps)
+      (cratesIO.features_.conllx."${deps."finalfrontier"."0.6.1"."conllx"}" deps)
+      (cratesIO.features_.failure."${deps."finalfrontier"."0.6.1"."failure"}" deps)
+      (cratesIO.features_.finalfusion."${deps."finalfrontier"."0.6.1"."finalfusion"}" deps)
+      (cratesIO.features_.fnv."${deps."finalfrontier"."0.6.1"."fnv"}" deps)
+      (features_.hogwild."${deps."finalfrontier"."0.6.1"."hogwild"}" deps)
+      (cratesIO.features_.ndarray."${deps."finalfrontier"."0.6.1"."ndarray"}" deps)
+      (cratesIO.features_.ndarray_rand."${deps."finalfrontier"."0.6.1"."ndarray_rand"}" deps)
+      (cratesIO.features_.rand."${deps."finalfrontier"."0.6.1"."rand"}" deps)
+      (cratesIO.features_.rand_core."${deps."finalfrontier"."0.6.1"."rand_core"}" deps)
+      (cratesIO.features_.serde."${deps."finalfrontier"."0.6.1"."serde"}" deps)
+      (cratesIO.features_.toml."${deps."finalfrontier"."0.6.1"."toml"}" deps)
+      (cratesIO.features_.zipf."${deps."finalfrontier"."0.6.1"."zipf"}" deps)
     ];
 
 
 # end
-# finalfrontier-utils-0.6.0
+# finalfrontier-utils-0.6.1
 
-    crates.finalfrontier_utils."0.6.0" = deps: { features?(features_.finalfrontier_utils."0.6.0" deps {}) }: buildRustCrate {
+    crates.finalfrontier_utils."0.6.1" = deps: { features?(features_.finalfrontier_utils."0.6.1" deps {}) }: buildRustCrate {
       crateName = "finalfrontier-utils";
-      version = "0.6.0";
+      version = "0.6.1";
       description = "Train and use word embeddings with subword representations";
       authors = [ "Daniël de Kok <me@danieldk.eu>" "Sebastian Pütz <sebastian.puetz@student.uni-tuebingen.de>" ];
       edition = "2018";
       src = include [ "Cargo.toml" " finalfrontier-utils" ] ./.;
       workspace_member = "finalfrontier-utils";
       dependencies = mapFeatures features ([
-        (cratesIO.crates."clap"."${deps."finalfrontier_utils"."0.6.0"."clap"}" deps)
-        (cratesIO.crates."conllx"."${deps."finalfrontier_utils"."0.6.0"."conllx"}" deps)
-        (cratesIO.crates."failure"."${deps."finalfrontier_utils"."0.6.0"."failure"}" deps)
-        (crates."finalfrontier"."${deps."finalfrontier_utils"."0.6.0"."finalfrontier"}" deps)
-        (cratesIO.crates."indicatif"."${deps."finalfrontier_utils"."0.6.0"."indicatif"}" deps)
-        (cratesIO.crates."memmap"."${deps."finalfrontier_utils"."0.6.0"."memmap"}" deps)
-        (cratesIO.crates."num_cpus"."${deps."finalfrontier_utils"."0.6.0"."num_cpus"}" deps)
-        (cratesIO.crates."rand"."${deps."finalfrontier_utils"."0.6.0"."rand"}" deps)
-        (cratesIO.crates."rand_xorshift"."${deps."finalfrontier_utils"."0.6.0"."rand_xorshift"}" deps)
-        (cratesIO.crates."stdinout"."${deps."finalfrontier_utils"."0.6.0"."stdinout"}" deps)
+        (cratesIO.crates."clap"."${deps."finalfrontier_utils"."0.6.1"."clap"}" deps)
+        (cratesIO.crates."conllx"."${deps."finalfrontier_utils"."0.6.1"."conllx"}" deps)
+        (cratesIO.crates."failure"."${deps."finalfrontier_utils"."0.6.1"."failure"}" deps)
+        (crates."finalfrontier"."${deps."finalfrontier_utils"."0.6.1"."finalfrontier"}" deps)
+        (cratesIO.crates."indicatif"."${deps."finalfrontier_utils"."0.6.1"."indicatif"}" deps)
+        (cratesIO.crates."memmap"."${deps."finalfrontier_utils"."0.6.1"."memmap"}" deps)
+        (cratesIO.crates."num_cpus"."${deps."finalfrontier_utils"."0.6.1"."num_cpus"}" deps)
+        (cratesIO.crates."rand"."${deps."finalfrontier_utils"."0.6.1"."rand"}" deps)
+        (cratesIO.crates."rand_xorshift"."${deps."finalfrontier_utils"."0.6.1"."rand_xorshift"}" deps)
+        (cratesIO.crates."stdinout"."${deps."finalfrontier_utils"."0.6.1"."stdinout"}" deps)
       ]);
     };
-    features_.finalfrontier_utils."0.6.0" = deps: f: updateFeatures f (rec {
-      clap."${deps.finalfrontier_utils."0.6.0".clap}".default = true;
-      conllx."${deps.finalfrontier_utils."0.6.0".conllx}".default = true;
-      failure."${deps.finalfrontier_utils."0.6.0".failure}".default = true;
-      finalfrontier."${deps.finalfrontier_utils."0.6.0".finalfrontier}".default = true;
-      finalfrontier_utils."0.6.0".default = (f.finalfrontier_utils."0.6.0".default or true);
-      indicatif."${deps.finalfrontier_utils."0.6.0".indicatif}".default = true;
-      memmap."${deps.finalfrontier_utils."0.6.0".memmap}".default = true;
-      num_cpus."${deps.finalfrontier_utils."0.6.0".num_cpus}".default = true;
-      rand."${deps.finalfrontier_utils."0.6.0".rand}".default = true;
-      rand_xorshift."${deps.finalfrontier_utils."0.6.0".rand_xorshift}".default = true;
-      stdinout."${deps.finalfrontier_utils."0.6.0".stdinout}".default = true;
+    features_.finalfrontier_utils."0.6.1" = deps: f: updateFeatures f (rec {
+      clap."${deps.finalfrontier_utils."0.6.1".clap}".default = true;
+      conllx."${deps.finalfrontier_utils."0.6.1".conllx}".default = true;
+      failure."${deps.finalfrontier_utils."0.6.1".failure}".default = true;
+      finalfrontier."${deps.finalfrontier_utils."0.6.1".finalfrontier}".default = true;
+      finalfrontier_utils."0.6.1".default = (f.finalfrontier_utils."0.6.1".default or true);
+      indicatif."${deps.finalfrontier_utils."0.6.1".indicatif}".default = true;
+      memmap."${deps.finalfrontier_utils."0.6.1".memmap}".default = true;
+      num_cpus."${deps.finalfrontier_utils."0.6.1".num_cpus}".default = true;
+      rand."${deps.finalfrontier_utils."0.6.1".rand}".default = true;
+      rand_xorshift."${deps.finalfrontier_utils."0.6.1".rand_xorshift}".default = true;
+      stdinout."${deps.finalfrontier_utils."0.6.1".stdinout}".default = true;
     }) [
-      (cratesIO.features_.clap."${deps."finalfrontier_utils"."0.6.0"."clap"}" deps)
-      (cratesIO.features_.conllx."${deps."finalfrontier_utils"."0.6.0"."conllx"}" deps)
-      (cratesIO.features_.failure."${deps."finalfrontier_utils"."0.6.0"."failure"}" deps)
-      (features_.finalfrontier."${deps."finalfrontier_utils"."0.6.0"."finalfrontier"}" deps)
-      (cratesIO.features_.indicatif."${deps."finalfrontier_utils"."0.6.0"."indicatif"}" deps)
-      (cratesIO.features_.memmap."${deps."finalfrontier_utils"."0.6.0"."memmap"}" deps)
-      (cratesIO.features_.num_cpus."${deps."finalfrontier_utils"."0.6.0"."num_cpus"}" deps)
-      (cratesIO.features_.rand."${deps."finalfrontier_utils"."0.6.0"."rand"}" deps)
-      (cratesIO.features_.rand_xorshift."${deps."finalfrontier_utils"."0.6.0"."rand_xorshift"}" deps)
-      (cratesIO.features_.stdinout."${deps."finalfrontier_utils"."0.6.0"."stdinout"}" deps)
+      (cratesIO.features_.clap."${deps."finalfrontier_utils"."0.6.1"."clap"}" deps)
+      (cratesIO.features_.conllx."${deps."finalfrontier_utils"."0.6.1"."conllx"}" deps)
+      (cratesIO.features_.failure."${deps."finalfrontier_utils"."0.6.1"."failure"}" deps)
+      (features_.finalfrontier."${deps."finalfrontier_utils"."0.6.1"."finalfrontier"}" deps)
+      (cratesIO.features_.indicatif."${deps."finalfrontier_utils"."0.6.1"."indicatif"}" deps)
+      (cratesIO.features_.memmap."${deps."finalfrontier_utils"."0.6.1"."memmap"}" deps)
+      (cratesIO.features_.num_cpus."${deps."finalfrontier_utils"."0.6.1"."num_cpus"}" deps)
+      (cratesIO.features_.rand."${deps."finalfrontier_utils"."0.6.1"."rand"}" deps)
+      (cratesIO.features_.rand_xorshift."${deps."finalfrontier_utils"."0.6.1"."rand_xorshift"}" deps)
+      (cratesIO.features_.stdinout."${deps."finalfrontier_utils"."0.6.1"."stdinout"}" deps)
     ];
 
 
@@ -145,8 +145,8 @@ rec {
 
   };
 
-  finalfrontier = crates.crates.finalfrontier."0.6.0" deps;
-  finalfrontier_utils = crates.crates.finalfrontier_utils."0.6.0" deps;
+  finalfrontier = crates.crates.finalfrontier."0.6.1" deps;
+  finalfrontier_utils = crates.crates.finalfrontier_utils."0.6.1" deps;
   hogwild = crates.crates.hogwild."0.6.0" deps;
   __all = [ (finalfrontier {}) (finalfrontier_utils {}) (hogwild {}) ];
   deps.aho_corasick."0.7.3" = {
@@ -246,11 +246,11 @@ rec {
     syn = "0.15.36";
     synstructure = "0.10.2";
   };
-  deps.finalfrontier."0.6.0" = {
+  deps.finalfrontier."0.6.1" = {
     cfg_if = "0.1.9";
     conllx = "0.11.2";
     failure = "0.1.5";
-    finalfusion = "0.6.0";
+    finalfusion = "0.7.1";
     fnv = "1.0.6";
     hogwild = "0.6.0";
     ndarray = "0.12.1";
@@ -261,11 +261,11 @@ rec {
     toml = "0.5.1";
     zipf = "5.0.1";
   };
-  deps.finalfrontier_utils."0.6.0" = {
+  deps.finalfrontier_utils."0.6.1" = {
     clap = "2.33.0";
     conllx = "0.11.2";
     failure = "0.1.5";
-    finalfrontier = "0.6.0";
+    finalfrontier = "0.6.1";
     indicatif = "0.11.0";
     memmap = "0.7.0";
     num_cpus = "1.10.1";
@@ -273,7 +273,7 @@ rec {
     rand_xorshift = "0.1.1";
     stdinout = "0.4.0";
   };
-  deps.finalfusion."0.6.0" = {
+  deps.finalfusion."0.7.1" = {
     byteorder = "1.3.2";
     failure = "0.1.5";
     fnv = "1.0.6";
