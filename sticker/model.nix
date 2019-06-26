@@ -15,12 +15,12 @@ stdenvNoCC.mkDerivation rec {
 
   preConfigure = ''
     substituteInPlace sticker.conf \
-      --replace "de-structgram-20190426-opq.fifu" \
-        "${wordEmbeds}"
+      --replace "${wordEmbeds.filename}" \
+        "${wordEmbeds.embeds}"
   '' + stdenvNoCC.lib.optionalString (tagEmbeds != null) ''
     substituteInPlace sticker.conf \
-      --replace "de-structgram-tags-20190426.fifu" \
-        "${tagEmbeds}"
+      --replace "${tagEmbeds.filename}" \
+        "${tagEmbeds.embeds}"
   '';
 
   installPhase = ''
