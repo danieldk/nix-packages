@@ -10,6 +10,10 @@ let
     url = https://blob.danieldk.eu/sticker-models/de-structgram-tags-20190426.fifu;
     sha256 = "159p71xdkxf5z6pg612imscb6v9plwnf8yn6fxrqlvq8i3wwwx66";
   };
+  nlWordEmbeds = fetchurl {
+    url = https://blob.danieldk.eu/sticker-models/nl-structgram-20190623-opq.fifu;
+    sha256 = "1byvg8ach98y7jmikjkcqghxzby8nq2bqxcs8c137h0w8dm7nzbx";
+  };
 in {
   de-deps = stickerModel {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
@@ -59,4 +63,18 @@ in {
       embeds = deTagEmbeds;
     };
   };
+
+  nl-pos-ud = stickerModel {
+    inherit stdenvNoCC fetchurl makeWrapper sticker;
+
+    modelName = "nl-pos-ud";
+    version = "20190623";
+    sha256 = "0aabx884wki4zkdhmnizj6fc0fgkpbgx73brica3ds4kf09708dl";
+
+    wordEmbeds = {
+      filename = "nl-structgram-20190623-opq.fifu";
+      embeds = nlWordEmbeds;
+    };
+  };
+
 }
