@@ -21,5 +21,17 @@ in {
       tagPrefix = "de-deps";
       model = stickerModels.de-deps;
     };
+
+    nl-deps-ud = stickerImage {
+      inherit dockerTools;
+      tagPrefix = "nl-deps-ud";
+      model = stickerModels.nl-deps-ud;
+    };
+
+    nl-pos-ud = stickerImage {
+      inherit dockerTools;
+      tagPrefix = "nl-pos-ud";
+      model = stickerModels.nl-pos-ud;
+    };
   };
 }
