@@ -19,24 +19,44 @@ rec {
   python3Packages = python37Packages;
 
   python27Packages = {
+    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
+      inherit (pkgs.python27Packages) buildPythonPackage;
+      inherit alpinocorpus;
+    };
+
     finalfusion = pkgs.callPackage ./python-modules/finalfusion {
       pythonPackages = pkgs.python27Packages;
     };
   };
 
   python35Packages = {
+    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
+      inherit (pkgs.python35Packages) buildPythonPackage;
+      inherit alpinocorpus;
+    };
+
     finalfusion = pkgs.callPackage ./python-modules/finalfusion {
       pythonPackages = pkgs.python35Packages;
     };
   };
 
   python36Packages = {
+    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
+      inherit (pkgs.python36Packages) buildPythonPackage;
+      inherit alpinocorpus;
+    };
+
     finalfusion = pkgs.callPackage ./python-modules/finalfusion {
       pythonPackages = pkgs.python36Packages;
     };
   };
 
   python37Packages = {
+    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
+      inherit (pkgs.python37Packages) buildPythonPackage;
+      inherit alpinocorpus;
+    };
+
     finalfusion = pkgs.callPackage ./python-modules/finalfusion {
       pythonPackages = pkgs.python37Packages;
     };
