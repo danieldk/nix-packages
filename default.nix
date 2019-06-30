@@ -38,6 +38,10 @@ rec {
     finalfusion = pkgs.callPackage ./python-modules/finalfusion {
       pythonPackages = pkgs.python35Packages;
     };
+
+    somajo = pkgs.callPackage ./python-modules/somajo {
+      pythonPackages = pkgs.python35Packages;
+    };
   };
 
   python36Packages = {
@@ -49,6 +53,10 @@ rec {
     finalfusion = pkgs.callPackage ./python-modules/finalfusion {
       pythonPackages = pkgs.python36Packages;
     };
+
+    somajo = pkgs.callPackage ./python-modules/somajo {
+      pythonPackages = pkgs.python36Packages;
+    };
   };
 
   python37Packages = {
@@ -58,6 +66,10 @@ rec {
     };
 
     finalfusion = pkgs.callPackage ./python-modules/finalfusion {
+      pythonPackages = pkgs.python37Packages;
+    };
+
+    somajo = pkgs.callPackage ./python-modules/somajo {
       pythonPackages = pkgs.python37Packages;
     };
   };
