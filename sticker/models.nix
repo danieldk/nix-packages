@@ -50,6 +50,19 @@ in {
     };
   };
 
+  de-pos-ud = stickerModel {
+    inherit stdenvNoCC fetchurl makeWrapper sticker;
+
+    modelName = "de-pos-ud";
+    version = "20190705";
+    sha256 = "19kdl0rg2b2i0k7xdchfickc7z0pxcnqzr7xm2x2l2yv9wn7r4ac";
+
+    wordEmbeds = {
+      filename = "de-structgram-20190426-opq.fifu";
+      embeds = deWordEmbeds;
+    };
+  };
+
   de-topo = stickerModel {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
