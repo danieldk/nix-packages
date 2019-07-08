@@ -4,10 +4,22 @@ let
   stickerImage = import ./sticker-image.nix;
 in {
   sticker = {
+    de-deps-ud = stickerImage {
+      inherit dockerTools;
+      tagPrefix = "de-deps-ud";
+      model = stickerModels.de-deps-ud;
+    };
+
     de-pos = stickerImage {
       inherit dockerTools;
       tagPrefix = "de-pos";
       model = stickerModels.de-pos;
+    };
+
+    de-pos-ud = stickerImage {
+      inherit dockerTools;
+      tagPrefix = "de-pos-ud";
+      model = stickerModels.de-pos-ud;
     };
 
     de-topo = stickerImage {
