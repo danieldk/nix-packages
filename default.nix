@@ -8,7 +8,7 @@ rec {
   dact = pkgs.callPackage ./dact { alpinocorpus = alpinocorpus; };
   finalfrontier = pkgs.callPackage ./finalfrontier {};
   finalfusion-utils = pkgs.callPackage ./finalfusion-utils {};
-  sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_13_1; };
+  sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_14_0; };
   stickerModels = pkgs.callPackage ./sticker/models.nix {
     inherit sticker;
   };
@@ -83,7 +83,7 @@ rec {
   };
 
   # Pinned library versions
-  libtensorflow_1_13_1 = with pkgs; callPackage ./libtensorflow {
+  libtensorflow_1_14_0 = with pkgs; callPackage ./libtensorflow {
     inherit (linuxPackages) nvidia_x11;
     cudatoolkit = cudatoolkit_10_0;
     cudnn = cudnn_cudatoolkit_10_0;

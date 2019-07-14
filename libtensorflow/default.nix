@@ -21,8 +21,8 @@ let
   patchLibs =
     if stdenv.isDarwin
     then ''
-      install_name_tool -id $out/lib/libtensorflow.so $out/lib/libtensorflow.so
-      install_name_tool -id $out/lib/libtensorflow_framework.so $out/lib/libtensorflow_framework.so
+      install_name_tool -id $out/lib/libtensorflow.dylib $out/lib/libtensorflow.dylib
+      install_name_tool -id $out/lib/libtensorflow_framework.dylib $out/lib/libtensorflow_framework.dylib
     ''
     else ''
       ${patchelf}/bin/patchelf --set-rpath "${rpath}:$out/lib" $out/lib/libtensorflow.so
@@ -31,7 +31,7 @@ let
 
 in stdenv.mkDerivation rec {
   pname = "libtensorflow";
-  version = "1.13.1";
+  version = "1.14.0";
 
   src = fetchurl {
     url =
@@ -42,12 +42,12 @@ in stdenv.mkDerivation rec {
     sha256 =
       if system == "linux-x86_64" then
         if cudaSupport
-        then "16i0wsh9zb5gjqx8n86d8y8ww71awxn1mdbac5nbhkrca0r533km"
-        else "1zdzd36mz1cjjanq9rxb1g6lfdxl3mvr603v56vsaz12x2b9szbn"
+        then "0lm83836ywpzy8ikw4k4k9s9955vqa4dj1xk9rjl3z1xf6ciaiyk"
+        else "1xcgkls4hrxgdhnap4ngnda3l8a0b6fp41xp2xpmmm51rbgfzs90"
       else if system == "darwin-x86_64" then
         if cudaSupport
         then unavailable
-        else "0mv0xrnkb871l6j6gpdq84aq5987sabszggl1jyws4hvacipidmq"
+        else "0zsd5ils1a17j6jzh0c7q1z56fw46gkzybbnms7h2rgg8al0rh92"
       else unavailable;
   };
 
@@ -56,11 +56,8 @@ in stdenv.mkDerivation rec {
     . $stdenv/setup
     mkdir -pv $out
     tar -C $out -xzf $src
-    chmod +w $out/lib/libtensorflow.so
-    chmod +w $out/lib/libtensorflow_framework.so
+    chmod -R +w $out
     ${patchLibs}
-    chmod -w $out/lib/libtensorflow.so
-    chmod -w $out/lib/libtensorflow_framework.so
 
     # Write pkgconfig file.
     mkdir $out/lib/pkgconfig
