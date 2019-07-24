@@ -1,58 +1,51 @@
-{ pkgs, stdenv, fetchFromGitHub, makeRustPlatform, pythonPackages, darwin }:
+{ stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub
+, darwin, pythonPackages }:
 
 let
-  nixpkgs_unstable = import (builtins.fetchTarball {
-    name = "nixpkgs-stable-2019-05-18";
-    url = https://github.com/nixos/nixpkgs/archive/2a56ea3593aa0702a61313572c2211ef947f4d1f.tar.gz;
-    sha256 = "05iggc96f3nmylmdgys8i53kd7vfh546lkyi87qqms6vq8v2fybm";
-  }) {};
   mozillaOverlay = fetchFromGitHub {
     owner = "mozilla";
     repo = "nixpkgs-mozilla";
     rev = "9f35c4b09fd44a77227e79ff0c1b4b6a69dff533";
     sha256 = "18h0nvh55b5an4gmlgfbvwbyqj91bklf1zymis6lbdh75571qaz0";
   };
-  mozilla = pkgs.callPackage "${mozillaOverlay.out}/package-set.nix" { };
+  mozilla = callPackage "${mozillaOverlay.out}/package-set.nix" { };
   rustNightly = (mozilla.rustChannelOf { date = "2019-02-07"; channel = "nightly"; }).rust;
-  rustPlatform = nixpkgs_unstable.makeRustPlatform {
-    cargo = rustNightly;
-    rustc = rustNightly;
+  src = fetchFromGitHub {
+    owner = "finalfusion";
+    repo = "finalfusion-python";
+    rev = "0.3.1";
+    sha256 = "0vnyzvzy1bh4vlda4q6gp4lzhshxs6i1pnji32l5sij5q00jkyd4";
   };
-in
-  rustPlatform.buildRustPackage rec {
-    pname = "finalfusion";
-    version = "0.3.1";
+in ((callPackage ./finalfusion.nix {}).finalfusion_python {}).override {
+  rust = rustNightly;
 
-    src = fetchFromGitHub {
-      owner = "finalfusion";
-      repo = "finalfusion-python";
-      rev = version;
-      sha256 = "0vnyzvzy1bh4vlda4q6gp4lzhshxs6i1pnji32l5sij5q00jkyd4";
+  crateOverrides = defaultCrateOverrides // {
+    finalfusion-python = attr: {
+      inherit src;
+
+      buildInputs = stdenv.lib.optional stdenv.isDarwin darwin.Security;
+
+      propagatedBuildInputs = [ pythonPackages.numpy ];
+
+      installPhase = let
+        sitePackages = pythonPackages.python.sitePackages;
+        sharedLibrary = stdenv.hostPlatform.extensions.sharedLibrary;
+      in ''
+        mkdir -p "$out/${sitePackages}"
+        cp target/lib/libfinalfusion-*${sharedLibrary} \
+          "$out/${sitePackages}/finalfusion.so"
+        export PYTHONPATH="$out/${sitePackages}:$PYTHONPATH"
+      '';
+
+      meta = with stdenv.lib; {
+        description = "Python module for the finalfusion embedding format";
+        license = licenses.asl20;
+        platforms = platforms.all;
+      };
     };
 
-    cargoSha256 = "1ra3vszs46sf4yr6qwk05q34yccb4jqyp9xp80pkvbhpjd4lx4xf";
-
-    nativeBuildInputs = [ nixpkgs_unstable.pyo3-pack ];
-
-    buildInputs = [ pythonPackages.python ] ++
-      stdenv.lib.optional stdenv.isDarwin darwin.Security;
-
-    propagatedBuildInputs = [ pythonPackages.numpy ];
-
-    buildPhase = ''
-      pyo3-pack build --release --manylinux off
-    '';
-
-    installPhase = ''
-      ${pythonPackages.python.pythonForBuild.pkgs.bootstrapped-pip}/bin/pip install \
-        target/wheels/*.whl --no-index --prefix=$out --no-cache --build tmpbuild
-    '';
-
-    doCheck = false;
-
-    meta = with stdenv.lib; {
-      description = "Python module for the finalfusion embedding format";
-      license = licenses.asl20;
-      platforms = platforms.all;
+    pyo3 = attr: {
+      buildInputs = [ pythonPackages.python ];
     };
-  }
+  };
+}

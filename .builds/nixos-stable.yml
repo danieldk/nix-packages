@@ -22,7 +22,6 @@ tasks:
       nix-build '<nixpkgs>' -A danieldk.finalfrontier | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.pythonPackages.alpinocorpus | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.python3Packages.alpinocorpus | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.pythonPackages.finalfusion | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.python3Packages.finalfusion | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.python3Packages.somajo | cachix push danieldk
       nix-build '<nixpkgs>' -A danieldk.sticker | cachix push danieldk
