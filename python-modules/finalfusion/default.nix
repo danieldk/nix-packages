@@ -13,8 +13,8 @@ let
   src = fetchFromGitHub {
     owner = "finalfusion";
     repo = "finalfusion-python";
-    rev = "0.3.1";
-    sha256 = "0vnyzvzy1bh4vlda4q6gp4lzhshxs6i1pnji32l5sij5q00jkyd4";
+    rev = "0.4.0";
+    sha256 = "1q896pnaar61c2p8w8wikm79c4ghmzsg3y12i17nzb2xr546p7l2";
   };
 in ((callPackage ./finalfusion.nix {}).finalfusion_python {}).override {
   rust = rustNightly;
@@ -27,6 +27,10 @@ in ((callPackage ./finalfusion.nix {}).finalfusion_python {}).override {
 
       propagatedBuildInputs = [ pythonPackages.numpy ];
 
+      installCheckInputs = [ pythonPackages.pytest ];
+
+      doInstallCheck = true;
+
       installPhase = let
         sitePackages = pythonPackages.python.sitePackages;
         sharedLibrary = stdenv.hostPlatform.extensions.sharedLibrary;
@@ -35,6 +39,10 @@ in ((callPackage ./finalfusion.nix {}).finalfusion_python {}).override {
         cp target/lib/libfinalfusion-*${sharedLibrary} \
           "$out/${sitePackages}/finalfusion.so"
         export PYTHONPATH="$out/${sitePackages}:$PYTHONPATH"
+      '';
+
+      installCheckPhase = ''
+        pytest
       '';
 
       meta = with stdenv.lib; {
