@@ -34,11 +34,7 @@ in stdenv.mkDerivation rec {
   version = "1.14.0";
 
   src = fetchurl {
-    url =
-      if system == "linux-x86_64" then
-        "https://blob.danieldk.eu/${pname}/${pname}-${tfType}-${system}-avx-fma-${version}.tar.gz"
-      else
-        "https://storage.googleapis.com/tensorflow/${pname}/${pname}-${tfType}-${system}-${version}.tar.gz";
+    url = "https://blob.danieldk.eu/${pname}/${pname}-${tfType}-${system}-avx-fma-${version}.tar.gz";
     sha256 =
       if system == "linux-x86_64" then
         if cudaSupport
@@ -47,7 +43,7 @@ in stdenv.mkDerivation rec {
       else if system == "darwin-x86_64" then
         if cudaSupport
         then unavailable
-        else "0zsd5ils1a17j6jzh0c7q1z56fw46gkzybbnms7h2rgg8al0rh92"
+        else "120lr69f684lfcv5chivkq0xxaf0jjp0i7ms542mb971iji95cmv"
       else unavailable;
   };
 
