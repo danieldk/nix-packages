@@ -2,7 +2,7 @@
 
 dockerTools.buildLayeredImage {
   name = "danieldk/sticker";
-  tag = "${tagPrefix}-${model.version}";
-  contents = model;
+  tag = "${tagPrefix}-${model.model.version}";
+  contents = model.wrapper;
   maxLayers = 100;
 }
