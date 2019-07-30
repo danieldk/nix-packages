@@ -1,5 +1,4 @@
-{ pkgs, stdenv, fetchFromGitHub, buildPythonPackage, alpinocorpus,
-  boost, libxml2, libxslt }:
+{ pkgs, stdenv, fetchFromGitHub, buildPythonPackage, alpinocorpus }:
 
 buildPythonPackage rec {
   pname = "alpinocorpus";
@@ -12,11 +11,11 @@ buildPythonPackage rec {
     sha256 = "1742q5alq0g68ps7d6f9n1aa25wqim2gm423mq0akb8dv8hd2r2l";
   };
 
-  buildInputs = [ alpinocorpus boost libxml2.dev libxslt ];
+  buildInputs = [ alpinocorpus pkgs.boost pkgs.libxml2.dev pkgs.libxslt ];
 
   postPatch = ''
     substituteInPlace setup.py \
-    --replace "/usr/include/libxml2" "${libxml2.dev}/include/libxml2"
+    --replace "/usr/include/libxml2" "${pkgs.libxml2.dev}/include/libxml2"
   '';
 
   meta = with stdenv.lib; {

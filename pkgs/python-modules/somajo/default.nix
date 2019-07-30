@@ -1,8 +1,9 @@
-{ pkgs, stdenv, fetchFromGitHub, pythonPackages }:
+{ pkgs, stdenv, fetchFromGitHub, buildPythonPackage, isPy3k, regex }:
 
-pythonPackages.buildPythonPackage rec {
+buildPythonPackage rec {
   pname = "somajo";
   version = "1.10.0";
+  disabled = !isPy3k;
 
   src = fetchFromGitHub {
     owner = "tsproisl";
@@ -11,7 +12,7 @@ pythonPackages.buildPythonPackage rec {
     sha256 = "03drasqf32jih90l3g7fryy44wpqlhy9s8pzahmj613fj626r1jm";
   };
 
-  propagatedBuildInputs = [ pythonPackages.regex ];
+  propagatedBuildInputs = [ regex ];
 
   meta = with stdenv.lib; {
     description = "Tokenizer and sentence splitter for German and English web texts";

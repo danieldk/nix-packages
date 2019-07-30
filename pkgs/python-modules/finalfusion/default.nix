@@ -1,5 +1,5 @@
 { stdenv, callPackage, defaultCrateOverrides, fetchFromGitHub
-, darwin, pythonPackages }:
+, darwin, numpy, python, pytest }:
 
 let
   mozillaOverlay = fetchFromGitHub {
@@ -25,14 +25,14 @@ in ((callPackage ./finalfusion.nix {}).finalfusion_python {}).override {
 
       buildInputs = stdenv.lib.optional stdenv.isDarwin darwin.Security;
 
-      propagatedBuildInputs = [ pythonPackages.numpy ];
+      propagatedBuildInputs = [ numpy ];
 
-      installCheckInputs = [ pythonPackages.pytest ];
+      installCheckInputs = [ pytest ];
 
       doInstallCheck = true;
 
       installPhase = let
-        sitePackages = pythonPackages.python.sitePackages;
+        sitePackages = python.sitePackages;
         sharedLibrary = stdenv.hostPlatform.extensions.sharedLibrary;
       in ''
         mkdir -p "$out/${sitePackages}"
@@ -53,7 +53,7 @@ in ((callPackage ./finalfusion.nix {}).finalfusion_python {}).override {
     };
 
     pyo3 = attr: {
-      buildInputs = [ pythonPackages.python ];
+      buildInputs = [ python ];
     };
   };
 }

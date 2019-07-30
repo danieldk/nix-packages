@@ -2,14 +2,14 @@
 
 rec {
   # Homegrown software
-  alpinocorpus = pkgs.callPackage ./alpinocorpus {};
-  citar = pkgs.callPackage ./citar {};
-  conllx-utils = pkgs.callPackage ./conllx-utils {};
-  dact = pkgs.libsForQt5.callPackage ./dact { alpinocorpus = alpinocorpus; };
-  finalfrontier = pkgs.callPackage ./finalfrontier {};
-  finalfusion-utils = pkgs.callPackage ./finalfusion-utils {};
-  sticker = pkgs.callPackage ./sticker { libtensorflow = libtensorflow_1_14_0; };
-  stickerModels = pkgs.callPackage ./sticker/models.nix {
+  alpinocorpus = pkgs.callPackage ./pkgs/alpinocorpus {};
+  citar = pkgs.callPackage ./pkgs/citar {};
+  conllx-utils = pkgs.callPackage ./pkgs/conllx-utils {};
+  dact = pkgs.libsForQt5.callPackage ./pkgs/dact { alpinocorpus = alpinocorpus; };
+  finalfrontier = pkgs.callPackage ./pkgs/finalfrontier {};
+  finalfusion-utils = pkgs.callPackage ./pkgs/finalfusion-utils {};
+  sticker = pkgs.callPackage ./pkgs/sticker { libtensorflow = libtensorflow_1_14_0; };
+  stickerModels = pkgs.callPackage ./pkgs/sticker/models.nix {
     inherit sticker;
   };
 
@@ -18,72 +18,32 @@ rec {
   python2Packages = python27Packages;
   python3Packages = python37Packages;
 
-  python27Packages = {
-    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
-      inherit (pkgs.python27Packages) buildPythonPackage;
-      inherit alpinocorpus;
-    };
-
-    finalfusion = pkgs.callPackage ./python-modules/finalfusion {
-      pythonPackages = pkgs.python27Packages;
-    };
+  python27Packages = pkgs.python27Packages.callPackage ./pkgs/python-modules {
+    inherit alpinocorpus;
   };
 
-  python35Packages = {
-    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
-      inherit (pkgs.python35Packages) buildPythonPackage;
-      inherit alpinocorpus;
-    };
-
-    finalfusion = pkgs.callPackage ./python-modules/finalfusion {
-      pythonPackages = pkgs.python35Packages;
-    };
-
-    somajo = pkgs.callPackage ./python-modules/somajo {
-      pythonPackages = pkgs.python35Packages;
-    };
+  python35Packages = pkgs.python35Packages.callPackage ./pkgs/python-modules {
+    inherit alpinocorpus;
   };
 
-  python36Packages = {
-    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
-      inherit (pkgs.python36Packages) buildPythonPackage;
-      inherit alpinocorpus;
-    };
-
-    finalfusion = pkgs.callPackage ./python-modules/finalfusion {
-      pythonPackages = pkgs.python36Packages;
-    };
-
-    somajo = pkgs.callPackage ./python-modules/somajo {
-      pythonPackages = pkgs.python36Packages;
-    };
+  python36Packages = pkgs.python36Packages.callPackage ./pkgs/python-modules {
+    inherit alpinocorpus;
   };
 
-  python37Packages = {
-    alpinocorpus = pkgs.callPackage ./python-modules/alpinocorpus {
-      inherit (pkgs.python37Packages) buildPythonPackage;
-      inherit alpinocorpus;
-    };
-
-    finalfusion = pkgs.callPackage ./python-modules/finalfusion {
-      pythonPackages = pkgs.python37Packages;
-    };
-
-    somajo = pkgs.callPackage ./python-modules/somajo {
-      pythonPackages = pkgs.python37Packages;
-    };
+  python37Packages = pkgs.python37Packages.callPackage ./pkgs/python-modules {
+    inherit alpinocorpus;
   };
 
   # NLP utilities
-  fsa6 = pkgs.callPackage ./fsa6 {};
+  fsa6 = pkgs.callPackage ./pkgs/fsa6 {};
 
   # Docker images
-  dockerImages = pkgs.callPackage ./docker-images {
+  dockerImages = pkgs.callPackage ./pkgs/docker-images {
     inherit stickerModels;
   };
 
   # Pinned library versions
-  libtensorflow_1_14_0 = with pkgs; callPackage ./libtensorflow {
+  libtensorflow_1_14_0 = with pkgs; callPackage ./pkgs/libtensorflow {
     inherit (linuxPackages) nvidia_x11;
     cudatoolkit = cudatoolkit_10_0;
     cudnn = cudnn_cudatoolkit_10_0;
