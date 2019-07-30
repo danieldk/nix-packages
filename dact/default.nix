@@ -1,7 +1,7 @@
-{ stdenv, fetchFromGitHub, cmake, git, alpinocorpus, boost, libxml2, libxslt, qt5, xercesc,
-  xqilla, zlib }:
+{ stdenv, mkDerivation, fetchFromGitHub, cmake, git, alpinocorpus, boost, libxml2, libxslt
+, qtbase, xercesc, xqilla, zlib }:
 
-stdenv.mkDerivation rec {
+mkDerivation rec {
   pname = "dact";
   version = "2.6.6";
 
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    alpinocorpus boost libxml2 libxslt qt5.qtbase xercesc xqilla zlib
+    alpinocorpus boost libxml2 libxslt qtbase xercesc xqilla zlib
   ];
 
   meta = with stdenv.lib; {
