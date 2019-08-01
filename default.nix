@@ -18,9 +18,11 @@ rec {
   python2Packages = python27Packages;
   python3Packages = python37Packages;
 
-  python27Packages = pkgs.python27Packages.callPackage ./pkgs/python-modules {
-    inherit alpinocorpus;
-  };
+  python27Packages = pkgs.recurseIntoAttrs(
+    pkgs.python27Packages.callPackage ./pkgs/python-modules {
+      inherit alpinocorpus;
+    }
+  );
 
   python35Packages = pkgs.python35Packages.callPackage ./pkgs/python-modules {
     inherit alpinocorpus;
@@ -30,9 +32,11 @@ rec {
     inherit alpinocorpus;
   };
 
-  python37Packages = pkgs.python37Packages.callPackage ./pkgs/python-modules {
-    inherit alpinocorpus;
-  };
+  python37Packages = pkgs.recurseIntoAttrs(
+    pkgs.python37Packages.callPackage ./pkgs/python-modules {
+      inherit alpinocorpus;
+    }
+  );
 
   # NLP utilities
   fsa6 = pkgs.callPackage ./pkgs/fsa6 {};
