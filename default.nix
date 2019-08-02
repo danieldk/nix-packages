@@ -39,6 +39,7 @@ rec {
   );
 
   # NLP utilities
+  alpino = pkgs.callPackage ./pkgs/alpino {};
   fsa6 = pkgs.callPackage ./pkgs/fsa6 {};
 
   # Docker images
