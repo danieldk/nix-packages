@@ -4,8 +4,8 @@ let
   src = fetchFromGitHub {
     owner = "finalfusion";
     repo = "finalfusion-utils";
-    rev = "0.7.0";
-    sha256 = "1m9bc6cmkwlr23i89qfv221h3l3d81l0pvn7w8gxwwcpvx71rnpp";
+    rev = "0.8.0";
+    sha256 = "0pq90vhlq3hphj59jck79ngsdf1fynn7nqnbykiiixxrmayr4fwj";
   };
 in ((callPackage ./finalfusion-utils.nix {}).finalfusion_utils {}).override {
   crateOverrides = defaultCrateOverrides // {
