@@ -8,62 +8,62 @@ let inherit (lib.lists) fold;
 in
 rec {
   crates = cratesIO // rec {
-# finalfusion-utils-0.8.0
+# finalfusion-utils-0.8.1
 
-    crates.finalfusion_utils."0.8.0" = deps: { features?(features_."finalfusion_utils"."0.8.0" deps {}) }: buildRustCrate {
+    crates.finalfusion_utils."0.8.1" = deps: { features?(features_."finalfusion_utils"."0.8.1" deps {}) }: buildRustCrate {
       crateName = "finalfusion-utils";
-      version = "0.8.0";
+      version = "0.8.1";
       description = "finalfusion utilities";
       homepage = "https://github.com/finalfusion/finalfusion-rust";
       authors = [ "Daniël de Kok <me@danieldk.eu>" ];
       edition = "2018";
       src = exclude [ ".git" "target" ] ./.;
       dependencies = mapFeatures features ([
-        (cratesIO.crates."clap"."${deps."finalfusion_utils"."0.8.0"."clap"}" deps)
-        (cratesIO.crates."env_logger"."${deps."finalfusion_utils"."0.8.0"."env_logger"}" deps)
-        (cratesIO.crates."failure"."${deps."finalfusion_utils"."0.8.0"."failure"}" deps)
-        (cratesIO.crates."finalfusion"."${deps."finalfusion_utils"."0.8.0"."finalfusion"}" deps)
-        (cratesIO.crates."getopts"."${deps."finalfusion_utils"."0.8.0"."getopts"}" deps)
-        (cratesIO.crates."ndarray"."${deps."finalfusion_utils"."0.8.0"."ndarray"}" deps)
-        (cratesIO.crates."num_cpus"."${deps."finalfusion_utils"."0.8.0"."num_cpus"}" deps)
-        (cratesIO.crates."rayon"."${deps."finalfusion_utils"."0.8.0"."rayon"}" deps)
-        (cratesIO.crates."reductive"."${deps."finalfusion_utils"."0.8.0"."reductive"}" deps)
-        (cratesIO.crates."stdinout"."${deps."finalfusion_utils"."0.8.0"."stdinout"}" deps)
-        (cratesIO.crates."toml"."${deps."finalfusion_utils"."0.8.0"."toml"}" deps)
+        (cratesIO.crates."clap"."${deps."finalfusion_utils"."0.8.1"."clap"}" deps)
+        (cratesIO.crates."env_logger"."${deps."finalfusion_utils"."0.8.1"."env_logger"}" deps)
+        (cratesIO.crates."failure"."${deps."finalfusion_utils"."0.8.1"."failure"}" deps)
+        (cratesIO.crates."finalfusion"."${deps."finalfusion_utils"."0.8.1"."finalfusion"}" deps)
+        (cratesIO.crates."getopts"."${deps."finalfusion_utils"."0.8.1"."getopts"}" deps)
+        (cratesIO.crates."ndarray"."${deps."finalfusion_utils"."0.8.1"."ndarray"}" deps)
+        (cratesIO.crates."num_cpus"."${deps."finalfusion_utils"."0.8.1"."num_cpus"}" deps)
+        (cratesIO.crates."rayon"."${deps."finalfusion_utils"."0.8.1"."rayon"}" deps)
+        (cratesIO.crates."reductive"."${deps."finalfusion_utils"."0.8.1"."reductive"}" deps)
+        (cratesIO.crates."stdinout"."${deps."finalfusion_utils"."0.8.1"."stdinout"}" deps)
+        (cratesIO.crates."toml"."${deps."finalfusion_utils"."0.8.1"."toml"}" deps)
       ]);
-      features = mkFeatures (features."finalfusion_utils"."0.8.0" or {});
+      features = mkFeatures (features."finalfusion_utils"."0.8.1" or {});
     };
-    features_."finalfusion_utils"."0.8.0" = deps: f: updateFeatures f (rec {
-      clap."${deps.finalfusion_utils."0.8.0".clap}".default = true;
-      env_logger."${deps.finalfusion_utils."0.8.0".env_logger}".default = true;
-      failure."${deps.finalfusion_utils."0.8.0".failure}".default = true;
-      finalfusion."${deps.finalfusion_utils."0.8.0".finalfusion}".default = true;
-      finalfusion_utils."0.8.0".default = (f.finalfusion_utils."0.8.0".default or true);
-      getopts."${deps.finalfusion_utils."0.8.0".getopts}".default = true;
-      ndarray."${deps.finalfusion_utils."0.8.0".ndarray}".default = true;
-      num_cpus."${deps.finalfusion_utils."0.8.0".num_cpus}".default = true;
-      rayon."${deps.finalfusion_utils."0.8.0".rayon}".default = true;
+    features_."finalfusion_utils"."0.8.1" = deps: f: updateFeatures f (rec {
+      clap."${deps.finalfusion_utils."0.8.1".clap}".default = true;
+      env_logger."${deps.finalfusion_utils."0.8.1".env_logger}".default = true;
+      failure."${deps.finalfusion_utils."0.8.1".failure}".default = true;
+      finalfusion."${deps.finalfusion_utils."0.8.1".finalfusion}".default = true;
+      finalfusion_utils."0.8.1".default = (f.finalfusion_utils."0.8.1".default or true);
+      getopts."${deps.finalfusion_utils."0.8.1".getopts}".default = true;
+      ndarray."${deps.finalfusion_utils."0.8.1".ndarray}".default = true;
+      num_cpus."${deps.finalfusion_utils."0.8.1".num_cpus}".default = true;
+      rayon."${deps.finalfusion_utils."0.8.1".rayon}".default = true;
       reductive = fold recursiveUpdate {} [
-        { "${deps.finalfusion_utils."0.8.0".reductive}"."opq-train" =
-          (f.reductive."${deps.finalfusion_utils."0.8.0".reductive}"."opq-train" or false) ||
-          (finalfusion_utils."0.8.0"."opq" or false) ||
-          (f."finalfusion_utils"."0.8.0"."opq" or false); }
-        { "${deps.finalfusion_utils."0.8.0".reductive}".default = true; }
+        { "${deps.finalfusion_utils."0.8.1".reductive}"."opq-train" =
+          (f.reductive."${deps.finalfusion_utils."0.8.1".reductive}"."opq-train" or false) ||
+          (finalfusion_utils."0.8.1"."opq" or false) ||
+          (f."finalfusion_utils"."0.8.1"."opq" or false); }
+        { "${deps.finalfusion_utils."0.8.1".reductive}".default = true; }
       ];
-      stdinout."${deps.finalfusion_utils."0.8.0".stdinout}".default = true;
-      toml."${deps.finalfusion_utils."0.8.0".toml}".default = true;
+      stdinout."${deps.finalfusion_utils."0.8.1".stdinout}".default = true;
+      toml."${deps.finalfusion_utils."0.8.1".toml}".default = true;
     }) [
-      (if deps."finalfusion_utils"."0.8.0" ? "clap" then cratesIO.features_.clap."${deps."finalfusion_utils"."0.8.0"."clap" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "env_logger" then cratesIO.features_.env_logger."${deps."finalfusion_utils"."0.8.0"."env_logger" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "failure" then cratesIO.features_.failure."${deps."finalfusion_utils"."0.8.0"."failure" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "finalfusion" then cratesIO.features_.finalfusion."${deps."finalfusion_utils"."0.8.0"."finalfusion" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "getopts" then cratesIO.features_.getopts."${deps."finalfusion_utils"."0.8.0"."getopts" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "ndarray" then cratesIO.features_.ndarray."${deps."finalfusion_utils"."0.8.0"."ndarray" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "num_cpus" then cratesIO.features_.num_cpus."${deps."finalfusion_utils"."0.8.0"."num_cpus" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "rayon" then cratesIO.features_.rayon."${deps."finalfusion_utils"."0.8.0"."rayon" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "reductive" then cratesIO.features_.reductive."${deps."finalfusion_utils"."0.8.0"."reductive" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "stdinout" then cratesIO.features_.stdinout."${deps."finalfusion_utils"."0.8.0"."stdinout" or ""}" deps else {})
-      (if deps."finalfusion_utils"."0.8.0" ? "toml" then cratesIO.features_.toml."${deps."finalfusion_utils"."0.8.0"."toml" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "clap" then cratesIO.features_.clap."${deps."finalfusion_utils"."0.8.1"."clap" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "env_logger" then cratesIO.features_.env_logger."${deps."finalfusion_utils"."0.8.1"."env_logger" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "failure" then cratesIO.features_.failure."${deps."finalfusion_utils"."0.8.1"."failure" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "finalfusion" then cratesIO.features_.finalfusion."${deps."finalfusion_utils"."0.8.1"."finalfusion" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "getopts" then cratesIO.features_.getopts."${deps."finalfusion_utils"."0.8.1"."getopts" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "ndarray" then cratesIO.features_.ndarray."${deps."finalfusion_utils"."0.8.1"."ndarray" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "num_cpus" then cratesIO.features_.num_cpus."${deps."finalfusion_utils"."0.8.1"."num_cpus" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "rayon" then cratesIO.features_.rayon."${deps."finalfusion_utils"."0.8.1"."rayon" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "reductive" then cratesIO.features_.reductive."${deps."finalfusion_utils"."0.8.1"."reductive" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "stdinout" then cratesIO.features_.stdinout."${deps."finalfusion_utils"."0.8.1"."stdinout" or ""}" deps else {})
+      (if deps."finalfusion_utils"."0.8.1" ? "toml" then cratesIO.features_.toml."${deps."finalfusion_utils"."0.8.1"."toml" or ""}" deps else {})
     ];
 
 
@@ -71,7 +71,7 @@ rec {
 
   };
 
-  finalfusion_utils = crates.crates.finalfusion_utils."0.8.0" deps;
+  finalfusion_utils = crates.crates.finalfusion_utils."0.8.1" deps;
   __all = [ (finalfusion_utils {}) ];
   deps.aho_corasick."0.7.6" = {
     memchr = "2.2.1";
@@ -159,7 +159,7 @@ rec {
     syn = "0.15.42";
     synstructure = "0.10.2";
   };
-  deps.finalfusion."0.8.0" = {
+  deps.finalfusion."0.8.1" = {
     byteorder = "1.3.2";
     fnv = "1.0.6";
     itertools = "0.8.0";
@@ -172,11 +172,11 @@ rec {
     serde = "1.0.98";
     toml = "0.5.1";
   };
-  deps.finalfusion_utils."0.8.0" = {
+  deps.finalfusion_utils."0.8.1" = {
     clap = "2.33.0";
     env_logger = "0.6.2";
     failure = "0.1.5";
-    finalfusion = "0.8.0";
+    finalfusion = "0.8.1";
     getopts = "0.2.19";
     ndarray = "0.12.1";
     num_cpus = "1.10.1";
