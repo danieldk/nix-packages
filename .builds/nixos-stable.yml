@@ -9,19 +9,16 @@ tasks:
   - cachix: |
       nix-env -iA cachix -f https://cachix.org/api/v1/install
       cachix use danieldk
-  - packageset: |
-      mkdir -p ~/.config/nixpkgs
-      echo "{ packageOverrides = pkgs: { danieldk = import $PWD/nix-packages/default.nix { inherit pkgs; }; }; }" \
-        > ~/.config/nixpkgs/config.nix
   - build: |
-      nix-build '<nixpkgs>' -A danieldk.alpinocorpus | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.citar | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.conllx-utils | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.dact | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.fsa6 | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.finalfrontier | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.pythonPackages.alpinocorpus | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.python3Packages.alpinocorpus | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.python3Packages.finalfusion | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.python3Packages.somajo | cachix push danieldk
-      nix-build '<nixpkgs>' -A danieldk.sticker | cachix push danieldk
+      cd nix-packages
+      nix-build -A alpinocorpus | cachix push danieldk
+      nix-build -A citar | cachix push danieldk
+      nix-build -A conllx-utils | cachix push danieldk
+      nix-build -A dact | cachix push danieldk
+      nix-build -A fsa6 | cachix push danieldk
+      nix-build -A finalfrontier | cachix push danieldk
+      nix-build -A pythonPackages.alpinocorpus | cachix push danieldk
+      nix-build -A python3Packages.alpinocorpus | cachix push danieldk
+      nix-build -A python3Packages.finalfusion | cachix push danieldk
+      nix-build -A python3Packages.somajo | cachix push danieldk
+      nix-build -A sticker | cachix push danieldk
