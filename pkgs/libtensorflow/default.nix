@@ -38,7 +38,7 @@ in stdenv.mkDerivation rec {
     sha256 =
       if system == "linux-x86_64" then
         if cudaSupport
-        then "0lm83836ywpzy8ikw4k4k9s9955vqa4dj1xk9rjl3z1xf6ciaiyk"
+        then "0ygq7ddjd4ahzkjgfjy01zxkczkxy6n5jp3bb75z02nlx87pw3d0"
         else "1xcgkls4hrxgdhnap4ngnda3l8a0b6fp41xp2xpmmm51rbgfzs90"
       else if system == "darwin-x86_64" then
         if cudaSupport
