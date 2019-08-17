@@ -5,8 +5,8 @@ let
   src = fetchFromGitHub {
     owner = "danieldk";
     repo = "sticker";
-    rev = "0.5.0";
-    sha256 = "1ir1kr4l4q6d0cn9d8acar2qxc5ss4zy8xrb93abg7p4cqlyacy7";
+    rev = "0.6.1";
+    sha256 = "02s2nh1vvr8cdpr8a9v6203nwjjylcywa23q0zn52lqr5la3vgzl";
   };
 in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
   crateOverrides = defaultCrateOverrides // {
@@ -30,7 +30,7 @@ in ((callPackage ./sticker.nix {}).sticker_utils {}).override {
       };
     };
 
-    tf-proto = attrs: { inherit src; };
+    sticker-tf-proto = attrs: { inherit src; };
 
     tensorflow-sys = attrs: {
       nativeBuildInputs = [ pkgconfig ];
