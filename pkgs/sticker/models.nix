@@ -27,8 +27,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "de-deps";
-    version = "20190617";
-    sha256 = "0h4cw5fd2inzg1va2k6jg21p3fgzg109d91q25gc0wacaiip2qky";
+    version = "20190822";
+    sha256 = "0scyjs4zav68zgds5avdllp4vldgad5m39xnwjyyr723617aazh4";
 
     wordEmbeds = {
       filename = "de-structgram-20190426-opq.fifu";
@@ -45,8 +45,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "de-deps-ud";
-    version = "20190705";
-    sha256 = "1v1jyg27zvrby9dbxslis26r3pgl8pxd22p2lq8cjl40807gbyq0";
+    version = "20190821";
+    sha256 = "06limif0qk9cac7ydwds9zgk5swqpylyazzwyhw64i47n0cax1ir";
 
     wordEmbeds = {
       filename = "de-structgram-20190426-opq.fifu";
@@ -63,8 +63,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "de-pos";
-    version = "20190615";
-    sha256 = "1x060sbmjjbf0mpn6gh9m0ngxk902x3p06yl9q0jq8mzc7hwqpyw";
+    version = "20190822";
+    sha256 = "1afa00hh9hr4j2vq6d8fvjjq2kygkpavnrpxh8llvvd8sh574nw8";
 
     wordEmbeds = {
       filename = "de-structgram-20190426-opq.fifu";
@@ -76,8 +76,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "de-pos-ud";
-    version = "20190705";
-    sha256 = "19kdl0rg2b2i0k7xdchfickc7z0pxcnqzr7xm2x2l2yv9wn7r4ac";
+    version = "20190821";
+    sha256 = "163himdn8l1ds6znf1girx0hbplbc8i9z9lmqdwvxsj9d9338svv";
 
     wordEmbeds = {
       filename = "de-structgram-20190426-opq.fifu";
@@ -89,8 +89,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "de-topo";
-    version = "20190615";
-    sha256 = "082nq2qih0pyrf1dhnvd456cickpj7ghdavp5ss643f75xkjc7zq";
+    version = "20190822";
+    sha256 = "0q232q1005aaixd9hqjszs4c6yhi37grbqwwwr0lr29h4q7ys0zh";
 
     wordEmbeds = {
       filename = "de-structgram-20190426-opq.fifu";
@@ -107,8 +107,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "nl-deps-ud";
-    version = "20190628";
-    sha256 = "17vzwzyvh9hp3a55h824f4cxm4r9vg48jhahjd1xfwnhynhgmihn";
+    version = "20190822";
+    sha256 = "175xqbzy5lri9mpb5qvj946785m4rc3q9zbcnnwwga6270ii774c";
 
     wordEmbeds = {
       filename = "nl-structgram-20190623-opq.fifu";
@@ -125,8 +125,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "nl-pos-ud";
-    version = "20190623";
-    sha256 = "0aabx884wki4zkdhmnizj6fc0fgkpbgx73brica3ds4kf09708dl";
+    version = "20190822";
+    sha256 = "0ywa0kmpsh1cmdcl4ya0q67wcjq4m6g2n79a1kjgrqmhydc7d59p";
 
     wordEmbeds = {
       filename = "nl-structgram-20190623-opq.fifu";
