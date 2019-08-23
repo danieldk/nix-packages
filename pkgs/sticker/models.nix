@@ -45,8 +45,8 @@ in {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 
     modelName = "de-deps-ud";
-    version = "20190821";
-    sha256 = "06limif0qk9cac7ydwds9zgk5swqpylyazzwyhw64i47n0cax1ir";
+    version = "20190823";
+    sha256 = "0dfcajbvs8bcvsvh3cdkaxmwjk1j263k8h4qvlqm6xhg3fhc3wap";
 
     wordEmbeds = {
       filename = "de-structgram-20190426-opq.fifu";
