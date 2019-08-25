@@ -59,6 +59,24 @@ in {
     };
   };
 
+  de-ner-ud = stickerModel {
+    inherit stdenvNoCC fetchurl makeWrapper sticker;
+
+    modelName = "de-ner-ud";
+    version = "20190825";
+    sha256 = "1zyp0xsdbb17i065y64yxfh8hwgvp6z9dinr0vg6hf6gvv4g78dz";
+
+    wordEmbeds = {
+      filename = "de-structgram-20190426-opq.fifu";
+      embeds = deWordEmbeds;
+    };
+
+    tagEmbeds = {
+      filename = "de-structgram-tags-ud-20190629.fifu";
+      embeds = deUdTagEmbeds;
+    };
+  };
+
   de-pos = stickerModel {
     inherit stdenvNoCC fetchurl makeWrapper sticker;
 

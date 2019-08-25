@@ -10,6 +10,12 @@ in {
       model = stickerModels.de-deps-ud;
     };
 
+    de-ner-ud = stickerImage {
+      inherit dockerTools;
+      tagPrefix = "de-ner-ud";
+      model = stickerModels.de-ner-ud;
+    };
+
     de-pos = stickerImage {
       inherit dockerTools;
       tagPrefix = "de-pos";
