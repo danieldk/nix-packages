@@ -3,13 +3,13 @@
 
 mkDerivation rec {
   pname = "dact";
-  version = "2.6.6";
+  version = "2.6.7";
 
   src = fetchFromGitHub {
     owner = "rug-compling";
     repo = "dact";
     rev = "${version}";
-    sha256 = "0p0rrrgm0a55aa65lliirv6d8smhcfm1cd4vyzq03954law3dlcw";
+    sha256 = "0vgs526ilkfr01jq2jxgaa0cvvx0jyy4685kfpjfsyvpqqcinmgm";
   };
 
   nativeBuildInputs = [
