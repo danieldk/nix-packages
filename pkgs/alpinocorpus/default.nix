@@ -3,13 +3,13 @@
 
 stdenv.mkDerivation rec {
   pname = "alpinocorpus";
-  version = "2.8.3";
+  version = "2.8.4";
 
   src = fetchFromGitHub {
     owner = "rug-compling";
     repo = "alpinocorpus";
     rev = "${version}";
-    sha256 = "0xrviphcawxgwfljkvvh162xqca215j53w9xyjgralr2pzslr5cc";
+    sha256 = "0h7lnx9zj1xl92dc8ml8q6a23ls1hqc0acrqwm5k2113njzzlcdv";
   };
 
   nativeBuildInputs = [
