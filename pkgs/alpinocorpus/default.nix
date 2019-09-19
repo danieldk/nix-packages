@@ -8,7 +8,7 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "rug-compling";
     repo = "alpinocorpus";
-    rev = "${version}";
+    rev = version;
     sha256 = "0h7lnx9zj1xl92dc8ml8q6a23ls1hqc0acrqwm5k2113njzzlcdv";
   };
 
