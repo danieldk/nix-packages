@@ -7,8 +7,8 @@ mkDerivation rec {
 
   src = fetchFromGitHub {
     owner = "rug-compling";
-    repo = "dact";
-    rev = "${version}";
+    repo = pname;
+    rev = version;
     sha256 = "0vgs526ilkfr01jq2jxgaa0cvvx0jyy4685kfpjfsyvpqqcinmgm";
   };
 
@@ -23,6 +23,7 @@ mkDerivation rec {
   meta = with stdenv.lib; {
     description = "Alpino treebank search tool";
     license = licenses.lgpl21;
+    maintainers = with maintainers; [ danieldk ];
     platforms = platforms.unix;
   };
 }
