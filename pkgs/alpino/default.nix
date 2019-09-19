@@ -16,7 +16,7 @@ let
     exec = "alpino";
     comment = "Alpino dependency parser for Dutch";
     desktopName = "Alpino";
-    categories = "Science;Education";
+    categories = "Science;Education;";
     terminal = "true";
   };
 in stdenv.mkDerivation rec {
@@ -31,25 +31,25 @@ in stdenv.mkDerivation rec {
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
 
   buildInputs = [
-    stdenv.cc.cc.lib
     boost158
+    libXScrnSaver
+    stdenv.cc.cc.lib
     tcl-8_6
     tk-8_6
-    libXScrnSaver
   ];
 
-
   dontBuild = true;
+  dontConfigure = true;
 
   installPhase = ''
     # Use system-wide TCL/TK.
     rm -rf create_bin/extralibs
 
-    mkdir -p $out/libexec/alpino
-    cp -a * $out/libexec/alpino
+    mkdir -p $out/share/alpino
+    cp -a * $out/share/alpino
 
     mkdir $out/bin
-    makeWrapper $out/libexec/alpino/bin/Alpino $out/bin/alpino
+    makeWrapper $out/share/alpino/bin/Alpino $out/bin/alpino
 
     mkdir -p $out/share/applications
     cp ${desktopItem}/share/applications/* $out/share/applications
@@ -58,6 +58,8 @@ in stdenv.mkDerivation rec {
   meta = with stdenv.lib; {
     description = "Alpino dependency parser for Dutch";
     license = licenses.gpl2;
+    maintainers = with maintainers; [ danieldk ];
     platforms = [ "x86_64-linux" ];
+    hydraPlatforms = [];
   };
 }
