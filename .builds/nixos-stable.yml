@@ -11,12 +11,4 @@ tasks:
       cachix use danieldk
   - build: |
       cd nix-packages
-      nix-build -A alpinocorpus | cachix push danieldk
-      nix-build -A citar | cachix push danieldk
-      nix-build -A conllx-utils | cachix push danieldk
-      nix-build -A dact | cachix push danieldk
-      nix-build -A fsa6 | cachix push danieldk
-      nix-build -A pythonPackages.alpinocorpus | cachix push danieldk
-      nix-build -A python3Packages.alpinocorpus | cachix push danieldk
-      nix-build -A python3Packages.somajo | cachix push danieldk
-      nix-build -A sticker | cachix push danieldk
+      nix-build ci.nix -A buildOutputs
