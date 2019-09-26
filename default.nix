@@ -6,8 +6,6 @@ rec {
   citar = pkgs.callPackage ./pkgs/citar {};
   conllx-utils = pkgs.callPackage ./pkgs/conllx-utils {};
   dact = pkgs.libsForQt5.callPackage ./pkgs/dact { alpinocorpus = alpinocorpus; };
-  finalfrontier = pkgs.callPackage ./pkgs/finalfrontier {};
-  finalfusion-utils = pkgs.callPackage ./pkgs/finalfusion-utils {};
   sticker = pkgs.callPackage ./pkgs/sticker { libtensorflow = libtensorflow_1_14_0; };
   stickerModels = pkgs.callPackage ./pkgs/sticker/models.nix {
     inherit sticker;

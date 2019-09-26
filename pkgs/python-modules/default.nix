@@ -5,7 +5,5 @@
     inherit alpinocorpus;
   };
 
-  finalfusion = callPackage ./finalfusion {};
-
   somajo = callPackage ./somajo {};
 }
