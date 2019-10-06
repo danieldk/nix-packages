@@ -6,10 +6,6 @@ rec {
   citar = pkgs.callPackage ./pkgs/citar {};
   conllx-utils = pkgs.callPackage ./pkgs/conllx-utils {};
   dact = pkgs.libsForQt5.callPackage ./pkgs/dact { alpinocorpus = alpinocorpus; };
-  sticker = pkgs.callPackage ./pkgs/sticker { libtensorflow = libtensorflow_1_14_0; };
-  stickerModels = pkgs.callPackage ./pkgs/sticker/models.nix {
-    inherit sticker;
-  };
 
   # Python packages
   pythonPackages = python2Packages;
@@ -39,16 +35,4 @@ rec {
   # NLP utilities
   alpino = pkgs.callPackage ./pkgs/alpino {};
   fsa6 = pkgs.callPackage ./pkgs/fsa6 {};
-
-  # Docker images
-  dockerImages = pkgs.callPackage ./pkgs/docker-images {
-    inherit stickerModels;
-  };
-
-  # Pinned library versions
-  libtensorflow_1_14_0 = with pkgs; callPackage ./pkgs/libtensorflow {
-    inherit (linuxPackages) nvidia_x11;
-    cudatoolkit = cudatoolkit_10_0;
-    cudnn = cudnn_cudatoolkit_10_0;
-  };
 }
