@@ -1,6 +1,6 @@
 image: nixos/19.03
 repositories:
-  nixpkgs: https://nixos.org/channels/nixos-19.03
+  nixpkgs: https://nixos.org/channels/nixos-19.09
 sources:
   - https://git.sr.ht/~danieldk/nix-packages
 secrets:
