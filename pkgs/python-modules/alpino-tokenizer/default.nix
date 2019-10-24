@@ -1,7 +1,7 @@
 { pkgs
 , stdenv
 , callPackage
-, fetchFromGitHub
+, fetchgit
 
   # Native build inputs
 , maturin
@@ -17,9 +17,8 @@ in (rustPlatform "2019-07-30").buildRustPackage rec {
   version = "0.1.0";
   name = "${python.libPrefix}-${pname}-${version}";
 
-  src = fetchFromGitHub {
-    owner = "danieldk";
-    repo = "alpino-tokenizer-python";
+  src = fetchgit {
+    url = "https://git.sr.ht/~danieldk/alpino-tokenizer-python";
     rev = version;
     sha256 = "0ank3801xab78b0180012li8i38vcjfhdi3mvmx49gxp5b23lscc";
   };
