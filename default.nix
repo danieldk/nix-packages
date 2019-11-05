@@ -8,17 +8,7 @@ rec {
   conllx-utils = pkgs.callPackage ./pkgs/conllx-utils {};
   dact = pkgs.libsForQt5.callPackage ./pkgs/dact { alpinocorpus = alpinocorpus; };
 
-  libtensorflow_1_14_0 = with pkgs; callPackage ./pkgs/libtensorflow/1_14_0.nix {
-    inherit (linuxPackages) nvidia_x11;
-    cudatoolkit = cudatoolkit_10_0;
-    cudnn = cudnn_cudatoolkit_10_0;
-  };
-
-  libtensorflow_1_15_0 = with pkgs; callPackage ./pkgs/libtensorflow/1_15_0.nix {
-    inherit (linuxPackages) nvidia_x11;
-    cudatoolkit = cudatoolkit_10_0;
-    cudnn = cudnn_cudatoolkit_10_0;
-  };
+  libtensorflow = pkgs.callPackage ./pkgs/libtensorflow {};
 
   # Python packages
   pythonPackages = python2Packages;
