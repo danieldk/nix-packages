@@ -25,7 +25,7 @@ in (rustPlatform "2019-07-30").buildRustPackage rec {
 
   cargoSha256 = "1ykcw8497pxlqd65apjmg2ck38d0grf6z1ywyb1q30q9an7siyg5";
 
-  nativeBuildInputs = [ maturin ];
+  nativeBuildInputs = [ maturin python.pkgs.pip ];
 
   buildInputs = [ python ];
 
