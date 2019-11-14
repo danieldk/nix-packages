@@ -34,12 +34,12 @@ in stdenv.mkDerivation rec {
   version = "1.15.0";
 
   src = fetchurl {
-    url = "https://blob.danieldk.eu/${pname}/${pname}-${tfType}-${system}-avx-fma-${version}.tar.gz";
+    url = "https://blob.danieldk.eu/${pname}/${pname}-${tfType}-${system}-avx-fma-mkl-${version}.tar.gz";
     sha256 =
       if system == "linux-x86_64" then
         if cudaSupport
         then "1gkx76lc9zi8xcqxm1n2mmf44bb7nc59h9k6szlyas735d500q7f"
-        else "0yrm9jkb31a8y5brlmh0z2bwkh0z62x2yr4b8vwzlh4xicq3cll2"
+        else "07hjfv65vhkw4s849f671r2ixdad7x7cvkm9zsj3pw4xj9rkyk6i"
       else unavailable;
   };
 
