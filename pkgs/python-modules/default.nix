@@ -1,4 +1,4 @@
-{ callPackage, alpinocorpus, python }:
+{ pkgs, callPackage, alpinocorpus, python }:
 
 let
   disabledIf = x: drv:
@@ -8,6 +8,16 @@ in {
 
   alpinocorpus = callPackage ./alpinocorpus {
     inherit alpinocorpus;
+  };
+
+  pytorch = callPackage ./pytorch {
+    cudaSupport = pkgs.config.cudaSupport or false;
+
+    magma = pkgs.magma.overrideAttrs (attrs: rec {
+      preConfigure = ''
+        export CC=${pkgs.cudatoolkit.cc}/bin/gcc CXX=${pkgs.cudatoolkit.cc}/bin/g++
+      '';
+    });
   };
 
   somajo = callPackage ./somajo {};
