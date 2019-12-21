@@ -13,12 +13,11 @@ jobs:
           - "https://nixos.org/channels/nixpkgs-unstable"
     steps:
     - uses: actions/checkout@v1
-    - uses: cachix/install-nix-action@v3
+    - uses: cachix/install-nix-action@v6
     - run: nix-channel --add ${{ matrix.channel }} nixpkgs
     - run: nix-channel --update
-    - run: sudo sh -c 'echo "sandbox = true" | sudo tee -a /etc/nix/nix.conf'
     - run: cat /etc/nix/nix.conf
-    - uses: cachix/cachix-action@v2
+    - uses: cachix/cachix-action@releases/v3
       with:
         name: danieldk
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
