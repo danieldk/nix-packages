@@ -1,6 +1,12 @@
 { pkgs ? import <nixpkgs> {} }:
 
-rec {
+
+let pythonOverrides = self: super: {
+  numpy = (super.numpy.override {
+    blas = if pkgs.config.mklSupport then pkgs.mkl else pkgs.openblasCompat;
+  });
+};
+in rec {
   alpinocorpus = pkgs.callPackage ./pkgs/alpinocorpus {};
   alpino-tokenize = pkgs.callPackage ./pkgs/alpino-tokenize {};
   citar = pkgs.callPackage ./pkgs/citar {};

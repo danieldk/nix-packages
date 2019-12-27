@@ -9,11 +9,11 @@
 
 stdenv.mkDerivation rec {
   pname = "notion";
-  version = "2.0.1";
+  version = "2.0.5";
 
   src = fetchurl {
     url = "https://desktop-release.notion-static.com/Notion-${version}.dmg";
-    sha256 = "131xmcz3v078wfgnwa7dpmjmrwfw0clywy0zzj8i05r2w0868wfy";
+    sha256 = "04bks8b6pk7awq0p4jjqg6dvf87wslqfda6hcn5j7rzk9ck31fki";
   };
 
   dontBuild = true;

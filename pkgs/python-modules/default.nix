@@ -10,7 +10,18 @@ in {
     inherit alpinocorpus;
   };
 
-  pytorch = callPackage ./pytorch {
+  pytorch = let
+    mklSupport = pkgs.config.mklSupport or false;
+    pythonBlas = python.override {
+      packageOverrides = self: super: {
+        numpy = (super.numpy.override {
+          blas = if mklSupport then pkgs.mkl else pkgs.openblasCompat;
+        });
+      };
+    };
+  in pythonBlas.pkgs.callPackage ./pytorch rec {
+    inherit mklSupport;
+
     cudaSupport = pkgs.config.cudaSupport or false;
 
     magma = pkgs.magma.overrideAttrs (attrs: rec {
