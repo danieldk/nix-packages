@@ -9,6 +9,10 @@ rec {
 
   libtensorflow = pkgs.callPackage ./pkgs/libtensorflow {};
 
+  libtorch = pkgs.callPackage ./pkgs/libtorch {
+    inherit (pkgs.linuxPackages) nvidia_x11;
+  };
+
   notion = pkgs.callPackage ./pkgs/notion {};
 
   # Python packages
