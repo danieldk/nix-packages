@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, fetchgit, buildPythonPackage, python, pythonOlder,
+{ stdenv, gcc8Stdenv, fetchurl, fetchgit, buildPythonPackage, python, pythonOlder,
   cudaSupport ? false, cudatoolkit ? null, cudnn ? null, nccl ? null, magma ? null,
   mklSupport ? false, mkl ? null,
   openMPISupport ? false, openmpi ? null,
@@ -111,8 +111,9 @@ let
   cudaStubEnv = lib.optionalString cudaSupport
     "LD_LIBRARY_PATH=${cudaStub}\${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH} ";
 
-in buildPythonPackage rec {
-  version = "1.3.1";
+in buildPythonPackage {
+  inherit version;
+
   pname = "pytorch";
   disabled = !isPy3k;
 
@@ -132,10 +133,12 @@ in buildPythonPackage rec {
 
   dontUseCmakeConfigure = true;
 
-  preConfigure = lib.optionalString cudaSupport ''
+  preConfigure = (if cudaSupport then ''
     export TORCH_CUDA_ARCH_LIST="${lib.strings.concatStringsSep ";" final_cudaArchList}"
     export CC=${cudatoolkit.cc}/bin/gcc CXX=${cudatoolkit.cc}/bin/g++
-  '' + lib.optionalString (cudaSupport && cudnn != null) ''
+  '' else ''
+    export CC=${gcc8Stdenv.cc}/bin/gcc CXX=${gcc8Stdenv.cc}/bin/g++
+  '') + lib.optionalString (cudaSupport && cudnn != null) ''
     export CUDNN_INCLUDE_DIR=${cudnn}/include
   '';
 
