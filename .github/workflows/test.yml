@@ -8,9 +8,7 @@ jobs:
     strategy:
       matrix:
         channel:
-          - "https://nixos.org/channels/nixos-19.09"
-          - "https://nixos.org/channels/nixos-unstable"
-          - "https://nixos.org/channels/nixpkgs-unstable"
+          - "https://nixos.org/channels/nixos-20.03"
     steps:
     - uses: actions/checkout@v1
     - uses: cachix/install-nix-action@v6
