@@ -2,20 +2,20 @@
 , lib
 , stdenv
 
-, fetchgit, defaultCrateOverrides
+, fetchgit
+, defaultCrateOverrides
 
 # Native build inputs
 , installShellFiles ? null # Available in 19.09 and later.
 }:
 
 let
-  cargo_nix = callPackage ./Cargo.nix {};
+  cargo_nix = callPackage ./Cargo.nix { defaultCrateOverrides = crateOverrides; };
   src = fetchgit {
     url = "https://git.sr.ht/~danieldk/alpino-tokenizer";
     rev = "8260b09d925a77f63d8d7b14f68ed5124ba8d94b";
     sha256 = "1jyrpg050s7yzvyaip3kna7w45dk2w1yccnq99qlmnr0v4zyrllc";
   };
-in cargo_nix.workspaceMembers.alpino-tokenize.build.override {
   crateOverrides = defaultCrateOverrides // {
     alpino-tokenize = attr: {
       inherit src;
@@ -56,4 +56,4 @@ in cargo_nix.workspaceMembers.alpino-tokenize.build.override {
       postUnpack = "sourceRoot=$sourceRoot/alpino-tokenizer-sys";
     };
   };
-}
+in cargo_nix.workspaceMembers.alpino-tokenize.build
