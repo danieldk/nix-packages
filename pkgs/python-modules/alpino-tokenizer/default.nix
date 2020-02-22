@@ -1,5 +1,4 @@
-{ pkgs
-, stdenv
+{ stdenv
 , callPackage
 , fetchgit
 
@@ -12,18 +11,18 @@
 
 let
   rustPlatform = callPackage ./rust-platform-nightly.nix {};
-in (rustPlatform "2019-07-30").buildRustPackage rec {
+in (rustPlatform "2020-01-20").buildRustPackage rec {
   pname = "alpino-tokenizer";
-  version = "0.1.0";
+  version = "0.1.1";
   name = "${python.libPrefix}-${pname}-${version}";
 
   src = fetchgit {
     url = "https://git.sr.ht/~danieldk/alpino-tokenizer-python";
     rev = version;
-    sha256 = "0ank3801xab78b0180012li8i38vcjfhdi3mvmx49gxp5b23lscc";
+    sha256 = "14f345wcqbkfrxxifs64b9686sn5g8sxlr7zsvncq2zqykcasspq";
   };
 
-  cargoSha256 = "1ykcw8497pxlqd65apjmg2ck38d0grf6z1ywyb1q30q9an7siyg5";
+  cargoSha256 = "0fipz79wnly8mj76m5dl9rzyzzdadsnxdgd538pz4zphfw0hzscv";
 
   nativeBuildInputs = [ maturin python.pkgs.pip ];
 
