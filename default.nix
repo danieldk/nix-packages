@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import (import ./nix/sources.nix).nixpkgs {} }:
 
 rec {
   alpinocorpus = pkgs.callPackage ./pkgs/alpinocorpus {};
