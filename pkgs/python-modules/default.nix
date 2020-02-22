@@ -1,10 +1,12 @@
-{ pkgs, callPackage, alpinocorpus, python }:
+{ pkgs, callPackage, alpinocorpus, python, rustNightly }:
 
 let
   disabledIf = x: drv:
     if x then throw "${drv.pname or drv.name} not supported for interpreter ${python.executable}" else drv;
 in {
-  alpino-tokenizer = disabledIf (!python.isPy3k) (callPackage ./alpino-tokenizer {});
+  alpino-tokenizer = disabledIf (!python.isPy3k) (callPackage ./alpino-tokenizer {
+    inherit rustNightly;
+  });
 
   alpinocorpus = callPackage ./alpinocorpus {
     inherit alpinocorpus;

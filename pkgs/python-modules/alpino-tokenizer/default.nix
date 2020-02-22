@@ -4,14 +4,13 @@
 
   # Native build inputs
 , maturin
+, rustNightly
 
   # Build inputs
 , python
 }:
 
-let
-  rustPlatform = callPackage ./rust-platform-nightly.nix {};
-in (rustPlatform "2020-01-20").buildRustPackage rec {
+(rustNightly "2020-01-20").buildRustPackage rec {
   pname = "alpino-tokenizer";
   version = "0.1.1";
   name = "${python.libPrefix}-${pname}-${version}";
