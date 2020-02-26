@@ -34,9 +34,12 @@ in stdenv.mkDerivation {
   dontStrip = true;
 
   installPhase = ''
-    mkdir -p $out
-    cp -r include $out
-    cp -r lib $out
+    mkdir -p $dev/lib
+    cp -r include $dev
+    cp -a lib/*.a $dev/lib
+
+    mkdir -p $out/lib
+    cp -a lib/*.so* $out/lib
 
     # We do not care about Java support...
     rm -f $out/lib/lib*jni* 2> /dev/null || true
@@ -67,6 +70,8 @@ in stdenv.mkDerivation {
     install_name_tool -change @rpath/libc10.dylib $out/lib/libc10.dylib $out/lib/libshm.dylib
     install_name_tool -change @rpath/libiomp5.dylib $out/lib/libiomp5.dylib $out/lib/libshm.dylib
   '';
+
+  outputs = [ "out" "dev" ];
 
   meta = with stdenv.lib; {
     description = "C++ API of the PyTorch machine learning framework";
