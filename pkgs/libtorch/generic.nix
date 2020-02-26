@@ -39,7 +39,7 @@ in stdenv.mkDerivation {
     cp -a lib/*.a $dev/lib
 
     mkdir -p $out/lib
-    cp -a lib/*.so* $out/lib
+    cp -a lib/*.so* lib/*.dylib $out/lib
 
     # We do not care about Java support...
     rm -f $out/lib/lib*jni* 2> /dev/null || true
