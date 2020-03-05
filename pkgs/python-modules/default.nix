@@ -1,4 +1,4 @@
-{ pkgs, callPackage, alpinocorpus, python, rustNightly }:
+{ pkgs, callPackage, alpinocorpus, cudatoolkit_10_1, python, rustNightly }:
 
 let
   disabledIf = x: drv:
@@ -13,13 +13,8 @@ in {
   };
 
   pytorch = callPackage ./pytorch {
-    cudaSupport = pkgs.config.cudaSupport or false;
-
-    magma = pkgs.magma.overrideAttrs (attrs: rec {
-      preConfigure = ''
-        export CC=${pkgs.cudatoolkit.cc}/bin/gcc CXX=${pkgs.cudatoolkit.cc}/bin/g++
-      '';
-    });
+    inherit (pkgs.linuxPackages) nvidia_x11;
+    cudatoolkit = cudatoolkit_10_1;
   };
 
   somajo = callPackage ./somajo {};
