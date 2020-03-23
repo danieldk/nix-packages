@@ -21,8 +21,8 @@ changes, using e.g. `nix-env`:
 
 ~~~shell
 $ nix-env \
-  -f https://git.sr.ht/~danieldk/nix-packages/archive/master.tar.gz \
-  -iA finalfrontier
+  -f https://github.com/danieldk/nix-packages/archive/master.tar.gz \
+  -iA conllu-utils
 ~~~
 
 ### Adding the repository
@@ -36,7 +36,7 @@ your `packageOverrides`. To do so, add the following to
 ~~~nix
 {
   packageOverrides = pkgs: {
-    danieldk = import (builtins.fetchTarball "https://git.sr.ht/~danieldk/nix-packages/archive/master.tar.gz") {
+    danieldk = import (builtins.fetchTarball "https://github.com/danieldk/nix-packages/archive/master.tar.gz") {
       inherit pkgs;
     };
   };
@@ -44,7 +44,7 @@ your `packageOverrides`. To do so, add the following to
 ~~~
 
 Then the packages will be available as attributes under `danieldk`,
-e.g.  `danieldk.finalfrontier`.
+e.g.  `danieldk.conllu-utils`.
 
 ### Pinning a specific revision
 
@@ -55,9 +55,9 @@ repository to a specific revision.
 ~~~nix
 {
   packageOverrides = pkgs: {
-    danieldk-pinned = import (builtins.fetchTarball {
+    danieldk = import (builtins.fetchTarball {
 	    # Get the archive for commit baa127b
-        url = "https://git.sr.ht/~danieldk/nix-packages/archive/baa127b34ab70bede808f3baa0a8593f11ab1a78.tar.gz";
+        url = "https://github.com/danieldk/nix-packages/archive/baa127b34ab70bede808f3baa0a8593f11ab1a78.tar.gz";
 		# Get the SHA256 hash using: nix-prefetch-url --unpack <url>
         sha256 = "04l7djqsc6qx9bk2ri3jqwpx7vnqviyh65s7aqxk6d06kf89gc4h";
       })
@@ -77,6 +77,5 @@ follow the steps described at
 
 ## Questions, bug reports, and package requests
 
-Feel free to send me any questions, bug reports, or requests for
-packages to [my public
-inbox](https://lists.sr.ht/~danieldk/public-inbox).
+Feel free to open a GitHub issue for any questions, bug reports, or
+request for packages.
