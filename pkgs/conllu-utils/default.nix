@@ -19,8 +19,8 @@ let
       src = fetchFromGitHub {
         owner = "danieldk";
         repo = "conllu-utils";
-        rev = "0.1.1";
-        sha256 = "0lipm28s69b73ci2ypvyi9ni5icchn0i7i3vhfa33g1rv7d3ckh6";
+        rev = "0.1.3";
+        sha256 = "0nbhq0j1nnpn48gc4jr92pd88algralyrvsg18vr8wcrc1nbv7w3";
       };
 
       nativeBuildInputs = [ installShellFiles ];
