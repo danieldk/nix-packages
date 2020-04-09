@@ -32,8 +32,6 @@ let
       '';
 
       postInstall = ''
-        rm $out/bin/*.d
-
         # Install shell completions
         installShellCompletion conllu.{bash,fish,zsh}
       '';
