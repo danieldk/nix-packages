@@ -1,4 +1,5 @@
-{ stdenv
+{ pkgs
+, stdenv
 , callPackage
 , fetchFromGitHub
 , defaultCrateOverrides
@@ -9,6 +10,7 @@
 
 let
   cargo_nix = callPackage ./Cargo.nix {
+    inherit pkgs;
     defaultCrateOverrides = crateOverrides;
   };
   crateOverrides = defaultCrateOverrides // {
