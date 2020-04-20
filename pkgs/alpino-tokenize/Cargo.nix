@@ -26,9 +26,9 @@ rec {
   # workspaceMembers."${crateName}".build.override { features = [ "default" "feature1" ... ]; }.
   workspaceMembers = {
     "alpino-tokenize" = rec {
-      packageId = "alpino-tokenize 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenize)";
+      packageId = "alpino-tokenize 0.2.1 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenize)";
       build = internal.buildRustCrateWithFeatures {
-        packageId = "alpino-tokenize 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenize)";
+        packageId = "alpino-tokenize 0.2.1 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenize)";
       };
 
       # Debug support which might change between releases.
@@ -36,9 +36,9 @@ rec {
       debug = internal.debugCrate { inherit packageId; };
     };
     "alpino-tokenizer" = rec {
-      packageId = "alpino-tokenizer 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer)";
+      packageId = "alpino-tokenizer 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer)";
       build = internal.buildRustCrateWithFeatures {
-        packageId = "alpino-tokenizer 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer)";
+        packageId = "alpino-tokenizer 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer)";
       };
 
       # Debug support which might change between releases.
@@ -46,9 +46,9 @@ rec {
       debug = internal.debugCrate { inherit packageId; };
     };
     "alpino-tokenizer-sys" = rec {
-      packageId = "alpino-tokenizer-sys 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)";
+      packageId = "alpino-tokenizer-sys 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)";
       build = internal.buildRustCrateWithFeatures {
-        packageId = "alpino-tokenizer-sys 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)";
+        packageId = "alpino-tokenizer-sys 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)";
       };
 
       # Debug support which might change between releases.
@@ -100,9 +100,9 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "std" ];
       };
-      "alpino-tokenize 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenize)" = rec {
+      "alpino-tokenize 0.2.1 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenize)" = rec {
         crateName = "alpino-tokenize";
-        version = "0.1.0";
+        version = "0.2.1";
         edition = "2018";
         crateBin = [
           { name = "alpino-tokenize"; path = "src/main.rs"; }
@@ -114,15 +114,15 @@ rec {
         dependencies = [
           {
             name = "alpino-tokenizer";
-            packageId = "alpino-tokenizer 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer)";
+            packageId = "alpino-tokenizer 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer)";
           }
           {
             name = "clap";
             packageId = "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)";
           }
           {
-            name = "conllx";
-            packageId = "conllx 0.12.1 (registry+https://github.com/rust-lang/crates.io-index)";
+            name = "conllu";
+            packageId = "conllu 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)";
           }
           {
             name = "lazy_static";
@@ -139,9 +139,9 @@ rec {
         ];
         
       };
-      "alpino-tokenizer 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer)" = rec {
+      "alpino-tokenizer 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer)" = rec {
         crateName = "alpino-tokenizer";
-        version = "0.1.0";
+        version = "0.2.0";
         edition = "2018";
         src = (builtins.filterSource sourceFilter ./alpino-tokenizer);
         authors = [
@@ -150,7 +150,7 @@ rec {
         dependencies = [
           {
             name = "alpino-tokenizer-sys";
-            packageId = "alpino-tokenizer-sys 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)";
+            packageId = "alpino-tokenizer-sys 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)";
           }
           {
             name = "lazy_static";
@@ -171,9 +171,9 @@ rec {
         ];
         
       };
-      "alpino-tokenizer-sys 0.1.0 (path+file:///home/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)" = rec {
+      "alpino-tokenizer-sys 0.2.0 (path+file:///Users/daniel/git/alpino-tokenizer/alpino-tokenizer-sys)" = rec {
         crateName = "alpino-tokenizer-sys";
-        version = "0.1.0";
+        version = "0.2.0";
         edition = "2018";
         src = (builtins.filterSource sourceFilter ./alpino-tokenizer-sys);
         authors = [
@@ -243,69 +243,15 @@ rec {
         ];
         
       };
-      "backtrace 0.3.38 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "backtrace";
-        version = "0.3.38";
-        edition = "2018";
-        sha256 = "1xgxaplllarhhqib3mcbv96743lvcil0kvq0xrrzgk10i6z642k9";
-        authors = [
-          "The Rust Project Developers"
-        ];
-        dependencies = [
-          {
-            name = "backtrace-sys";
-            packageId = "backtrace-sys 0.1.31 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
-          }
-          {
-            name = "cfg-if";
-            packageId = "cfg-if 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
-            name = "libc";
-            packageId = "libc 0.2.62 (registry+https://github.com/rust-lang/crates.io-index)";
-            usesDefaultFeatures = false;
-          }
-          {
-            name = "rustc-demangle";
-            packageId = "rustc-demangle 0.1.16 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-        ];
-        features = {
-          "default" = [ "std" "libunwind" "libbacktrace" "dladdr" "dbghelp" ];
-          "gimli-symbolize" = [ "addr2line" "findshlibs" "memmap" "goblin" ];
-          "libbacktrace" = [ "backtrace-sys" ];
-          "rustc-dep-of-std" = [ "backtrace-sys/rustc-dep-of-std" "cfg-if/rustc-dep-of-std" "core" "compiler_builtins" "libc/rustc-dep-of-std" "rustc-demangle/rustc-dep-of-std" ];
-          "serialize-rustc" = [ "rustc-serialize" ];
-          "serialize-serde" = [ "serde" ];
-          "verify-winapi" = [ "winapi/dbghelp" "winapi/handleapi" "winapi/libloaderapi" "winapi/minwindef" "winapi/processthreadsapi" "winapi/synchapi" "winapi/winbase" "winapi/winnt" ];
-        };
-        resolvedDefaultFeatures = [ "backtrace-sys" "dbghelp" "default" "dladdr" "libbacktrace" "libunwind" "std" ];
-      };
-      "backtrace-sys 0.1.31 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "backtrace-sys";
-        version = "0.1.31";
+      "autocfg 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+        crateName = "autocfg";
+        version = "1.0.0";
         edition = "2015";
-        sha256 = "0as2pk77br4br04daywhivpi1ixxb8y2c7f726kj849dxys31a42";
+        sha256 = "17cv6pwb4q08s0ynpr4n8hv5299hcmhdgvdchzixfpw8y5qcgapq";
         authors = [
-          "Alex Crichton <alex@alexcrichton.com>"
+          "Josh Stone <cuviper@gmail.com>"
         ];
-        dependencies = [
-          {
-            name = "libc";
-            packageId = "libc 0.2.62 (registry+https://github.com/rust-lang/crates.io-index)";
-            usesDefaultFeatures = false;
-          }
-        ];
-        buildDependencies = [
-          {
-            name = "cc";
-            packageId = "cc 1.0.45 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-        ];
-        features = {
-          "rustc-dep-of-std" = [ "core" "compiler_builtins" ];
-        };
+        
       };
       "bitflags 1.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "bitflags";
@@ -331,18 +277,6 @@ rec {
         ];
         features = {
           "parallel" = [ "num_cpus" "jobserver" ];
-        };
-      };
-      "cfg-if 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "cfg-if";
-        version = "0.1.10";
-        edition = "2018";
-        sha256 = "08h80ihs74jcyp24cd75wwabygbbdgl05k6p5dmq8akbr78vv1a7";
-        authors = [
-          "Alex Crichton <alex@alexcrichton.com>"
-        ];
-        features = {
-          "rustc-dep-of-std" = [ "core" "compiler_builtins" ];
         };
       };
       "clap 2.33.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
@@ -399,26 +333,26 @@ rec {
         };
         resolvedDefaultFeatures = [ "ansi_term" "atty" "color" "default" "strsim" "suggestions" "vec_map" ];
       };
-      "conllx 0.12.1 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "conllx";
-        version = "0.12.1";
+      "conllu 0.5.1 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+        crateName = "conllu";
+        version = "0.5.1";
         edition = "2018";
-        sha256 = "152az96alwvqfdimf06w0dawgs8g784q4ywidf319cp15ijcb3n3";
+        sha256 = "1l9x8h3if9jxxcdnjsx3lar1yl1i0cbklhlg3zk9jigv6m66dmq1";
         authors = [
           "Daniël de Kok <me@danieldk.eu>"
         ];
         dependencies = [
           {
-            name = "failure";
-            packageId = "failure 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
             name = "itertools";
-            packageId = "itertools 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "itertools 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)";
           }
           {
             name = "petgraph";
-            packageId = "petgraph 0.4.13 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "petgraph 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)";
+          }
+          {
+            name = "thiserror";
+            packageId = "thiserror 1.0.15 (registry+https://github.com/rust-lang/crates.io-index)";
           }
         ];
         
@@ -435,78 +369,42 @@ rec {
           "default" = [ "use_std" ];
         };
       };
-      "failure 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "failure";
-        version = "0.1.5";
-        edition = "2015";
-        sha256 = "1qppmgv4i5jj6vrss91qackqnl0a12h7lnby4l7j5fdy78yxhnvr";
-        authors = [
-          "Without Boats <boats@mozilla.com>"
-        ];
-        dependencies = [
-          {
-            name = "backtrace";
-            packageId = "backtrace 0.3.38 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
-          }
-          {
-            name = "failure_derive";
-            packageId = "failure_derive 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
-          }
-        ];
-        features = {
-          "default" = [ "std" "derive" ];
-          "derive" = [ "failure_derive" ];
-          "std" = [ "backtrace" ];
-        };
-        resolvedDefaultFeatures = [ "backtrace" "default" "derive" "failure_derive" "std" ];
-      };
-      "failure_derive 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "failure_derive";
-        version = "0.1.5";
-        edition = "2015";
-        sha256 = "1q97n7dp51j5hndzic9ng2fgn6f3z5ya1992w84l7vypby8n647a";
-        procMacro = true;
-        authors = [
-          "Without Boats <woboats@gmail.com>"
-        ];
-        dependencies = [
-          {
-            name = "proc-macro2";
-            packageId = "proc-macro2 0.4.30 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
-            name = "quote";
-            packageId = "quote 0.6.13 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
-            name = "syn";
-            packageId = "syn 0.15.44 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
-            name = "synstructure";
-            packageId = "synstructure 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-        ];
-        features = {
-        };
-      };
-      "fixedbitset 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+      "fixedbitset 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "fixedbitset";
-        version = "0.1.9";
+        version = "0.2.0";
         edition = "2015";
-        sha256 = "0czam11mi80dbyhf4rd4lz0ihcf7vkfchrdcrn45wbs0h40dxm46";
+        sha256 = "0kg03p777wc0dajd9pvlcnsyrwa8dhqwf0sd9r4dw0p82rs39arp";
         authors = [
           "bluss"
         ];
-        
+        features = {
+          "default" = [ "std" ];
+        };
       };
-      "itertools 0.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "itertools";
-        version = "0.8.0";
+      "indexmap 1.3.2 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+        crateName = "indexmap";
+        version = "1.3.2";
         edition = "2015";
-        sha256 = "0n2k13b6w4x2x6np2lykh9bj3b3z4hwh2r4cn3z2dgnfq7cng12v";
+        sha256 = "14i2gmq9pwaafvlxmsc12j6539hjgqk4j4jz40fz763vbcn08vq7";
+        authors = [
+          "bluss"
+          "Josh Stone <cuviper@gmail.com>"
+        ];
+        buildDependencies = [
+          {
+            name = "autocfg";
+            packageId = "autocfg 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)";
+          }
+        ];
+        features = {
+          "serde-1" = [ "serde" ];
+        };
+      };
+      "itertools 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+        crateName = "itertools";
+        version = "0.9.0";
+        edition = "2018";
+        sha256 = "0jyml7ygr7kijkcjdl3fk5f34y5h5jsavclim7l13zjiavw1hkr8";
         authors = [
           "bluss"
         ];
@@ -563,23 +461,11 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "use_std" ];
       };
-      "ordermap 0.3.5 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "ordermap";
-        version = "0.3.5";
-        edition = "2015";
-        sha256 = "0qr0a50l0qakbjcck93qdayd0xl8gzpp42x0n7b75cs4ybsx6vm8";
-        authors = [
-          "bluss"
-        ];
-        features = {
-          "serde-1" = [ "serde" ];
-        };
-      };
-      "petgraph 0.4.13 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+      "petgraph 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "petgraph";
-        version = "0.4.13";
-        edition = "2015";
-        sha256 = "0kyfmca854s54jk26g2x1kjb04c3k7cjilaxyr0if8lhxv8mjdlw";
+        version = "0.5.0";
+        edition = "2018";
+        sha256 = "14pxq66civ0afgj0zlza9k3kxwqk2bf5jg0mbp4cd7m2lkp2gh99";
         authors = [
           "bluss"
           "mitchmindtree"
@@ -587,35 +473,35 @@ rec {
         dependencies = [
           {
             name = "fixedbitset";
-            packageId = "fixedbitset 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "fixedbitset 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)";
+            usesDefaultFeatures = false;
           }
           {
-            name = "ordermap";
-            packageId = "ordermap 0.3.5 (registry+https://github.com/rust-lang/crates.io-index)";
-            optional = true;
+            name = "indexmap";
+            packageId = "indexmap 1.3.2 (registry+https://github.com/rust-lang/crates.io-index)";
           }
         ];
         features = {
-          "all" = [ "unstable" "quickcheck" "stable_graph" "graphmap" ];
-          "default" = [ "graphmap" "stable_graph" ];
-          "graphmap" = [ "ordermap" ];
+          "all" = [ "unstable" "quickcheck" "matrix_graph" "stable_graph" "graphmap" ];
+          "default" = [ "graphmap" "stable_graph" "matrix_graph" ];
           "serde-1" = [ "serde" "serde_derive" ];
           "unstable" = [ "generate" ];
         };
-        resolvedDefaultFeatures = [ "default" "graphmap" "ordermap" "stable_graph" ];
+        resolvedDefaultFeatures = [ "default" "graphmap" "matrix_graph" "stable_graph" ];
       };
-      "proc-macro2 0.4.30 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+      "proc-macro2 1.0.10 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "proc-macro2";
-        version = "0.4.30";
-        edition = "2015";
-        sha256 = "0nd71fl24sys066jrha6j7i34nfkjv44yzw8yww9742wmc8j0gfg";
+        version = "1.0.10";
+        edition = "2018";
+        sha256 = "1qxbnl8i3a5b2nxb8kdxbq6kj3pd1ckhm35wm7z3jd7n5wlns96z";
         authors = [
           "Alex Crichton <alex@alexcrichton.com>"
+          "David Tolnay <dtolnay@gmail.com>"
         ];
         dependencies = [
           {
             name = "unicode-xid";
-            packageId = "unicode-xid 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "unicode-xid 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)";
           }
         ];
         features = {
@@ -623,18 +509,18 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" "proc-macro" ];
       };
-      "quote 0.6.13 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+      "quote 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "quote";
-        version = "0.6.13";
-        edition = "2015";
-        sha256 = "1qgqq48jymp5h4y082aanf25hrw6bpb678xh3zw993qfhxmkpqkc";
+        version = "1.0.3";
+        edition = "2018";
+        sha256 = "0zwd6fp74xfg4jnnnwj4v84lkzif2giwj4ch1hka9g35ghc6rp1b";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
         dependencies = [
           {
             name = "proc-macro2";
-            packageId = "proc-macro2 0.4.30 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "proc-macro2 1.0.10 (registry+https://github.com/rust-lang/crates.io-index)";
             usesDefaultFeatures = false;
           }
         ];
@@ -706,18 +592,6 @@ rec {
         };
         resolvedDefaultFeatures = [ "unicode-age" "unicode-bool" "unicode-case" "unicode-gencat" "unicode-perl" "unicode-script" "unicode-segment" ];
       };
-      "rustc-demangle 0.1.16 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "rustc-demangle";
-        version = "0.1.16";
-        edition = "2015";
-        sha256 = "10qp42sl1wrdbgbbh8rnay2grm976z7hqgz32c4y09l1c071qsac";
-        authors = [
-          "Alex Crichton <alex@alexcrichton.com>"
-        ];
-        features = {
-          "rustc-dep-of-std" = [ "core" "compiler_builtins" ];
-        };
-      };
       "stdinout 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "stdinout";
         version = "0.4.0";
@@ -738,29 +612,29 @@ rec {
         ];
         
       };
-      "syn 0.15.44 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+      "syn 1.0.17 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "syn";
-        version = "0.15.44";
-        edition = "2015";
-        sha256 = "1id5g6x6zihv3j7hwrw3m1jp636bg8dpi671r7zy3jvpkavb794w";
+        version = "1.0.17";
+        edition = "2018";
+        sha256 = "00xvf772ys4fj9fr8kplmsqb9if215dsipi3nv54aw9q7xkfpw0d";
         authors = [
           "David Tolnay <dtolnay@gmail.com>"
         ];
         dependencies = [
           {
             name = "proc-macro2";
-            packageId = "proc-macro2 0.4.30 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "proc-macro2 1.0.10 (registry+https://github.com/rust-lang/crates.io-index)";
             usesDefaultFeatures = false;
           }
           {
             name = "quote";
-            packageId = "quote 0.6.13 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "quote 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)";
             optional = true;
             usesDefaultFeatures = false;
           }
           {
             name = "unicode-xid";
-            packageId = "unicode-xid 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)";
+            packageId = "unicode-xid 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)";
           }
         ];
         features = {
@@ -768,37 +642,7 @@ rec {
           "printing" = [ "quote" ];
           "proc-macro" = [ "proc-macro2/proc-macro" "quote/proc-macro" ];
         };
-        resolvedDefaultFeatures = [ "clone-impls" "default" "derive" "extra-traits" "parsing" "printing" "proc-macro" "quote" "visit" ];
-      };
-      "synstructure 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
-        crateName = "synstructure";
-        version = "0.10.2";
-        edition = "2015";
-        sha256 = "0grirdkgh2wl4hf9a3nbiazpgccxgq54kn52ms0xrr6njvgkwd82";
-        authors = [
-          "Nika Layzell <nika@thelayzells.com>"
-        ];
-        dependencies = [
-          {
-            name = "proc-macro2";
-            packageId = "proc-macro2 0.4.30 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
-            name = "quote";
-            packageId = "quote 0.6.13 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-          {
-            name = "syn";
-            packageId = "syn 0.15.44 (registry+https://github.com/rust-lang/crates.io-index)";
-            features = [ "visit" "extra-traits" ];
-          }
-          {
-            name = "unicode-xid";
-            packageId = "unicode-xid 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)";
-          }
-        ];
-        features = {
-        };
+        resolvedDefaultFeatures = [ "clone-impls" "default" "derive" "parsing" "printing" "proc-macro" "quote" ];
       };
       "textwrap 0.11.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "textwrap";
@@ -812,6 +656,47 @@ rec {
           {
             name = "unicode-width";
             packageId = "unicode-width 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)";
+          }
+        ];
+        
+      };
+      "thiserror 1.0.15 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+        crateName = "thiserror";
+        version = "1.0.15";
+        edition = "2018";
+        sha256 = "04j0j9kzhfqzjqavmm2bpqd90v5j1jxvcyr5mc042438zz9d7csl";
+        authors = [
+          "David Tolnay <dtolnay@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "thiserror-impl";
+            packageId = "thiserror-impl 1.0.15 (registry+https://github.com/rust-lang/crates.io-index)";
+          }
+        ];
+        
+      };
+      "thiserror-impl 1.0.15 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+        crateName = "thiserror-impl";
+        version = "1.0.15";
+        edition = "2018";
+        sha256 = "1p8hjdj4lhsprh7zl4d0c8y06387k3dhs9cidwk1axrv2642k5ya";
+        procMacro = true;
+        authors = [
+          "David Tolnay <dtolnay@gmail.com>"
+        ];
+        dependencies = [
+          {
+            name = "proc-macro2";
+            packageId = "proc-macro2 1.0.10 (registry+https://github.com/rust-lang/crates.io-index)";
+          }
+          {
+            name = "quote";
+            packageId = "quote 1.0.3 (registry+https://github.com/rust-lang/crates.io-index)";
+          }
+          {
+            name = "syn";
+            packageId = "syn 1.0.17 (registry+https://github.com/rust-lang/crates.io-index)";
           }
         ];
         
@@ -845,11 +730,11 @@ rec {
         };
         resolvedDefaultFeatures = [ "default" ];
       };
-      "unicode-xid 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
+      "unicode-xid 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = rec {
         crateName = "unicode-xid";
-        version = "0.1.0";
+        version = "0.2.0";
         edition = "2015";
-        sha256 = "1z57lqh4s18rr4x0j4fw4fmp9hf9346h0kmdgqsqx0fhjr3k0wpw";
+        sha256 = "0z09fn515xm7zyr0mmdyxa9mx2f7azcpv74pqmg611iralwpcvl2";
         authors = [
           "erick.tryzelaar <erick.tryzelaar@gmail.com>"
           "kwantam <kwantam@gmail.com>"
