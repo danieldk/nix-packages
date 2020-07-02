@@ -5,18 +5,17 @@
 , fetchFromGitHub
 , defaultCrateOverrides
 
-# Native build inputs
+  # Native build inputs
 , installShellFiles
 }:
-
 let
   cargo_nix = callPackage ./Cargo.nix { defaultCrateOverrides = crateOverrides; };
-  version = "0.2.1";
+  version = "0.2.2";
   src = fetchFromGitHub {
     owner = "danieldk";
     repo = "alpino-tokenizer";
     rev = version;
-    sha256 = "08zjxrfbhzmhijflh02hcmjn30ji9bi0bw5dyi6dd2pd70s0i9dp";
+    sha256 = "00m8j6sbdp44p0byazx1vijgpssfz4353np4xnhh5m9qkhbm28jx";
   };
   crateOverrides = defaultCrateOverrides // {
     alpino-tokenize = attr: rec {
