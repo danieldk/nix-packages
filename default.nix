@@ -21,26 +21,18 @@ in rec {
   notion = pkgs.callPackage ./pkgs/notion {};
 
   # Python packages
-  pythonPackages = python2Packages;
-  python2Packages = python27Packages;
-  python3Packages = python37Packages;
-
-  python27Packages = pkgs.recurseIntoAttrs(
-    pkgs.python27Packages.callPackage ./pkgs/python-modules {
-      inherit alpinocorpus rustNightly;
-    }
-  );
-
-  python35Packages = pkgs.python35Packages.callPackage ./pkgs/python-modules {
-    inherit alpinocorpus rustNightly;
-  };
+  python3Packages = python38Packages;
 
   python36Packages = pkgs.python36Packages.callPackage ./pkgs/python-modules {
     inherit alpinocorpus rustNightly;
   };
 
-  python37Packages = pkgs.recurseIntoAttrs(
-    pkgs.python37Packages.callPackage ./pkgs/python-modules {
+  python37Packages = pkgs.python37Packages.callPackage ./pkgs/python-modules {
+    inherit alpinocorpus rustNightly;
+  };
+
+  python38Packages = pkgs.recurseIntoAttrs (
+    pkgs.python38Packages.callPackage ./pkgs/python-modules {
       inherit alpinocorpus rustNightly;
     }
   );
