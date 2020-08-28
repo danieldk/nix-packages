@@ -1,8 +1,6 @@
 { pkgs ? import (import ./nix/sources.nix).nixpkgs {} }:
 
-let
-  rustNightly = pkgs.callPackage ./nix/rustNightly.nix {};
-in rec {
+rec {
   alpinocorpus = pkgs.callPackage ./pkgs/alpinocorpus {};
   alpino-tokenize = pkgs.callPackage ./pkgs/alpino-tokenize {};
   citar = pkgs.callPackage ./pkgs/citar {};
@@ -24,16 +22,16 @@ in rec {
   python3Packages = python38Packages;
 
   python36Packages = pkgs.python36Packages.callPackage ./pkgs/python-modules {
-    inherit alpinocorpus rustNightly;
+    inherit alpinocorpus;
   };
 
   python37Packages = pkgs.python37Packages.callPackage ./pkgs/python-modules {
-    inherit alpinocorpus rustNightly;
+    inherit alpinocorpus;
   };
 
   python38Packages = pkgs.recurseIntoAttrs (
     pkgs.python38Packages.callPackage ./pkgs/python-modules {
-      inherit alpinocorpus rustNightly;
+      inherit alpinocorpus;
     }
   );
 
