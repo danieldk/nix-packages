@@ -1,5 +1,14 @@
-{ stdenv, fetchurl, autoPatchelfHook, makeDesktopItem, makeWrapper, boost159
-, libXScrnSaver, tcl-8_6, tk-8_6 }:
+{ stdenv
+, fetchurl
+, autoPatchelfHook
+, makeDesktopItem
+, makeWrapper
+, boost159
+, glibc
+, gnugrep
+, libXScrnSaver
+, tcl-8_6
+, tk-8_6 }:
 
 let
   boost158 = boost159.overrideAttrs (oldAttrs: rec {
@@ -16,7 +25,8 @@ let
     exec = "alpino";
     comment = "Alpino dependency parser for Dutch";
     desktopName = "Alpino";
-    categories = "Science;Education;";
+    icon = "alpino";
+    categories = "Science;";
     terminal = "true";
   };
 in stdenv.mkDerivation rec {
@@ -49,15 +59,17 @@ in stdenv.mkDerivation rec {
     cp -a * $out/share/alpino
 
     mkdir $out/bin
-    makeWrapper $out/share/alpino/bin/Alpino $out/bin/alpino
+    makeWrapper $out/share/alpino/bin/Alpino $out/bin/alpino \
+      --prefix PATH : ${stdenv.lib.makeBinPath [ glibc gnugrep ]}
 
-    mkdir -p $out/share/applications
-    cp ${desktopItem}/share/applications/* $out/share/applications
+    install -Dm644 -t $out/share/applications \
+      ${desktopItem}/share/applications/Alpino.desktop
+    install -Dm644 ${./alpino.png} $out/share/icons/alpino.png
   '';
 
   meta = with stdenv.lib; {
     description = "Alpino dependency parser for Dutch";
-    license = licenses.gpl2;
+    license = licenses.lgpl21Plus;
     maintainers = with maintainers; [ danieldk ];
     platforms = [ "x86_64-linux" ];
     hydraPlatforms = [];
