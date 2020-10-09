@@ -19,6 +19,4 @@ in {
       '';
     });
   };
-
-  somajo = callPackage ./somajo {};
 }
