@@ -23,7 +23,7 @@ rustPlatform.buildRustPackage rec {
     sha256 = "0ly9xsfrv094qqw3n6kjwzhqh382y2gwms5qw0gc9x0b19jjxgz6";
   };
 
-  cargoSha256 = "1cjqwhibbbkfzk0nh0zdq0dscp1l9mn39b14l4wycjibhfa3nlcv";
+  cargoSha256 = "sha256-D4P96sFS71om02ajry2LS8sqyMmYQ6mfpV+yJn9rfOE=";
 
   nativeBuildInputs = [ maturin pipInstallHook ];
 
