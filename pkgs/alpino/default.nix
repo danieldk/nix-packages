@@ -31,11 +31,11 @@ let
   };
 in stdenv.mkDerivation rec {
   pname = "alpino";
-  version = "172";
+  version = "233";
 
   src = fetchurl {
     url = "http://www.let.rug.nl/vannoord/alp/Alpino/versions/binary/Alpino-x86_64-Linux-glibc-2.23-git${version}-sicstus.tar.gz";
-    sha256 = "0wvrlgwwpzwf280ir6pgfhfmf3i546x7dh001sx1285gnyw473gy";
+    hash = "sha256-+52WnH+GRMWCzCnGnrhejuA/QPOYEbLTeE4xaD4CZJI=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook makeWrapper ];
