@@ -1,4 +1,16 @@
 {
+    "nix-bundle": {
+        "branch": "master",
+        "description": "Bundle Nix derivations to run anywhere!",
+        "homepage": "",
+        "owner": "matthewbauer",
+        "repo": "nix-bundle",
+        "rev": "c5f2dfc73609412bc545b88b75947ebca799c4c6",
+        "sha256": "1mnfhh9hb78776fkc93fnip883bnrsa5lvx7y6gxsj01w21n5fif",
+        "type": "tarball",
+        "url": "https://github.com/matthewbauer/nix-bundle/archive/c5f2dfc73609412bc545b88b75947ebca799c4c6.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixpkgs": {
         "branch": "nixos-20.09",
         "description": "Nix Packages collection",
