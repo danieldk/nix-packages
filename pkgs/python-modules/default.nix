@@ -9,14 +9,4 @@ in {
   alpinocorpus = callPackage ./alpinocorpus {
     inherit alpinocorpus;
   };
-
-  pytorch = callPackage ./pytorch {
-    cudaSupport = pkgs.config.cudaSupport or false;
-
-    magma = pkgs.magma.overrideAttrs (attrs: rec {
-      preConfigure = ''
-        export CC=${pkgs.cudatoolkit.cc}/bin/gcc CXX=${pkgs.cudatoolkit.cc}/bin/g++
-      '';
-    });
-  };
 }
